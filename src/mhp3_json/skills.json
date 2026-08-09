@@ -1,6 +1,6 @@
 [
 	{
-		"name": "Attack Up [Sm]",
+		"name": "Attack Up (S)",
 		"skillTree": "Attack",
 		"points": 10,
 		"hunterType": "Both",
@@ -8,37 +8,37 @@
 		"order": 32
 	},
 	{
-		"name": "Attack Up [Med]",
+		"name": "Attack Up (M)",
 		"skillTree": "Attack",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Attack Up [Lg]",
+		"name": "Attack Up (L)",
 		"skillTree": "Attack",
 		"points": 20,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Attack Down [Sm]",
+		"name": "Attack Down (S)",
 		"skillTree": "Attack",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Attack Down [Med]",
+		"name": "Attack Down (M)",
 		"skillTree": "Attack",
 		"points": -15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Attack Down [Lg]",
+		"name": "Attack Down (L)",
 		"skillTree": "Attack",
 		"points": -20,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Reckless Abandon +1",
+		"name": "Critical Eye +1",
 		"skillTree": "Expert",
 		"points": 10,
 		"hunterType": "Both",
@@ -46,37 +46,37 @@
 		"order": 12
 	},
 	{
-		"name": "Reckless Abandon +2",
+		"name": "Critical Eye +2",
 		"skillTree": "Expert",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Reckless Abandon +3",
+		"name": "Critical Eye +3",
 		"skillTree": "Expert",
 		"points": 20,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Reckless Abandon -1",
+		"name": "Critical Eye -1",
 		"skillTree": "Expert",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Reckless Abandon -2",
+		"name": "Critical Eye -2",
 		"skillTree": "Expert",
 		"points": -15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Reckless Abandon -3",
+		"name": "Critical Eye -3",
 		"skillTree": "Expert",
 		"points": -20,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Sharp Sword",
+		"name": "Razor Sharp",
 		"skillTree": "Sharpness",
 		"points": 10,
 		"hunterType": "Blademaster",
@@ -84,7 +84,7 @@
 		"order": 9
 	},
 	{
-		"name": "Blunt",
+		"name": "Blunt Edge",
 		"skillTree": "Sharpness",
 		"points": -10,
 		"hunterType": "Blademaster"
@@ -105,14 +105,14 @@
 	},
 	{
 		"name": "Sharpness +1",
-		"skillTree": "Artisan",
+		"skillTree": "Handicraft",
 		"points": 15,
 		"hunterType": "Blademaster",
 		"tag": "Blademaster",
 		"order": 10
 	},
 	{
-		"name": "Unsheathe Stun",
+		"name": "Punishing Draw",
 		"skillTree": "PunishDraw",
 		"points": 10,
 		"hunterType": "Blademaster",
@@ -120,7 +120,7 @@
 		"order": 71
 	},
 	{
-		"name": "Unsheathe Critical",
+		"name": "Critical Draw",
 		"skillTree": "Crit Draw",
 		"points": 10,
 		"hunterType": "Blademaster",
@@ -128,7 +128,7 @@
 		"order": 65
 	},
 	{
-		"name": "Concentration",
+		"name": "Focus",
 		"skillTree": "FastCharge",
 		"points": 10,
 		"hunterType": "Both",
@@ -142,7 +142,7 @@
 		"hunterType": "Both"
 	},
 	{
-		"name": "ESP",
+		"name": "Mind's Eye",
 		"skillTree": "Fencing",
 		"points": 10,
 		"hunterType": "Blademaster",
@@ -150,68 +150,68 @@
 		"order": 11
 	},
 	{
-		"name": "Exploiter",
-		"skillTree": "Debilitate",
+		"name": "Weakness Exploit",
+		"skillTree": "Tenderizer",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Offensive",
 		"order": 94
 	},
 	{
-		"name": "Ruiner",
-		"skillTree": "Slam",
+		"name": "Partbreaker",
+		"skillTree": "Destroyer",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Farming",
 		"order": 95
 	},
 	{
-		"name": "Improved KO",
+		"name": "Knockout King",
 		"skillTree": "KO",
 		"points": 10,
 		"hunterType": "Both",
 		"order": 96
 	},
 	{
-		"name": "Enfeebler",
-		"skillTree": "FatigueAtk",
+		"name": "Stamina Thief",
+		"skillTree": "Stam Drain",
 		"points": 10,
 		"hunterType": "Both",
 		"order": 97
 	},
 	{
-		"name": "Flute Expert",
-		"skillTree": "Horn",
+		"name": "Horn Maestro",
+		"skillTree": "Maestro",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Blademaster",
 		"order": 82
 	},
 	{
-		"name": "Gunnery Master",
-		"skillTree": "Gunnery",
+		"name": "Artillery Novice",
+		"skillTree": "Artillery",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Offensive",
 		"order": 83
 	},
 	{
-		"name": "Gunnery King",
-		"skillTree": "Gunnery",
+		"name": "Artillery King",
+		"skillTree": "Artillery",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Unleashed +1",
-		"skillTree": "Awaken",
+		"name": "Latent Power +1",
+		"skillTree": "Gloves Off",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Offensive",
 		"order": 84
 	},
 	{
-		"name": "Unleashed +2",
-		"skillTree": "Awaken",
+		"name": "Latent Power +2",
+		"skillTree": "Gloves Off",
 		"points": 15,
 		"hunterType": "Both"
 	},
@@ -230,14 +230,14 @@
 		"hunterType": "Both"
 	},
 	{
-		"name": "Worry",
+		"name": "Worrywort",
 		"skillTree": "Potential",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Resilience",
-		"skillTree": "Adversity",
+		"name": "Fortify",
+		"skillTree": "Survivor",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Offensive",
@@ -252,7 +252,7 @@
 		"order": 59
 	},
 	{
-		"name": "Rapid Shot +1",
+		"name": "Bonus Shot",
 		"skillTree": "Rapid Fire",
 		"points": 10,
 		"hunterType": "Gunner",
@@ -261,7 +261,7 @@
 	},
 	{
 		"name": "Reload Speed +1",
-		"skillTree": "Reload Spd",
+		"skillTree": "Reload Speed",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
@@ -269,36 +269,36 @@
 	},
 	{
 		"name": "Reload Speed +2",
-		"skillTree": "Reload Spd",
+		"skillTree": "Reload Speed",
 		"points": 15,
 		"hunterType": "Gunner"
 	},
 	{
 		"name": "Reload Speed +3",
-		"skillTree": "Reload Spd",
+		"skillTree": "Reload Speed",
 		"points": 20,
 		"hunterType": "Gunner"
 	},
 	{
 		"name": "Reload Speed -1",
-		"skillTree": "Reload Spd",
+		"skillTree": "Reload Speed",
 		"points": -10,
 		"hunterType": "Gunner"
 	},
 	{
 		"name": "Reload Speed -2",
-		"skillTree": "Reload Spd",
+		"skillTree": "Reload Speed",
 		"points": -15,
 		"hunterType": "Gunner"
 	},
 	{
 		"name": "Reload Speed -3",
-		"skillTree": "Reload Spd",
+		"skillTree": "Reload Speed",
 		"points": -20,
 		"hunterType": "Gunner"
 	},
 	{
-		"name": "Recoil Reduction +1",
+		"name": "Recoil Down +1",
 		"skillTree": "Recoil",
 		"points": 10,
 		"hunterType": "Gunner",
@@ -306,37 +306,37 @@
 		"order": 18
 	},
 	{
-		"name": "Recoil Reduction +2",
+		"name": "Recoil Down +2",
 		"skillTree": "Recoil",
 		"points": 15,
 		"hunterType": "Gunner"
 	},
 	{
-		"name": "Recoil Reduction +3",
+		"name": "Recoil Down +3",
 		"skillTree": "Recoil",
 		"points": 20,
 		"hunterType": "Gunner"
 	},
 	{
-		"name": "Recoil Reduction -1",
+		"name": "Recoil Down -1",
 		"skillTree": "Recoil",
 		"points": -10,
 		"hunterType": "Gunner"
 	},
 	{
-		"name": "Recoil Reduction -2",
+		"name": "Recoil Down -2",
 		"skillTree": "Recoil",
 		"points": -15,
 		"hunterType": "Gunner"
 	},
 	{
-		"name": "Recoil Reduction -3",
+		"name": "Recoil Down -3",
 		"skillTree": "Recoil",
 		"points": -20,
 		"hunterType": "Gunner"
 	},
 	{
-		"name": "Accuracy+1",
+		"name": "Steadiness +1",
 		"skillTree": "Precision",
 		"points": 10,
 		"hunterType": "Gunner",
@@ -344,169 +344,169 @@
 		"order": 60
 	},
 	{
-		"name": "Accuracy+2",
+		"name": "Steadiness +2",
 		"skillTree": "Precision",
 		"points": 15,
 		"hunterType": "Gunner"
 	},
 	{
-		"name": "Accuracy-1",
+		"name": "Steadiness -1",
 		"skillTree": "Precision",
 		"points": -10,
 		"hunterType": "Gunner"
 	},
 	{
-		"name": "Accuracy-2",
+		"name": "Steadiness -2",
 		"skillTree": "Precision",
 		"points": -15,
 		"hunterType": "Gunner"
 	},
 	{
-		"name": "NormalS/RapidBowUp",
-		"skillTree": "NormalS Up",
+		"name": "Normal/Rapid Up",
+		"skillTree": "Normal Up",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 19
 	},
 	{
-		"name": "PierceS/PierceBowUp",
-		"skillTree": "PierceS Up",
+		"name": "Pierce/Pierce Up",
+		"skillTree": "Pierce Up",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 20
 	},
 	{
-		"name": "PelletS/ScatterBowUp",
-		"skillTree": "PelletS Up",
+		"name": "Pellet/Spread Up",
+		"skillTree": "Pellet Up",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 21
 	},
 	{
-		"name": "Normal S All Add",
-		"skillTree": "NormalSAdd",
+		"name": "Use Any Normal",
+		"skillTree": "Normal S+",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 22
 	},
 	{
-		"name": "Pierce S LV1 Add",
-		"skillTree": "PierceSAdd",
+		"name": "Use Lv1 Pierce S",
+		"skillTree": "Pierce S+",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 23
 	},
 	{
-		"name": "Pierce S All Add",
-		"skillTree": "PierceSAdd",
+		"name": "Use Any Pierce S",
+		"skillTree": "Pierce S+",
 		"points": 15,
 		"hunterType": "Gunner"
 	},
 	{
-		"name": "Pellet S LV1 Add",
-		"skillTree": "PelletSAdd",
+		"name": "Use Lv1 Pellet S",
+		"skillTree": "Pellet S+",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 24
 	},
 	{
-		"name": "Pellet S All Add",
-		"skillTree": "PelletSAdd",
+		"name": "Use Any Pellet S",
+		"skillTree": "Pellet S+",
 		"points": 15,
 		"hunterType": "Gunner"
 	},
 	{
-		"name": "Crag S LV1 Add",
-		"skillTree": "Crag S Add",
+		"name": "Use Lv1 Crag S",
+		"skillTree": "Crag S+",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 25
 	},
 	{
-		"name": "Crag S All Add",
-		"skillTree": "Crag S Add",
+		"name": "Use Any Crag S",
+		"skillTree": "Crag S+",
 		"points": 15,
 		"hunterType": "Gunner"
 	},
 	{
-		"name": "Clust S LV1 Add",
-		"skillTree": "ClustS Add",
+		"name": "Use Lv1 Clust S",
+		"skillTree": "Clust S+",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 26
 	},
 	{
-		"name": "Clust S All Add",
-		"skillTree": "ClustS Add",
+		"name": "Use Any Clust S",
+		"skillTree": "Clust S+",
 		"points": 15,
 		"hunterType": "Gunner"
 	},
 	{
-		"name": "Cutter S Add",
-		"skillTree": "CutterSAdd",
+		"name": "Use Slicing S",
+		"skillTree": "Slice S+",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 92
 	},
 	{
-		"name": "Poison Coating Add",
-		"skillTree": "PoisonCAdd",
+		"name": "Use Poison Coat",
+		"skillTree": "Poison C+",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 77
 	},
 	{
-		"name": "Parlysis Coating Add",
-		"skillTree": "ParalyCAdd",
+		"name": "Use Para Coat",
+		"skillTree": "Para C+",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 78
 	},
 	{
-		"name": "Sleep Coating Add",
-		"skillTree": "SleepCAdd",
+		"name": "Use Sleep Coat",
+		"skillTree": "Sleep C+",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 79
 	},
 	{
-		"name": "Power Coating Add",
-		"skillTree": "PowerCAdd",
+		"name": "Use Power Coat",
+		"skillTree": "Power C+",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 80
 	},
 	{
-		"name": "Close Range Coating Add",
-		"skillTree": "RazorCAdd",
+		"name": "Use C. Range Coat",
+		"skillTree": "C. Range C+",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 81
 	},
 	{
-		"name": "Fatigue Coating Add",
-		"skillTree": "FatigeCAdd",
+		"name": "Use Exhaust Coat",
+		"skillTree": "Exhaust C+",
 		"points": 10,
 		"hunterType": "Gunner",
 		"tag": "Bow/Gunner",
 		"order": 93
 	},
 	{
-		"name": "Abnormal Status Atk +1",
+		"name": "Status Atk +1",
 		"skillTree": "Status",
 		"points": 10,
 		"hunterType": "Both",
@@ -514,33 +514,33 @@
 		"order": 27
 	},
 	{
-		"name": "Abnormal Status Atk +2",
+		"name": "Status Atk +2",
 		"skillTree": "Status",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Abnormal Status Atk Down",
+		"name": "Status Atk Down",
 		"skillTree": "Status",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Element Atk Up",
-		"skillTree": "Elemental",
+		"name": "Element Atk +1",
+		"skillTree": "ElementAtk",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Offensive",
 		"order": 28
 	},
 	{
-		"name": "Elemnt Atk Down",
-		"skillTree": "Elemental",
+		"name": "Element Atk Down",
+		"skillTree": "ElementAtk",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Fire Element +1",
+		"name": "Fire Atk +1",
 		"skillTree": "Fire Atk",
 		"points": 10,
 		"hunterType": "Both",
@@ -548,19 +548,19 @@
 		"order": 87
 	},
 	{
-		"name": "Fire Element +2",
+		"name": "Fire Atk +2",
 		"skillTree": "Fire Atk",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Fire Elment Down",
+		"name": "Fire Atk Down",
 		"skillTree": "Fire Atk",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Water Element +1",
+		"name": "Water Atk +1",
 		"skillTree": "Water Atk",
 		"points": 10,
 		"hunterType": "Both",
@@ -568,19 +568,19 @@
 		"order": 88
 	},
 	{
-		"name": "Water Element +2",
+		"name": "Water Atk +2",
 		"skillTree": "Water Atk",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Water Element Down",
+		"name": "Water Atk Down",
 		"skillTree": "Water Atk",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Thunder Element +1",
+		"name": "Thunder Atk +1",
 		"skillTree": "Thundr Atk",
 		"points": 10,
 		"hunterType": "Both",
@@ -588,39 +588,39 @@
 		"order": 89
 	},
 	{
-		"name": "Thunder Element +2",
+		"name": "Thunder Atk +2",
 		"skillTree": "Thundr Atk",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Thunder Element Down",
+		"name": "Thunder Atk Down",
 		"skillTree": "Thundr Atk",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Ice Element +1",
-		"skillTree": "Ice Attack",
+		"name": "Ice Atk +1",
+		"skillTree": "Ice Atk",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Offensive",
 		"order": 90
 	},
 	{
-		"name": "Ice Element +2",
-		"skillTree": "Ice Attack",
+		"name": "Ice Atk +2",
+		"skillTree": "Ice Atk",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Ice Element Down",
-		"skillTree": "Ice Attack",
+		"name": "Ice Atk Down",
+		"skillTree": "Ice Atk",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Dragon Element +1",
+		"name": "Dragon Atk +1",
 		"skillTree": "Dragon Atk",
 		"points": 10,
 		"hunterType": "Both",
@@ -628,13 +628,13 @@
 		"order": 91
 	},
 	{
-		"name": "Dragon Element +2",
+		"name": "Dragon Atk +2",
 		"skillTree": "Dragon Atk",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Dragon Element Down",
+		"name": "Dragon Atk Down",
 		"skillTree": "Dragon Atk",
 		"points": -10,
 		"hunterType": "Both"
@@ -666,7 +666,7 @@
 		"hunterType": "Both"
 	},
 	{
-		"name": "Runner",
+		"name": "Marathon Runner",
 		"skillTree": "Stamina",
 		"points": 10,
 		"hunterType": "Both",
@@ -674,52 +674,52 @@
 		"order": 58
 	},
 	{
-		"name": "Flat Footed",
+		"name": "Short Sprinter",
 		"skillTree": "Stamina",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Stamina Recov Up",
-		"skillTree": "Will Recov",
+		"name": "Stam Recov Up",
+		"skillTree": "Stam Recov",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Defensive",
 		"order": 99
 	},
 	{
-		"name": "Stamina Recov Down",
-		"skillTree": "Will Recov",
+		"name": "Stam Recov Down",
+		"skillTree": "Stam Recov",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Hunger Halved",
+		"name": "Halve Hunger",
 		"skillTree": "Hunger",
 		"points": 10,
 		"hunterType": "Both",
 		"order": 30
 	},
 	{
-		"name": "Hunger Negated",
+		"name": "Negate Hunger",
 		"skillTree": "Hunger",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Hunger Inc [Lo]",
+		"name": "Raise Hunger",
 		"skillTree": "Hunger",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Hunger Inc [Hi]",
+		"name": "Double Hunger",
 		"skillTree": "Hunger",
 		"points": -15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Evade +1",
+		"name": "Evasion +1",
 		"skillTree": "Evasion",
 		"points": 10,
 		"hunterType": "Both",
@@ -727,7 +727,7 @@
 		"order": 55
 	},
 	{
-		"name": "Evade +2",
+		"name": "Evasion +2",
 		"skillTree": "Evasion",
 		"points": 15,
 		"hunterType": "Both"
@@ -739,7 +739,7 @@
 		"hunterType": "Both"
 	},
 	{
-		"name": "Evasion Up",
+		"name": "Evade Extender",
 		"skillTree": "Evade Dist",
 		"points": 15,
 		"hunterType": "Both",
@@ -747,8 +747,8 @@
 		"order": 64
 	},
 	{
-		"name": "Fast Sheathe",
-		"skillTree": "Sheathe",
+		"name": "Quick Sheathe",
+		"skillTree": "Sheathing",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Defensive",
@@ -769,7 +769,7 @@
 		"hunterType": "Both"
 	},
 	{
-		"name": "Recovery Speed +1",
+		"name": "Recovery Spd +1",
 		"skillTree": "Rec Speed",
 		"points": 10,
 		"hunterType": "Both",
@@ -777,7 +777,7 @@
 		"order": 8
 	},
 	{
-		"name": "Recovery Speed +2",
+		"name": "Recovery Spd +2",
 		"skillTree": "Rec Speed",
 		"points": 15,
 		"hunterType": "Both"
@@ -815,7 +815,7 @@
 		"hunterType": "Blademaster"
 	},
 	{
-		"name": "Guard Inc",
+		"name": "Guard Boost",
 		"skillTree": "Guard Up",
 		"points": 10,
 		"hunterType": "Both",
@@ -831,7 +831,7 @@
 		"order": 16
 	},
 	{
-		"name": "Divine Protection",
+		"name": "Divine Blessing",
 		"skillTree": "Protection",
 		"points": 10,
 		"hunterType": "Both",
@@ -839,13 +839,13 @@
 		"order": 34
 	},
 	{
-		"name": "Demonic Protection",
+		"name": "Demonic Blessing",
 		"skillTree": "Protection",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Poison Negated",
+		"name": "Negate Poison",
 		"skillTree": "Poison",
 		"points": 10,
 		"hunterType": "Both",
@@ -853,13 +853,13 @@
 		"order": 1
 	},
 	{
-		"name": "Poison [x2]",
+		"name": "Double Poison",
 		"skillTree": "Poison",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Parlysis Negated",
+		"name": "Negate Paralysis",
 		"skillTree": "Paralysis",
 		"points": 10,
 		"hunterType": "Both",
@@ -867,13 +867,13 @@
 		"order": 2
 	},
 	{
-		"name": "Paralysis [x2]",
+		"name": "Double Paralysis",
 		"skillTree": "Paralysis",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Sleep Negated",
+		"name": "Negate Sleep",
 		"skillTree": "Sleep",
 		"points": 10,
 		"hunterType": "Both",
@@ -881,13 +881,13 @@
 		"order": 3
 	},
 	{
-		"name": "Sleep [x2]",
+		"name": "Double Sleep",
 		"skillTree": "Sleep",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Stun Halved",
+		"name": "Halve Stun",
 		"skillTree": "Stun",
 		"points": 10,
 		"hunterType": "Both",
@@ -895,19 +895,19 @@
 		"order": 4
 	},
 	{
-		"name": "Stun Negated",
+		"name": "Negate Stun",
 		"skillTree": "Stun",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Stun [x2]",
+		"name": "Double Stun",
 		"skillTree": "Stun",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Mud/Snow Res",
+		"name": "Negate Mud/Snow",
 		"skillTree": "Mud/Snow",
 		"points": 10,
 		"hunterType": "Both",
@@ -915,24 +915,24 @@
 		"order": 5
 	},
 	{
-		"name": "Quake Res",
-		"skillTree": "Quake Res",
+		"name": "Tremor Resistance",
+		"skillTree": "Tremor Res",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Resistance",
 		"order": 63
 	},
 	{
-		"name": "Wind Breaker",
-		"skillTree": "WindPress",
+		"name": "Windproof (Lo)",
+		"skillTree": "Wind Res",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Resistance",
 		"order": 46
 	},
 	{
-		"name": "Wind Anchor",
-		"skillTree": "WindPress",
+		"name": "Windproof (Hi)",
+		"skillTree": "Wind Res",
 		"points": 15,
 		"hunterType": "Both"
 	},
@@ -945,7 +945,7 @@
 		"order": 76
 	},
 	{
-		"name": "Steal No Effect",
+		"name": "Anti-Theft",
 		"skillTree": "Anti-Theft",
 		"points": 10,
 		"hunterType": "Both",
@@ -953,7 +953,7 @@
 		"order": 36
 	},
 	{
-		"name": "Blightproof",
+		"name": "Blights Negated",
 		"skillTree": "Blight Res",
 		"points": 10,
 		"hunterType": "Both",
@@ -961,24 +961,24 @@
 		"order": 72
 	},
 	{
-		"name": "Def Down Negate",
-		"skillTree": "Fortitude",
+		"name": "Iron Skin",
+		"skillTree": "Def Lock",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Resistance",
 		"order": 86
 	},
 	{
-		"name": "Earplug",
-		"skillTree": "HearProtct",
+		"name": "Earplugs",
+		"skillTree": "Hearing",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Defensive",
 		"order": 35
 	},
 	{
-		"name": "HighGradeEarplug",
-		"skillTree": "HearProtct",
+		"name": "HG Earplugs",
+		"skillTree": "Hearing",
 		"points": 15,
 		"hunterType": "Both"
 	},
@@ -1009,7 +1009,7 @@
 		"hunterType": "Both"
 	},
 	{
-		"name": "Def Up (S)",
+		"name": "Defense Up (S)",
 		"skillTree": "Defense",
 		"points": 10,
 		"hunterType": "Both",
@@ -1017,37 +1017,37 @@
 		"order": 33
 	},
 	{
-		"name": "Def Up (M)",
+		"name": "Defense Up (M)",
 		"skillTree": "Defense",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Def Up (L)",
+		"name": "Defense Up (L)",
 		"skillTree": "Defense",
 		"points": 20,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Def Down (S)",
+		"name": "Defense Down (S)",
 		"skillTree": "Defense",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Def Down (M)",
+		"name": "Defense Down (M)",
 		"skillTree": "Defense",
 		"points": -15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Def Down (L)",
+		"name": "Defense Down (L)",
 		"skillTree": "Defense",
 		"points": -20,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Fire Res (S)",
+		"name": "Fire Res +5",
 		"skillTree": "Fire Res",
 		"points": 10,
 		"hunterType": "Both",
@@ -1055,19 +1055,19 @@
 		"order": 39
 	},
 	{
-		"name": "Fire Res (L)",
+		"name": "Fire Res +10",
 		"skillTree": "Fire Res",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Fire Res Weakened",
+		"name": "Fire Res -10",
 		"skillTree": "Fire Res",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Water Res (S)",
+		"name": "Water Res +5",
 		"skillTree": "Water Res",
 		"points": 10,
 		"hunterType": "Both",
@@ -1075,19 +1075,19 @@
 		"order": 40
 	},
 	{
-		"name": "Water Res (L)",
+		"name": "Water Res +10",
 		"skillTree": "Water Res",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Water Res Weakened",
+		"name": "Water Res -10",
 		"skillTree": "Water Res",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Thunder Res (S)",
+		"name": "Thunder Res +5",
 		"skillTree": "ThunderRes",
 		"points": 10,
 		"hunterType": "Both",
@@ -1095,19 +1095,19 @@
 		"order": 41
 	},
 	{
-		"name": "Thunder Res (L)",
+		"name": "Thunder Res +10",
 		"skillTree": "ThunderRes",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Thunder Res Weakened",
+		"name": "Thunder Res -10",
 		"skillTree": "ThunderRes",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Ice Res (S)",
+		"name": "Ice Res +5",
 		"skillTree": "Ice Res",
 		"points": 10,
 		"hunterType": "Both",
@@ -1115,19 +1115,19 @@
 		"order": 42
 	},
 	{
-		"name": "Ice Res (L)",
+		"name": "Ice Res +10",
 		"skillTree": "Ice Res",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Ice Res Weakened",
+		"name": "Ice Res -10",
 		"skillTree": "Ice Res",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Dragon Res (S)",
+		"name": "Dragon Res +5",
 		"skillTree": "Dragon Res",
 		"points": 10,
 		"hunterType": "Both",
@@ -1135,33 +1135,33 @@
 		"order": 43
 	},
 	{
-		"name": "Dragon Res (L)",
+		"name": "Dragon Res +10",
 		"skillTree": "Dragon Res",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Dragon Res Weakened",
+		"name": "Dragon Res -10",
 		"skillTree": "Dragon Res",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Wide Area +1",
-		"skillTree": "Wide Area",
+		"name": "Wide-Range +1",
+		"skillTree": "Wide-Range",
 		"points": 10,
 		"hunterType": "Both",
 		"order": 37
 	},
 	{
-		"name": "Wide Area +2",
-		"skillTree": "Wide Area",
+		"name": "Wide-Range +2",
+		"skillTree": "Wide-Range",
 		"points": 20,
 		"hunterType": "Both"
 	},
 	{
 		"name": "Bombardier",
-		"skillTree": "BombStrUp",
+		"skillTree": "Bomb Boost",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Offensive",
@@ -1175,7 +1175,7 @@
 		"order": 66
 	},
 	{
-		"name": "Trnquilizr Guru",
+		"name": "Capture Guru",
 		"skillTree": "Perception",
 		"points": 10,
 		"hunterType": "Both",
@@ -1196,8 +1196,8 @@
 		"hunterType": "Both"
 	},
 	{
-		"name": "DungBombExpert",
-		"skillTree": "DungMaster",
+		"name": "Dung Bomb Expert",
+		"skillTree": "Dungmaster",
 		"points": 10,
 		"hunterType": "Both",
 		"order": 75
@@ -1230,47 +1230,47 @@
 		"hunterType": "Both"
 	},
 	{
-		"name": "Filled Up",
+		"name": "Scavenger",
 		"skillTree": "Gluttony",
 		"points": 10,
 		"hunterType": "Both",
 		"order": 31
 	},
 	{
-		"name": "Picky Eater",
+		"name": "Gourmand",
 		"skillTree": "Gluttony",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Quick Eating +1",
+		"name": "Speed Eating +1",
 		"skillTree": "Eating",
 		"points": 10,
 		"hunterType": "Both",
 		"order": 61
 	},
 	{
-		"name": "Quick Eating +2",
+		"name": "Speed Eating +2",
 		"skillTree": "Eating",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Slow Life",
+		"name": "Slow Eater",
 		"skillTree": "Eating",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Huntsman's Life",
-		"skillTree": "Huntsman",
+		"name": "Outdoorsman",
+		"skillTree": "Ranger",
 		"points": 10,
 		"hunterType": "Both",
 		"order": 85
 	},
 	{
-		"name": "Backpacking Expert",
-		"skillTree": "Backpackng",
+		"name": "Pro Transporter",
+		"skillTree": "Transportr",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Farming",
@@ -1285,13 +1285,13 @@
 		"order": 44
 	},
 	{
-		"name": "Heat Inc",
+		"name": "Heat Surge",
 		"skillTree": "Heat Res",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Cold Eliminate",
+		"name": "Cold Cancel",
 		"skillTree": "Cold Res",
 		"points": 10,
 		"hunterType": "Both",
@@ -1299,7 +1299,7 @@
 		"order": 45
 	},
 	{
-		"name": "Cold Increase",
+		"name": "Cold Surge",
 		"skillTree": "Cold Res",
 		"points": -10,
 		"hunterType": "Both"
@@ -1325,8 +1325,8 @@
 		"hunterType": "Both"
 	},
 	{
-		"name": "Hi-SpdGathering",
-		"skillTree": "HiSpdGathr",
+		"name": "Speed Gatherer",
+		"skillTree": "Spd Gather",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Farming",
@@ -1367,7 +1367,7 @@
 		"order": 50
 	},
 	{
-		"name": "Luck Booster",
+		"name": "Great Luck",
 		"skillTree": "Fate",
 		"points": 15,
 		"hunterType": "Both"
@@ -1379,13 +1379,13 @@
 		"hunterType": "Both"
 	},
 	{
-		"name": "Calamity",
+		"name": "Carving Pro",
 		"skillTree": "Fate",
 		"points": -15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Carving Expert",
+		"name": "Carving Master",
 		"skillTree": "Carving",
 		"points": 15,
 		"hunterType": "Both",
@@ -1393,54 +1393,54 @@
 		"order": 62
 	},
 	{
-		"name": "Rewards Expert",
-		"skillTree": "Rewards",
+		"name": "Capture Expert",
+		"skillTree": "Tranquilzr",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Farming",
 		"order": 68
 	},
 	{
-		"name": "Rewards Celeb",
-		"skillTree": "Rewards",
+		"name": "Capture Master",
+		"skillTree": "Tranquilzr",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Combine Success +20%",
+		"name": "Combination +20%",
 		"skillTree": "Combo Rate",
 		"points": 10,
 		"hunterType": "Both",
 		"order": 53
 	},
 	{
-		"name": "Combine Success+45%",
+		"name": "Combination +45%",
 		"skillTree": "Combo Rate",
 		"points": 15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Combine Success -10%",
+		"name": "Combination -10%",
 		"skillTree": "Combo Rate",
 		"points": -10,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Combine Success-20%",
+		"name": "Combination -20%",
 		"skillTree": "Combo Rate",
 		"points": -15,
 		"hunterType": "Both"
 	},
 	{
-		"name": "Bullet Limit",
-		"skillTree": "Shot Mix",
+		"name": "Combination Pro",
+		"skillTree": "Combo Plus",
 		"points": 10,
 		"hunterType": "Both",
 		"tag": "Bow/Gunner",
 		"order": 54
 	},
 	{
-		"name": "Torso Inc",
+		"name": "Torso Up",
 		"skillTree": null,
 		"points": null,
 		"hunterType": "Both",

@@ -3,27 +3,27 @@
 		"name": "Attack",
 		"skills": [
 			{
-				"name": "Attack Up [Sm]",
+				"name": "Attack Up (S)",
 				"points": 10
 			},
 			{
-				"name": "Attack Up [Med]",
+				"name": "Attack Up (M)",
 				"points": 15
 			},
 			{
-				"name": "Attack Up [Lg]",
+				"name": "Attack Up (L)",
 				"points": 20
 			},
 			{
-				"name": "Attack Down [Sm]",
+				"name": "Attack Down (S)",
 				"points": -10
 			},
 			{
-				"name": "Attack Down [Med]",
+				"name": "Attack Down (M)",
 				"points": -15
 			},
 			{
-				"name": "Attack Down [Lg]",
+				"name": "Attack Down (L)",
 				"points": -20
 			}
 		]
@@ -32,27 +32,27 @@
 		"name": "Expert",
 		"skills": [
 			{
-				"name": "Reckless Abandon +1",
+				"name": "Critical Eye +1",
 				"points": 10
 			},
 			{
-				"name": "Reckless Abandon +2",
+				"name": "Critical Eye +2",
 				"points": 15
 			},
 			{
-				"name": "Reckless Abandon +3",
+				"name": "Critical Eye +3",
 				"points": 20
 			},
 			{
-				"name": "Reckless Abandon -1",
+				"name": "Critical Eye -1",
 				"points": -10
 			},
 			{
-				"name": "Reckless Abandon -2",
+				"name": "Critical Eye -2",
 				"points": -15
 			},
 			{
-				"name": "Reckless Abandon -3",
+				"name": "Critical Eye -3",
 				"points": -20
 			}
 		]
@@ -61,11 +61,11 @@
 		"name": "Sharpness",
 		"skills": [
 			{
-				"name": "Sharp Sword",
+				"name": "Razor Sharp",
 				"points": 10
 			},
 			{
-				"name": "Blunt",
+				"name": "Blunt Edge",
 				"points": -10
 			}
 		]
@@ -84,7 +84,7 @@
 		]
 	},
 	{
-		"name": "Artisan",
+		"name": "Handicraft",
 		"skills": [
 			{
 				"name": "Sharpness +1",
@@ -96,7 +96,7 @@
 		"name": "PunishDraw",
 		"skills": [
 			{
-				"name": "Unsheathe Stun",
+				"name": "Punishing Draw",
 				"points": 10
 			}
 		]
@@ -105,7 +105,7 @@
 		"name": "Crit Draw",
 		"skills": [
 			{
-				"name": "Unsheathe Critical",
+				"name": "Critical Draw",
 				"points": 10
 			}
 		]
@@ -114,7 +114,7 @@
 		"name": "FastCharge",
 		"skills": [
 			{
-				"name": "Concentration",
+				"name": "Focus",
 				"points": 10
 			},
 			{
@@ -127,25 +127,25 @@
 		"name": "Fencing",
 		"skills": [
 			{
-				"name": "ESP",
+				"name": "Mind's Eye",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "Debilitate",
+		"name": "Tenderizer",
 		"skills": [
 			{
-				"name": "Exploiter",
+				"name": "Weakness Exploit",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "Slam",
+		"name": "Destroyer",
 		"skills": [
 			{
-				"name": "Ruiner",
+				"name": "Partbreaker",
 				"points": 10
 			}
 		]
@@ -154,51 +154,51 @@
 		"name": "KO",
 		"skills": [
 			{
-				"name": "Improved KO",
+				"name": "Knockout King",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "FatigueAtk",
+		"name": "Stam Drain",
 		"skills": [
 			{
-				"name": "Enfeebler",
+				"name": "Stamina Thief",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "Horn",
+		"name": "Maestro",
 		"skills": [
 			{
-				"name": "Flute Expert",
+				"name": "Horn Maestro",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "Gunnery",
+		"name": "Artillery",
 		"skills": [
 			{
-				"name": "Gunnery Master",
+				"name": "Artillery Novice",
 				"points": 10
 			},
 			{
-				"name": "Gunnery King",
+				"name": "Artillery King",
 				"points": 15
 			}
 		]
 	},
 	{
-		"name": "Awaken",
+		"name": "Gloves Off",
 		"skills": [
 			{
-				"name": "Unleashed +1",
+				"name": "Latent Power +1",
 				"points": 10
 			},
 			{
-				"name": "Unleashed +2",
+				"name": "Latent Power +2",
 				"points": 15
 			}
 		]
@@ -215,16 +215,16 @@
 				"points": 15
 			},
 			{
-				"name": "Worry",
+				"name": "Worrywort",
 				"points": -10
 			}
 		]
 	},
 	{
-		"name": "Adversity",
+		"name": "Survivor",
 		"skills": [
 			{
-				"name": "Resilience",
+				"name": "Fortify",
 				"points": 10
 			}
 		]
@@ -242,13 +242,13 @@
 		"name": "Rapid Fire",
 		"skills": [
 			{
-				"name": "Rapid Shot +1",
+				"name": "Bonus Shot",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "Reload Spd",
+		"name": "Reload Speed",
 		"skills": [
 			{
 				"name": "Reload Speed +1",
@@ -280,27 +280,27 @@
 		"name": "Recoil",
 		"skills": [
 			{
-				"name": "Recoil Reduction +1",
+				"name": "Recoil Down +1",
 				"points": 10
 			},
 			{
-				"name": "Recoil Reduction +2",
+				"name": "Recoil Down +2",
 				"points": 15
 			},
 			{
-				"name": "Recoil Reduction +3",
+				"name": "Recoil Down +3",
 				"points": 20
 			},
 			{
-				"name": "Recoil Reduction -1",
+				"name": "Recoil Down -1",
 				"points": -10
 			},
 			{
-				"name": "Recoil Reduction -2",
+				"name": "Recoil Down -2",
 				"points": -15
 			},
 			{
-				"name": "Recoil Reduction -3",
+				"name": "Recoil Down -3",
 				"points": -20
 			}
 		]
@@ -309,170 +309,170 @@
 		"name": "Precision",
 		"skills": [
 			{
-				"name": "Accuracy+1",
+				"name": "Steadiness +1",
 				"points": 10
 			},
 			{
-				"name": "Accuracy+2",
+				"name": "Steadiness +2",
 				"points": 15
 			},
 			{
-				"name": "Accuracy-1",
+				"name": "Steadiness -1",
 				"points": -10
 			},
 			{
-				"name": "Accuracy-2",
+				"name": "Steadiness -2",
 				"points": -15
 			}
 		]
 	},
 	{
-		"name": "NormalS Up",
+		"name": "Normal Up",
 		"skills": [
 			{
-				"name": "NormalS/RapidBowUp",
+				"name": "Normal/Rapid Up",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "PierceS Up",
+		"name": "Pierce Up",
 		"skills": [
 			{
-				"name": "PierceS/PierceBowUp",
+				"name": "Pierce/Pierce Up",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "PelletS Up",
+		"name": "Pellet Up",
 		"skills": [
 			{
-				"name": "PelletS/ScatterBowUp",
+				"name": "Pellet/Spread Up",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "NormalSAdd",
+		"name": "Normal S+",
 		"skills": [
 			{
-				"name": "Normal S All Add",
+				"name": "Use Any Normal",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "PierceSAdd",
+		"name": "Pierce S+",
 		"skills": [
 			{
-				"name": "Pierce S LV1 Add",
+				"name": "Use Lv1 Pierce S",
 				"points": 10
 			},
 			{
-				"name": "Pierce S All Add",
+				"name": "Use Any Pierce S",
 				"points": 15
 			}
 		]
 	},
 	{
-		"name": "PelletSAdd",
+		"name": "Pellet S+",
 		"skills": [
 			{
-				"name": "Pellet S LV1 Add",
+				"name": "Use Lv1 Pellet S",
 				"points": 10
 			},
 			{
-				"name": "Pellet S All Add",
+				"name": "Use Any Pellet S",
 				"points": 15
 			}
 		]
 	},
 	{
-		"name": "Crag S Add",
+		"name": "Crag S+",
 		"skills": [
 			{
-				"name": "Crag S LV1 Add",
+				"name": "Use Lv1 Crag S",
 				"points": 10
 			},
 			{
-				"name": "Crag S All Add",
+				"name": "Use Any Crag S",
 				"points": 15
 			}
 		]
 	},
 	{
-		"name": "ClustS Add",
+		"name": "Clust S+",
 		"skills": [
 			{
-				"name": "Clust S LV1 Add",
+				"name": "Use Lv1 Clust S",
 				"points": 10
 			},
 			{
-				"name": "Clust S All Add",
+				"name": "Use Any Clust S",
 				"points": 15
 			}
 		]
 	},
 	{
-		"name": "CutterSAdd",
+		"name": "Slice S+",
 		"skills": [
 			{
-				"name": "Cutter S Add",
+				"name": "Use Slicing S",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "PoisonCAdd",
+		"name": "Poison C+",
 		"skills": [
 			{
-				"name": "Poison Coating Add",
+				"name": "Use Poison Coat",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "ParalyCAdd",
+		"name": "Para C+",
 		"skills": [
 			{
-				"name": "Parlysis Coating Add",
+				"name": "Use Para Coat",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "SleepCAdd",
+		"name": "Sleep C+",
 		"skills": [
 			{
-				"name": "Sleep Coating Add",
+				"name": "Use Sleep Coat",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "PowerCAdd",
+		"name": "Power C+",
 		"skills": [
 			{
-				"name": "Power Coating Add",
+				"name": "Use Power Coat",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "RazorCAdd",
+		"name": "C. Range C+",
 		"skills": [
 			{
-				"name": "Close Range Coating Add",
+				"name": "Use C. Range Coat",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "FatigeCAdd",
+		"name": "Exhaust C+",
 		"skills": [
 			{
-				"name": "Fatigue Coating Add",
+				"name": "Use Exhaust Coat",
 				"points": 10
 			}
 		]
@@ -481,28 +481,28 @@
 		"name": "Status",
 		"skills": [
 			{
-				"name": "Abnormal Status Atk +1",
+				"name": "Status Atk +1",
 				"points": 10
 			},
 			{
-				"name": "Abnormal Status Atk +2",
+				"name": "Status Atk +2",
 				"points": 15
 			},
 			{
-				"name": "Abnormal Status Atk Down",
+				"name": "Status Atk Down",
 				"points": -10
 			}
 		]
 	},
 	{
-		"name": "Elemental",
+		"name": "ElementAtk",
 		"skills": [
 			{
-				"name": "Element Atk Up",
+				"name": "Element Atk +1",
 				"points": 10
 			},
 			{
-				"name": "Elemnt Atk Down",
+				"name": "Element Atk Down",
 				"points": -10
 			}
 		]
@@ -511,15 +511,15 @@
 		"name": "Fire Atk",
 		"skills": [
 			{
-				"name": "Fire Element +1",
+				"name": "Fire Atk +1",
 				"points": 10
 			},
 			{
-				"name": "Fire Element +2",
+				"name": "Fire Atk +2",
 				"points": 15
 			},
 			{
-				"name": "Fire Elment Down",
+				"name": "Fire Atk Down",
 				"points": -10
 			}
 		]
@@ -528,15 +528,15 @@
 		"name": "Water Atk",
 		"skills": [
 			{
-				"name": "Water Element +1",
+				"name": "Water Atk +1",
 				"points": 10
 			},
 			{
-				"name": "Water Element +2",
+				"name": "Water Atk +2",
 				"points": 15
 			},
 			{
-				"name": "Water Element Down",
+				"name": "Water Atk Down",
 				"points": -10
 			}
 		]
@@ -545,32 +545,32 @@
 		"name": "Thundr Atk",
 		"skills": [
 			{
-				"name": "Thunder Element +1",
+				"name": "Thunder Atk +1",
 				"points": 10
 			},
 			{
-				"name": "Thunder Element +2",
+				"name": "Thunder Atk +2",
 				"points": 15
 			},
 			{
-				"name": "Thunder Element Down",
+				"name": "Thunder Atk Down",
 				"points": -10
 			}
 		]
 	},
 	{
-		"name": "Ice Attack",
+		"name": "Ice Atk",
 		"skills": [
 			{
-				"name": "Ice Element +1",
+				"name": "Ice Atk +1",
 				"points": 10
 			},
 			{
-				"name": "Ice Element +2",
+				"name": "Ice Atk +2",
 				"points": 15
 			},
 			{
-				"name": "Ice Element Down",
+				"name": "Ice Atk Down",
 				"points": -10
 			}
 		]
@@ -579,15 +579,15 @@
 		"name": "Dragon Atk",
 		"skills": [
 			{
-				"name": "Dragon Element +1",
+				"name": "Dragon Atk +1",
 				"points": 10
 			},
 			{
-				"name": "Dragon Element +2",
+				"name": "Dragon Atk +2",
 				"points": 15
 			},
 			{
-				"name": "Dragon Element Down",
+				"name": "Dragon Atk Down",
 				"points": -10
 			}
 		]
@@ -617,24 +617,24 @@
 		"name": "Stamina",
 		"skills": [
 			{
-				"name": "Runner",
+				"name": "Marathon Runner",
 				"points": 10
 			},
 			{
-				"name": "Flat Footed",
+				"name": "Short Sprinter",
 				"points": -10
 			}
 		]
 	},
 	{
-		"name": "Will Recov",
+		"name": "Stam Recov",
 		"skills": [
 			{
-				"name": "Stamina Recov Up",
+				"name": "Stam Recov Up",
 				"points": 10
 			},
 			{
-				"name": "Stamina Recov Down",
+				"name": "Stam Recov Down",
 				"points": -10
 			}
 		]
@@ -643,19 +643,19 @@
 		"name": "Hunger",
 		"skills": [
 			{
-				"name": "Hunger Halved",
+				"name": "Halve Hunger",
 				"points": 10
 			},
 			{
-				"name": "Hunger Negated",
+				"name": "Negate Hunger",
 				"points": 15
 			},
 			{
-				"name": "Hunger Inc [Lo]",
+				"name": "Raise Hunger",
 				"points": -10
 			},
 			{
-				"name": "Hunger Inc [Hi]",
+				"name": "Double Hunger",
 				"points": -15
 			}
 		]
@@ -664,11 +664,11 @@
 		"name": "Evasion",
 		"skills": [
 			{
-				"name": "Evade +1",
+				"name": "Evasion +1",
 				"points": 10
 			},
 			{
-				"name": "Evade +2",
+				"name": "Evasion +2",
 				"points": 15
 			},
 			{
@@ -681,16 +681,16 @@
 		"name": "Evade Dist",
 		"skills": [
 			{
-				"name": "Evasion Up",
+				"name": "Evade Extender",
 				"points": 15
 			}
 		]
 	},
 	{
-		"name": "Sheathe",
+		"name": "Sheathing",
 		"skills": [
 			{
-				"name": "Fast Sheathe",
+				"name": "Quick Sheathe",
 				"points": 10
 			}
 		]
@@ -712,11 +712,11 @@
 		"name": "Rec Speed",
 		"skills": [
 			{
-				"name": "Recovery Speed +1",
+				"name": "Recovery Spd +1",
 				"points": 10
 			},
 			{
-				"name": "Recovery Speed +2",
+				"name": "Recovery Spd +2",
 				"points": 15
 			},
 			{
@@ -750,7 +750,7 @@
 		"name": "Guard Up",
 		"skills": [
 			{
-				"name": "Guard Inc",
+				"name": "Guard Boost",
 				"points": 10
 			}
 		]
@@ -768,11 +768,11 @@
 		"name": "Protection",
 		"skills": [
 			{
-				"name": "Divine Protection",
+				"name": "Divine Blessing",
 				"points": 10
 			},
 			{
-				"name": "Demonic Protection",
+				"name": "Demonic Blessing",
 				"points": -10
 			}
 		]
@@ -781,11 +781,11 @@
 		"name": "Poison",
 		"skills": [
 			{
-				"name": "Poison Negated",
+				"name": "Negate Poison",
 				"points": 10
 			},
 			{
-				"name": "Poison [x2]",
+				"name": "Double Poison",
 				"points": -10
 			}
 		]
@@ -794,11 +794,11 @@
 		"name": "Paralysis",
 		"skills": [
 			{
-				"name": "Parlysis Negated",
+				"name": "Negate Paralysis",
 				"points": 10
 			},
 			{
-				"name": "Paralysis [x2]",
+				"name": "Double Paralysis",
 				"points": -10
 			}
 		]
@@ -807,11 +807,11 @@
 		"name": "Sleep",
 		"skills": [
 			{
-				"name": "Sleep Negated",
+				"name": "Negate Sleep",
 				"points": 10
 			},
 			{
-				"name": "Sleep [x2]",
+				"name": "Double Sleep",
 				"points": -10
 			}
 		]
@@ -820,15 +820,15 @@
 		"name": "Stun",
 		"skills": [
 			{
-				"name": "Stun Halved",
+				"name": "Halve Stun",
 				"points": 10
 			},
 			{
-				"name": "Stun Negated",
+				"name": "Negate Stun",
 				"points": 15
 			},
 			{
-				"name": "Stun [x2]",
+				"name": "Double Stun",
 				"points": -10
 			}
 		]
@@ -837,29 +837,29 @@
 		"name": "Mud/Snow",
 		"skills": [
 			{
-				"name": "Mud/Snow Res",
+				"name": "Negate Mud/Snow",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "Quake Res",
+		"name": "Tremor Res",
 		"skills": [
 			{
-				"name": "Quake Res",
+				"name": "Tremor Resistance",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "WindPress",
+		"name": "Wind Res",
 		"skills": [
 			{
-				"name": "Wind Breaker",
+				"name": "Windproof (Lo)",
 				"points": 10
 			},
 			{
-				"name": "Wind Anchor",
+				"name": "Windproof (Hi)",
 				"points": 15
 			}
 		]
@@ -877,7 +877,7 @@
 		"name": "Anti-Theft",
 		"skills": [
 			{
-				"name": "Steal No Effect",
+				"name": "Anti-Theft",
 				"points": 10
 			}
 		]
@@ -886,29 +886,29 @@
 		"name": "Blight Res",
 		"skills": [
 			{
-				"name": "Blightproof",
+				"name": "Blights Negated",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "Fortitude",
+		"name": "Def Lock",
 		"skills": [
 			{
-				"name": "Def Down Negate",
+				"name": "Iron Skin",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "HearProtct",
+		"name": "Hearing",
 		"skills": [
 			{
-				"name": "Earplug",
+				"name": "Earplugs",
 				"points": 10
 			},
 			{
-				"name": "HighGradeEarplug",
+				"name": "HG Earplugs",
 				"points": 15
 			}
 		]
@@ -938,27 +938,27 @@
 		"name": "Defense",
 		"skills": [
 			{
-				"name": "Def Up (S)",
+				"name": "Defense Up (S)",
 				"points": 10
 			},
 			{
-				"name": "Def Up (M)",
+				"name": "Defense Up (M)",
 				"points": 15
 			},
 			{
-				"name": "Def Up (L)",
+				"name": "Defense Up (L)",
 				"points": 20
 			},
 			{
-				"name": "Def Down (S)",
+				"name": "Defense Down (S)",
 				"points": -10
 			},
 			{
-				"name": "Def Down (M)",
+				"name": "Defense Down (M)",
 				"points": -15
 			},
 			{
-				"name": "Def Down (L)",
+				"name": "Defense Down (L)",
 				"points": -20
 			}
 		]
@@ -967,15 +967,15 @@
 		"name": "Fire Res",
 		"skills": [
 			{
-				"name": "Fire Res (S)",
+				"name": "Fire Res +5",
 				"points": 10
 			},
 			{
-				"name": "Fire Res (L)",
+				"name": "Fire Res +10",
 				"points": 15
 			},
 			{
-				"name": "Fire Res Weakened",
+				"name": "Fire Res -10",
 				"points": -10
 			}
 		]
@@ -984,15 +984,15 @@
 		"name": "Water Res",
 		"skills": [
 			{
-				"name": "Water Res (S)",
+				"name": "Water Res +5",
 				"points": 10
 			},
 			{
-				"name": "Water Res (L)",
+				"name": "Water Res +10",
 				"points": 15
 			},
 			{
-				"name": "Water Res Weakened",
+				"name": "Water Res -10",
 				"points": -10
 			}
 		]
@@ -1001,15 +1001,15 @@
 		"name": "ThunderRes",
 		"skills": [
 			{
-				"name": "Thunder Res (S)",
+				"name": "Thunder Res +5",
 				"points": 10
 			},
 			{
-				"name": "Thunder Res (L)",
+				"name": "Thunder Res +10",
 				"points": 15
 			},
 			{
-				"name": "Thunder Res Weakened",
+				"name": "Thunder Res -10",
 				"points": -10
 			}
 		]
@@ -1018,15 +1018,15 @@
 		"name": "Ice Res",
 		"skills": [
 			{
-				"name": "Ice Res (S)",
+				"name": "Ice Res +5",
 				"points": 10
 			},
 			{
-				"name": "Ice Res (L)",
+				"name": "Ice Res +10",
 				"points": 15
 			},
 			{
-				"name": "Ice Res Weakened",
+				"name": "Ice Res -10",
 				"points": -10
 			}
 		]
@@ -1035,34 +1035,34 @@
 		"name": "Dragon Res",
 		"skills": [
 			{
-				"name": "Dragon Res (S)",
+				"name": "Dragon Res +5",
 				"points": 10
 			},
 			{
-				"name": "Dragon Res (L)",
+				"name": "Dragon Res +10",
 				"points": 15
 			},
 			{
-				"name": "Dragon Res Weakened",
+				"name": "Dragon Res -10",
 				"points": -10
 			}
 		]
 	},
 	{
-		"name": "Wide Area",
+		"name": "Wide-Range",
 		"skills": [
 			{
-				"name": "Wide Area +1",
+				"name": "Wide-Range +1",
 				"points": 10
 			},
 			{
-				"name": "Wide Area +2",
+				"name": "Wide-Range +2",
 				"points": 20
 			}
 		]
 	},
 	{
-		"name": "BombStrUp",
+		"name": "Bomb Boost",
 		"skills": [
 			{
 				"name": "Bombardier",
@@ -1083,7 +1083,7 @@
 		"name": "Perception",
 		"skills": [
 			{
-				"name": "Trnquilizr Guru",
+				"name": "Capture Guru",
 				"points": 10
 			}
 		]
@@ -1102,10 +1102,10 @@
 		]
 	},
 	{
-		"name": "DungMaster",
+		"name": "Dungmaster",
 		"skills": [
 			{
-				"name": "DungBombExpert",
+				"name": "Dung Bomb Expert",
 				"points": 10
 			}
 		]
@@ -1140,11 +1140,11 @@
 		"name": "Gluttony",
 		"skills": [
 			{
-				"name": "Filled Up",
+				"name": "Scavenger",
 				"points": 10
 			},
 			{
-				"name": "Picky Eater",
+				"name": "Gourmand",
 				"points": 15
 			}
 		]
@@ -1153,33 +1153,33 @@
 		"name": "Eating",
 		"skills": [
 			{
-				"name": "Quick Eating +1",
+				"name": "Speed Eating +1",
 				"points": 10
 			},
 			{
-				"name": "Quick Eating +2",
+				"name": "Speed Eating +2",
 				"points": 15
 			},
 			{
-				"name": "Slow Life",
+				"name": "Slow Eater",
 				"points": -10
 			}
 		]
 	},
 	{
-		"name": "Huntsman",
+		"name": "Ranger",
 		"skills": [
 			{
-				"name": "Huntsman's Life",
+				"name": "Outdoorsman",
 				"points": 10
 			}
 		]
 	},
 	{
-		"name": "Backpackng",
+		"name": "Transportr",
 		"skills": [
 			{
-				"name": "Backpacking Expert",
+				"name": "Pro Transporter",
 				"points": 10
 			}
 		]
@@ -1192,7 +1192,7 @@
 				"points": 10
 			},
 			{
-				"name": "Heat Inc",
+				"name": "Heat Surge",
 				"points": -10
 			}
 		]
@@ -1201,11 +1201,11 @@
 		"name": "Cold Res",
 		"skills": [
 			{
-				"name": "Cold Eliminate",
+				"name": "Cold Cancel",
 				"points": 10
 			},
 			{
-				"name": "Cold Increase",
+				"name": "Cold Surge",
 				"points": -10
 			}
 		]
@@ -1228,10 +1228,10 @@
 		]
 	},
 	{
-		"name": "HiSpdGathr",
+		"name": "Spd Gather",
 		"skills": [
 			{
-				"name": "Hi-SpdGathering",
+				"name": "Speed Gatherer",
 				"points": 10
 			}
 		]
@@ -1265,7 +1265,7 @@
 				"points": 10
 			},
 			{
-				"name": "Luck Booster",
+				"name": "Great Luck",
 				"points": 15
 			},
 			{
@@ -1273,7 +1273,7 @@
 				"points": -10
 			},
 			{
-				"name": "Calamity",
+				"name": "Carving Pro",
 				"points": -15
 			}
 		]
@@ -1282,20 +1282,20 @@
 		"name": "Carving",
 		"skills": [
 			{
-				"name": "Carving Expert",
+				"name": "Carving Master",
 				"points": 15
 			}
 		]
 	},
 	{
-		"name": "Rewards",
+		"name": "Tranquilzr",
 		"skills": [
 			{
-				"name": "Rewards Expert",
+				"name": "Capture Expert",
 				"points": 10
 			},
 			{
-				"name": "Rewards Celeb",
+				"name": "Capture Master",
 				"points": 15
 			}
 		]
@@ -1304,28 +1304,28 @@
 		"name": "Combo Rate",
 		"skills": [
 			{
-				"name": "Combine Success +20%",
+				"name": "Combination +20%",
 				"points": 10
 			},
 			{
-				"name": "Combine Success+45%",
+				"name": "Combination +45%",
 				"points": 15
 			},
 			{
-				"name": "Combine Success -10%",
+				"name": "Combination -10%",
 				"points": -10
 			},
 			{
-				"name": "Combine Success-20%",
+				"name": "Combination -20%",
 				"points": -15
 			}
 		]
 	},
 	{
-		"name": "Shot Mix",
+		"name": "Combo Plus",
 		"skills": [
 			{
-				"name": "Bullet Limit",
+				"name": "Combination Pro",
 				"points": 10
 			}
 		]

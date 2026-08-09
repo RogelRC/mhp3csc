@@ -92,7 +92,7 @@
 								{p.name}
 								{#if p.isTorsoInc}
 									<span class="ml-1 rounded bg-violet-500/15 px-1 text-[10px] text-violet-300"
-										>Torso Inc</span
+										>Torso Up</span
 									>
 								{/if}
 							</td>

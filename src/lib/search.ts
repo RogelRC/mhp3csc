@@ -510,7 +510,7 @@ function buildResult(
 
 	const activated: ActivatedSkill[] = [];
 	const negativeActivated: ActivatedSkill[] = [];
-	if (torsoIncUsed) activated.push({ name: 'Torso Inc', tree: TORSO_INC_TREE, points: 1 });
+	if (torsoIncUsed) activated.push({ name: 'Torso Up', tree: TORSO_INC_TREE, points: 1 });
 	for (const [tree, pts] of full) {
 		const posThresholds = treePositiveThresholds(tree);
 		for (let i = posThresholds.length - 1; i >= 0; i--) {

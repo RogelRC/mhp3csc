@@ -291,7 +291,7 @@
 		"villageStarsRequired": 2,
 		"skills": [
 			{
-				"skillTree": "Fortitude",
+				"skillTree": "Def Lock",
 				"points": 2
 			}
 		],
@@ -461,7 +461,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "Quake Res",
+				"skillTree": "Tremor Res",
 				"points": 1
 			},
 			{
@@ -490,7 +490,7 @@
 		"villageStarsRequired": 4,
 		"skills": [
 			{
-				"skillTree": "Quake Res",
+				"skillTree": "Tremor Res",
 				"points": 2
 			}
 		],
@@ -569,7 +569,7 @@
 		"villageStarsRequired": 4,
 		"skills": [
 			{
-				"skillTree": "HearProtct",
+				"skillTree": "Hearing",
 				"points": 1
 			},
 			{
@@ -612,7 +612,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "HearProtct",
+				"skillTree": "Hearing",
 				"points": 4
 			},
 			{
@@ -645,7 +645,7 @@
 		"villageStarsRequired": 5,
 		"skills": [
 			{
-				"skillTree": "WindPress",
+				"skillTree": "Wind Res",
 				"points": 1
 			},
 			{
@@ -678,7 +678,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "WindPress",
+				"skillTree": "Wind Res",
 				"points": 3
 			},
 			{
@@ -923,7 +923,7 @@
 				"points": 1
 			},
 			{
-				"skillTree": "Elemental",
+				"skillTree": "ElementAtk",
 				"points": -1
 			}
 		],
@@ -970,7 +970,7 @@
 				"points": 3
 			},
 			{
-				"skillTree": "Elemental",
+				"skillTree": "ElementAtk",
 				"points": -1
 			}
 		],
@@ -999,7 +999,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "Elemental",
+				"skillTree": "ElementAtk",
 				"points": 1
 			},
 			{
@@ -1028,7 +1028,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "Elemental",
+				"skillTree": "ElementAtk",
 				"points": 4
 			},
 			{
@@ -1189,7 +1189,7 @@
 				"points": 1
 			},
 			{
-				"skillTree": "Ice Attack",
+				"skillTree": "Ice Atk",
 				"points": -1
 			}
 		],
@@ -1222,7 +1222,7 @@
 				"points": 3
 			},
 			{
-				"skillTree": "Ice Attack",
+				"skillTree": "Ice Atk",
 				"points": -1
 			}
 		],
@@ -1251,7 +1251,7 @@
 		"villageStarsRequired": 4,
 		"skills": [
 			{
-				"skillTree": "Ice Attack",
+				"skillTree": "Ice Atk",
 				"points": 1
 			},
 			{
@@ -1280,7 +1280,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "Ice Attack",
+				"skillTree": "Ice Atk",
 				"points": 3
 			},
 			{
@@ -1375,7 +1375,7 @@
 		"villageStarsRequired": 5,
 		"skills": [
 			{
-				"skillTree": "Debilitate",
+				"skillTree": "Tenderizer",
 				"points": 1
 			},
 			{
@@ -1418,7 +1418,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "Debilitate",
+				"skillTree": "Tenderizer",
 				"points": 4
 			},
 			{
@@ -1451,7 +1451,7 @@
 		"villageStarsRequired": 6,
 		"skills": [
 			{
-				"skillTree": "Slam",
+				"skillTree": "Destroyer",
 				"points": 1
 			},
 			{
@@ -1494,7 +1494,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "Slam",
+				"skillTree": "Destroyer",
 				"points": 4
 			},
 			{
@@ -1531,7 +1531,7 @@
 				"points": 1
 			},
 			{
-				"skillTree": "Reload Spd",
+				"skillTree": "Reload Speed",
 				"points": -1
 			}
 		],
@@ -1574,7 +1574,7 @@
 				"points": 4
 			},
 			{
-				"skillTree": "Reload Spd",
+				"skillTree": "Reload Speed",
 				"points": -2
 			}
 		],
@@ -1679,7 +1679,7 @@
 		"villageStarsRequired": 5,
 		"skills": [
 			{
-				"skillTree": "Awaken",
+				"skillTree": "Gloves Off",
 				"points": 1
 			},
 			{
@@ -1722,7 +1722,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "Awaken",
+				"skillTree": "Gloves Off",
 				"points": 3
 			},
 			{
@@ -1831,7 +1831,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "FatigueAtk",
+				"skillTree": "Stam Drain",
 				"points": 1
 			},
 			{
@@ -1864,7 +1864,7 @@
 		"villageStarsRequired": 5,
 		"skills": [
 			{
-				"skillTree": "FatigueAtk",
+				"skillTree": "Stam Drain",
 				"points": 3
 			},
 			{
@@ -1969,7 +1969,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "Adversity",
+				"skillTree": "Survivor",
 				"points": 1
 			},
 			{
@@ -1998,7 +1998,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "Adversity",
+				"skillTree": "Survivor",
 				"points": 3
 			},
 			{
@@ -2027,7 +2027,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "BombStrUp",
+				"skillTree": "Bomb Boost",
 				"points": 2
 			}
 		],
@@ -2056,7 +2056,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "Horn",
+				"skillTree": "Maestro",
 				"points": 2
 			}
 		],
@@ -2085,7 +2085,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "Gunnery",
+				"skillTree": "Artillery",
 				"points": 2
 			}
 		],
@@ -2911,7 +2911,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "Sheathe",
+				"skillTree": "Sheathing",
 				"points": 1
 			},
 			{
@@ -2958,7 +2958,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "Sheathe",
+				"skillTree": "Sheathing",
 				"points": 3
 			},
 			{
@@ -3248,7 +3248,7 @@
 		"villageStarsRequired": 5,
 		"skills": [
 			{
-				"skillTree": "Will Recov",
+				"skillTree": "Stam Recov",
 				"points": 1
 			},
 			{
@@ -3295,7 +3295,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "Will Recov",
+				"skillTree": "Stam Recov",
 				"points": 3
 			},
 			{
@@ -3448,7 +3448,7 @@
 		"villageStarsRequired": 6,
 		"skills": [
 			{
-				"skillTree": "Rewards",
+				"skillTree": "Tranquilzr",
 				"points": 1
 			},
 			{
@@ -3481,7 +3481,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "Rewards",
+				"skillTree": "Tranquilzr",
 				"points": 4
 			},
 			{
@@ -3576,7 +3576,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "Backpackng",
+				"skillTree": "Transportr",
 				"points": 2
 			}
 		],
@@ -3626,7 +3626,7 @@
 		"villageStarsRequired": 2,
 		"skills": [
 			{
-				"skillTree": "HiSpdGathr",
+				"skillTree": "Spd Gather",
 				"points": 2
 			}
 		],
@@ -3680,7 +3680,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "Wide Area",
+				"skillTree": "Wide-Range",
 				"points": 1
 			},
 			{
@@ -3723,7 +3723,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "Wide Area",
+				"skillTree": "Wide-Range",
 				"points": 3
 			},
 			{
@@ -3810,7 +3810,7 @@
 		"villageStarsRequired": 2,
 		"skills": [
 			{
-				"skillTree": "Shot Mix",
+				"skillTree": "Combo Plus",
 				"points": 2
 			}
 		],
@@ -3889,7 +3889,7 @@
 		"villageStarsRequired": 2,
 		"skills": [
 			{
-				"skillTree": "DungMaster",
+				"skillTree": "Dungmaster",
 				"points": 2
 			}
 		],
@@ -3914,7 +3914,7 @@
 		"villageStarsRequired": 2,
 		"skills": [
 			{
-				"skillTree": "Huntsman",
+				"skillTree": "Ranger",
 				"points": 2
 			}
 		],
@@ -3968,7 +3968,7 @@
 		"villageStarsRequired": 6,
 		"skills": [
 			{
-				"skillTree": "Artisan",
+				"skillTree": "Handicraft",
 				"points": 1
 			},
 			{
@@ -4011,7 +4011,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "Artisan",
+				"skillTree": "Handicraft",
 				"points": 4
 			},
 			{
@@ -4048,7 +4048,7 @@
 				"points": 1
 			},
 			{
-				"skillTree": "Artisan",
+				"skillTree": "Handicraft",
 				"points": -1
 			}
 		],
@@ -4091,7 +4091,7 @@
 				"points": 4
 			},
 			{
-				"skillTree": "Artisan",
+				"skillTree": "Handicraft",
 				"points": -2
 			}
 		],
@@ -4124,7 +4124,7 @@
 				"points": 1
 			},
 			{
-				"skillTree": "Artisan",
+				"skillTree": "Handicraft",
 				"points": -1
 			}
 		],
@@ -4167,7 +4167,7 @@
 				"points": 4
 			},
 			{
-				"skillTree": "Artisan",
+				"skillTree": "Handicraft",
 				"points": -2
 			}
 		],
@@ -4511,7 +4511,7 @@
 		"villageStarsRequired": 5,
 		"skills": [
 			{
-				"skillTree": "NormalS Up",
+				"skillTree": "Normal Up",
 				"points": 1
 			},
 			{
@@ -4544,7 +4544,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "NormalS Up",
+				"skillTree": "Normal Up",
 				"points": 4
 			},
 			{
@@ -4577,7 +4577,7 @@
 		"villageStarsRequired": 5,
 		"skills": [
 			{
-				"skillTree": "PierceS Up",
+				"skillTree": "Pierce Up",
 				"points": 1
 			},
 			{
@@ -4610,7 +4610,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "PierceS Up",
+				"skillTree": "Pierce Up",
 				"points": 4
 			},
 			{
@@ -4643,7 +4643,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "PelletS Up",
+				"skillTree": "Pellet Up",
 				"points": 1
 			},
 			{
@@ -4676,7 +4676,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "PelletS Up",
+				"skillTree": "Pellet Up",
 				"points": 4
 			},
 			{
@@ -4709,11 +4709,11 @@
 		"villageStarsRequired": 2,
 		"skills": [
 			{
-				"skillTree": "NormalSAdd",
+				"skillTree": "Normal S+",
 				"points": 1
 			},
 			{
-				"skillTree": "Reload Spd",
+				"skillTree": "Reload Speed",
 				"points": -1
 			}
 		],
@@ -4738,11 +4738,11 @@
 		"villageStarsRequired": 5,
 		"skills": [
 			{
-				"skillTree": "NormalSAdd",
+				"skillTree": "Normal S+",
 				"points": 3
 			},
 			{
-				"skillTree": "Reload Spd",
+				"skillTree": "Reload Speed",
 				"points": -1
 			}
 		],
@@ -4785,7 +4785,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "PierceSAdd",
+				"skillTree": "Pierce S+",
 				"points": 2
 			}
 		],
@@ -4810,7 +4810,7 @@
 		"villageStarsRequired": 4,
 		"skills": [
 			{
-				"skillTree": "PelletSAdd",
+				"skillTree": "Pellet S+",
 				"points": 2
 			}
 		],
@@ -4835,7 +4835,7 @@
 		"villageStarsRequired": 5,
 		"skills": [
 			{
-				"skillTree": "Crag S Add",
+				"skillTree": "Crag S+",
 				"points": 2
 			}
 		],
@@ -4860,11 +4860,11 @@
 		"villageStarsRequired": 5,
 		"skills": [
 			{
-				"skillTree": "ClustS Add",
+				"skillTree": "Clust S+",
 				"points": 1
 			},
 			{
-				"skillTree": "Reload Spd",
+				"skillTree": "Reload Speed",
 				"points": -1
 			}
 		],
@@ -4889,7 +4889,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "CutterSAdd",
+				"skillTree": "Slice S+",
 				"points": 2
 			}
 		],
@@ -4918,7 +4918,7 @@
 				"points": 1
 			},
 			{
-				"skillTree": "Reload Spd",
+				"skillTree": "Reload Speed",
 				"points": -1
 			}
 		],
@@ -4961,7 +4961,7 @@
 				"points": 4
 			},
 			{
-				"skillTree": "Reload Spd",
+				"skillTree": "Reload Speed",
 				"points": -2
 			}
 		],
@@ -4990,7 +4990,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "Reload Spd",
+				"skillTree": "Reload Speed",
 				"points": 1
 			},
 			{
@@ -5019,7 +5019,7 @@
 		"villageStarsRequired": 5,
 		"skills": [
 			{
-				"skillTree": "Reload Spd",
+				"skillTree": "Reload Speed",
 				"points": 3
 			},
 			{
@@ -5066,7 +5066,7 @@
 				"points": 1
 			},
 			{
-				"skillTree": "Reload Spd",
+				"skillTree": "Reload Speed",
 				"points": -1
 			}
 		],
@@ -5109,7 +5109,7 @@
 				"points": 4
 			},
 			{
-				"skillTree": "Reload Spd",
+				"skillTree": "Reload Speed",
 				"points": -2
 			}
 		],
@@ -5163,7 +5163,7 @@
 		"villageStarsRequired": 4,
 		"skills": [
 			{
-				"skillTree": "ParalyCAdd",
+				"skillTree": "Para C+",
 				"points": 1
 			},
 			{
@@ -5192,7 +5192,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "ParalyCAdd",
+				"skillTree": "Para C+",
 				"points": 3
 			},
 			{
@@ -5225,7 +5225,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "SleepCAdd",
+				"skillTree": "Sleep C+",
 				"points": 2
 			}
 		],
@@ -5250,7 +5250,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "PoisonCAdd",
+				"skillTree": "Poison C+",
 				"points": 2
 			}
 		],
@@ -5275,7 +5275,7 @@
 		"villageStarsRequired": 4,
 		"skills": [
 			{
-				"skillTree": "PowerCAdd",
+				"skillTree": "Power C+",
 				"points": 1
 			},
 			{
@@ -5308,7 +5308,7 @@
 		"villageStarsRequired": 99,
 		"skills": [
 			{
-				"skillTree": "PowerCAdd",
+				"skillTree": "Power C+",
 				"points": 3
 			},
 			{
@@ -5341,7 +5341,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "RazorCAdd",
+				"skillTree": "C. Range C+",
 				"points": 2
 			}
 		],
@@ -5370,7 +5370,7 @@
 		"villageStarsRequired": 3,
 		"skills": [
 			{
-				"skillTree": "FatigeCAdd",
+				"skillTree": "Exhaust C+",
 				"points": 2
 			}
 		],

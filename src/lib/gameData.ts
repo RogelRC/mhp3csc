@@ -13,7 +13,7 @@ export const skillTrees = skillTreesJson as SkillTree[];
 export const decorations = decorationsJson as Decoration[];
 export const tags = tagsJson as string[];
 
-export const TORSO_INC_TREE = 'Torso Inc';
+export const TORSO_INC_TREE = 'Torso Up';
 
 /** Map from tree name to the positive thresholds available on that tree (e.g. [10, 15, 20]). */
 const thresholdsCache = new Map<string, number[]>();
