@@ -1,0 +1,14 @@
+{
+	"meta": {
+		"game": "Monster Hunter Portable 3rd",
+		"source": "Athena's ASS data files",
+		"language": "English only"
+	},
+	"counts": {
+		"armors": 1106,
+		"decorations": 164,
+		"skills": 210,
+		"skillTrees": 99,
+		"components": 814
+	}
+}

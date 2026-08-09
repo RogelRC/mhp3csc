@@ -1,0 +1,5394 @@
+[
+	{
+		"name": "SteadfastJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Stun",
+				"points": 1
+			},
+			{
+				"skillTree": "Paralysis",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Brd Wyvern Fang",
+					"quantity": 3
+				}
+			]
+		]
+	},
+	{
+		"name": "VigilanceJwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Stun",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Regal Frill",
+					"quantity": 1
+				},
+				{
+					"name": "Aoashira Pelt",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Grt Jaggi Hide+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "ParalysisJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Paralysis",
+				"points": 1
+			},
+			{
+				"skillTree": "Poison",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Bnahabra Shell",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "ParalysisJwl[2]",
+		"rarity": 6,
+		"slots": 2,
+		"hrRequired": 1,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "Paralysis",
+				"points": 3
+			},
+			{
+				"skillTree": "Poison",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Rangurotora Clw",
+					"quantity": 2
+				},
+				{
+					"name": "Monster Fluid",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Torpor Sac",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Pep Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Sleep",
+				"points": 1
+			},
+			{
+				"skillTree": "Mud/Snow",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Baggi Hide",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Pep Jewel[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 2,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "Sleep",
+				"points": 3
+			},
+			{
+				"skillTree": "Mud/Snow",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Regal Crest",
+					"quantity": 1
+				},
+				{
+					"name": "Warm Pelt",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Coma Sac",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Antidote Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Poison",
+				"points": 1
+			},
+			{
+				"skillTree": "Stun",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Froggi Hide",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Antidote Jwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Poison",
+				"points": 3
+			},
+			{
+				"skillTree": "Stun",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Grt Frggi Arm",
+					"quantity": 2
+				},
+				{
+					"name": "Screamer",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Toxin Sac",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "FortitudeJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Fortitude",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Armor Seed",
+					"quantity": 2
+				},
+				{
+					"name": "Catalyst",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Alarm Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Anti-Theft",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Felvine",
+					"quantity": 3
+				}
+			]
+		]
+	},
+	{
+		"name": "Teflon Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Mud/Snow",
+				"points": 1
+			},
+			{
+				"skillTree": "Sleep",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Rhenoplos Shell",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "LubricantJwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "Mud/Snow",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Rangrtora Belly",
+					"quantity": 1
+				},
+				{
+					"name": "Bealite Ore",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "RetroviralJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Antiseptic",
+				"points": 1
+			},
+			{
+				"skillTree": "Sense",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Ludroth Hide",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "AntiviralJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Antiseptic",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Spongy Hide",
+					"quantity": 1
+				},
+				{
+					"name": "Earth Crystal",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Anchor Jewel[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Quake Res",
+				"points": 1
+			},
+			{
+				"skillTree": "Sleep",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Fertile Mud",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Tectonic Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "Quake Res",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Hprbkka Skl Shl",
+					"quantity": 1
+				},
+				{
+					"name": "Carpenterbug",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Cooling Jwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Heat Res",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Ice Crystal",
+					"quantity": 3
+				}
+			]
+		]
+	},
+	{
+		"name": "Warming Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Cold Res",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Baggi Scale",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Earplug Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "HearProtct",
+				"points": 1
+			},
+			{
+				"skillTree": "Protection",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Rathian Webbing",
+					"quantity": 1
+				},
+				{
+					"name": "Urukusu Ear",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Tigrex Carapace",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Earplug Jwl[3]",
+		"rarity": 6,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "HearProtct",
+				"points": 4
+			},
+			{
+				"skillTree": "Protection",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Blk Tigrex Fang",
+					"quantity": 2
+				},
+				{
+					"name": "Uncanny Hide+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "WindpressJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "WindPress",
+				"points": 1
+			},
+			{
+				"skillTree": "Fate",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Jinouga Claw",
+					"quantity": 1
+				},
+				{
+					"name": "Dragonite Ore",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "WindpressJwl[2]",
+		"rarity": 5,
+		"slots": 2,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "WindPress",
+				"points": 3
+			},
+			{
+				"skillTree": "Fate",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Sapphire Fang",
+					"quantity": 1
+				},
+				{
+					"name": "Carbalite Ore",
+					"quantity": 3
+				}
+			]
+		]
+	},
+	{
+		"name": "Attack Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Attack",
+				"points": 1
+			},
+			{
+				"skillTree": "Defense",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Jaggi Scale",
+					"quantity": 2
+				},
+				{
+					"name": "Power Seed",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Attack Jewel[2]",
+		"rarity": 6,
+		"slots": 2,
+		"hrRequired": 2,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "Attack",
+				"points": 3
+			},
+			{
+				"skillTree": "Defense",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Fire Wyvern Clw",
+					"quantity": 2
+				},
+				{
+					"name": "Demondrug",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Attack Jewel[3]",
+		"rarity": 4,
+		"slots": 3,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Attack",
+				"points": 5
+			},
+			{
+				"skillTree": "Defense",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Barioth Claw+",
+					"quantity": 1
+				},
+				{
+					"name": "Mega Demondrug",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Expert Jewel[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Expert",
+				"points": 1
+			},
+			{
+				"skillTree": "Dragon Res",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Sharp Fang",
+					"quantity": 2
+				},
+				{
+					"name": "Iron Ore",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Expert Jewel[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 2,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "Expert",
+				"points": 3
+			},
+			{
+				"skillTree": "Dragon Res",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Nargacuga Wing",
+					"quantity": 1
+				},
+				{
+					"name": "Grt Baggi Claw",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "RoyalLudrthScl+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Expert Jewel[3]",
+		"rarity": 5,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Expert",
+				"points": 5
+			},
+			{
+				"skillTree": "Dragon Res",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Akantor Spike",
+					"quantity": 1
+				},
+				{
+					"name": "Hapurubokka Cpc",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "SpcialAtkJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Status",
+				"points": 1
+			},
+			{
+				"skillTree": "Elemental",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Bnahabra Wing",
+					"quantity": 3
+				},
+				{
+					"name": "Bnahabra Stingr",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Bnahabra Carpce",
+					"quantity": 2
+				},
+				{
+					"name": "Quality Fin",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "SpcialAtkJwl[2]",
+		"rarity": 5,
+		"slots": 2,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Status",
+				"points": 3
+			},
+			{
+				"skillTree": "Elemental",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Gigginox Claw+",
+					"quantity": 1
+				},
+				{
+					"name": "Monster Broth",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Element Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Elemental",
+				"points": 1
+			},
+			{
+				"skillTree": "Status",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Alatreon Shell",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Element Jwl[3]",
+		"rarity": 6,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Elemental",
+				"points": 4
+			},
+			{
+				"skillTree": "Status",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Alatreon Claw",
+					"quantity": 2
+				},
+				{
+					"name": "LightningCarpce",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Fire Atk Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "Fire Atk",
+				"points": 1
+			},
+			{
+				"skillTree": "Water Atk",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Rathian Scale",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Fire Atk Jwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Fire Atk",
+				"points": 3
+			},
+			{
+				"skillTree": "Water Atk",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Inferno Sac",
+					"quantity": 1
+				},
+				{
+					"name": "Rangurotora Cpc",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "WaterAtk Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Water Atk",
+				"points": 1
+			},
+			{
+				"skillTree": "Thundr Atk",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "RyalLudrthCrest",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "WaterAtk Jwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Water Atk",
+				"points": 3
+			},
+			{
+				"skillTree": "Thundr Atk",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Chromatic Fluid",
+					"quantity": 1
+				},
+				{
+					"name": "PurpRylLdrthScl",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "ThndrAtk Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "Thundr Atk",
+				"points": 1
+			},
+			{
+				"skillTree": "Ice Attack",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Gigginox Claw",
+					"quantity": 1
+				},
+				{
+					"name": "Thunderbug",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "ThndrAtk Jwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Thundr Atk",
+				"points": 3
+			},
+			{
+				"skillTree": "Ice Attack",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Thunder Sac",
+					"quantity": 1
+				},
+				{
+					"name": "Red Qurpeco Scl",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Ice Atk Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "Ice Attack",
+				"points": 1
+			},
+			{
+				"skillTree": "Fire Atk",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Grt Baggi Hide",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Ice Atk Jwl[2]",
+		"rarity": 5,
+		"slots": 2,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Ice Attack",
+				"points": 3
+			},
+			{
+				"skillTree": "Fire Atk",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Frozen Mucus",
+					"quantity": 1
+				},
+				{
+					"name": "Urksu Hrd Belly",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "DragnAtk Jwl[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 6,
+		"skills": [
+			{
+				"skillTree": "Dragon Atk",
+				"points": 1
+			},
+			{
+				"skillTree": "Status",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Jhen Mohran Scl",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "DragnAtk Jwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Dragon Atk",
+				"points": 3
+			},
+			{
+				"skillTree": "Status",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Ancnt Drgn Bone",
+					"quantity": 2
+				},
+				{
+					"name": "Rathalos Carpce",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "DeblitateJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "Debilitate",
+				"points": 1
+			},
+			{
+				"skillTree": "Health",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Rathalos Webbng",
+					"quantity": 1
+				},
+				{
+					"name": "Rathian Spike",
+					"quantity": 1
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Rathalos Scale+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "DeblitateJwl[3]",
+		"rarity": 6,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Debilitate",
+				"points": 4
+			},
+			{
+				"skillTree": "Health",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Akantor Fang",
+					"quantity": 1
+				},
+				{
+					"name": "Rathalos Ruby",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Slam Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 6,
+		"skills": [
+			{
+				"skillTree": "Slam",
+				"points": 1
+			},
+			{
+				"skillTree": "Expert",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Doboru Kelp",
+					"quantity": 1
+				},
+				{
+					"name": "Doboru Shell",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Mossy Carapace+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Slam Jewel[3]",
+		"rarity": 6,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Slam",
+				"points": 4
+			},
+			{
+				"skillTree": "Expert",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Ukanlos Claw",
+					"quantity": 1
+				},
+				{
+					"name": "Rathian Ruby",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Ammo Box Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 6,
+		"skills": [
+			{
+				"skillTree": "Loading",
+				"points": 1
+			},
+			{
+				"skillTree": "Reload Spd",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Jhen Mohran Arm",
+					"quantity": 1
+				},
+				{
+					"name": "Tigrex Claw",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Dviljho Skl Shl",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Ammo Box Jwl[3]",
+		"rarity": 4,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Loading",
+				"points": 4
+			},
+			{
+				"skillTree": "Reload Spd",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Jhen Mhran Arm+",
+					"quantity": 1
+				},
+				{
+					"name": "Wyvern Stone",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "FastChargJwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "FastCharge",
+				"points": 1
+			},
+			{
+				"skillTree": "Constitutn",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Hapurubokka Clw",
+					"quantity": 1
+				},
+				{
+					"name": "Barroth Spine",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Tigrex Scale+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "FastChargJwl[3]",
+		"rarity": 4,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "FastCharge",
+				"points": 4
+			},
+			{
+				"skillTree": "Constitutn",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Jhen Mohran Cpc",
+					"quantity": 1
+				},
+				{
+					"name": "SandBariothShl",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Unlock Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "Awaken",
+				"points": 1
+			},
+			{
+				"skillTree": "Sense",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Jinouga Horn",
+					"quantity": 1
+				},
+				{
+					"name": "Barioth Spike",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Jinouga Horn+",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Unlock Jewel[2]",
+		"rarity": 6,
+		"slots": 2,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Awaken",
+				"points": 3
+			},
+			{
+				"skillTree": "Sense",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Amatsu Horn",
+					"quantity": 1
+				},
+				{
+					"name": "Grn Narga Pelt",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "KO Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "KO",
+				"points": 1
+			},
+			{
+				"skillTree": "FastCharge",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Monster Bone+",
+					"quantity": 2
+				},
+				{
+					"name": "Rhnplos Skl Shl",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "KO Jewel[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 3,
+		"villageStarsRequired": 6,
+		"skills": [
+			{
+				"skillTree": "KO",
+				"points": 3
+			},
+			{
+				"skillTree": "FastCharge",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Diablos Spine",
+					"quantity": 2
+				},
+				{
+					"name": "Swallowtail",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Stout Bone",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "FatigeAtkJwl[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "FatigueAtk",
+				"points": 1
+			},
+			{
+				"skillTree": "Stamina",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Barroth Claw",
+					"quantity": 1
+				},
+				{
+					"name": "Med Mnster Bone",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "FatigeAtkJwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 2,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "FatigueAtk",
+				"points": 3
+			},
+			{
+				"skillTree": "Stamina",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Narga TailSpike",
+					"quantity": 2
+				},
+				{
+					"name": "HotSpringTicket",
+					"quantity": 1
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Barroth Claw+",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "PotentialJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 6,
+		"skills": [
+			{
+				"skillTree": "Potential",
+				"points": 1
+			},
+			{
+				"skillTree": "Protection",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Mossy Carapace",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "PotentialJwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Potential",
+				"points": 3
+			},
+			{
+				"skillTree": "Protection",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "IceBarrothSpine",
+					"quantity": 2
+				},
+				{
+					"name": "Urukusu Lng Ear",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "AdversityJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Adversity",
+				"points": 1
+			},
+			{
+				"skillTree": "Rec Level",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Call to Arms",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "AdversityJwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 4,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Adversity",
+				"points": 3
+			},
+			{
+				"skillTree": "Rec Level",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Wht Raven Quill",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "BombrdierJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "BombStrUp",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Flintstone",
+					"quantity": 1
+				},
+				{
+					"name": "Grt Jaggi Hide",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Fife Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Horn",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Queer Beak",
+					"quantity": 1
+				},
+				{
+					"name": "Flute",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Howitzer Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Gunnery",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Isisium Ore",
+					"quantity": 1
+				},
+				{
+					"name": "Lg Barrel-Bomb+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Defense Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Defense",
+				"points": 1
+			},
+			{
+				"skillTree": "Attack",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Aoashira Shell",
+					"quantity": 1
+				},
+				{
+					"name": "Armor Seed",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Defense Jwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 2,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "Defense",
+				"points": 3
+			},
+			{
+				"skillTree": "Attack",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Uragaan Shell",
+					"quantity": 2
+				},
+				{
+					"name": "Armorskin",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Aoashira Arm+",
+					"quantity": 1
+				},
+				{
+					"name": "Mega Armorskin",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Blight Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Blight Res",
+				"points": 1
+			},
+			{
+				"skillTree": "Health",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Alatreon Plate",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Blight Jewel[3]",
+		"rarity": 5,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Blight Res",
+				"points": 4
+			},
+			{
+				"skillTree": "Health",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Alatreon Horn+",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Inferno Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Fire Res",
+				"points": 1
+			},
+			{
+				"skillTree": "Water Res",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Fire Herb",
+					"quantity": 5
+				}
+			]
+		]
+	},
+	{
+		"name": "Crimson Jwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "Fire Res",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Flame Sac",
+					"quantity": 2
+				},
+				{
+					"name": "Lg Monster Bone",
+					"quantity": 3
+				}
+			]
+		]
+	},
+	{
+		"name": "Stream Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Water Res",
+				"points": 1
+			},
+			{
+				"skillTree": "ThunderRes",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Knife Mackerel",
+					"quantity": 5
+				}
+			]
+		]
+	},
+	{
+		"name": "Torrent Jwl[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Water Res",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Aqua Sac",
+					"quantity": 2
+				},
+				{
+					"name": "Lg Monster Bone",
+					"quantity": 3
+				}
+			]
+		]
+	},
+	{
+		"name": "Thunder Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "ThunderRes",
+				"points": 1
+			},
+			{
+				"skillTree": "Ice Res",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Thunderbug",
+					"quantity": 3
+				}
+			]
+		]
+	},
+	{
+		"name": "LightningJwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "ThunderRes",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Static Carapace",
+					"quantity": 1
+				},
+				{
+					"name": "Lg Monster Bone",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Freeze Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Ice Res",
+				"points": 1
+			},
+			{
+				"skillTree": "Fire Res",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Ice Crystal",
+					"quantity": 5
+				}
+			]
+		]
+	},
+	{
+		"name": "GlacierJwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Ice Res",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Urukusu Claw",
+					"quantity": 2
+				},
+				{
+					"name": "Lg Monster Bone",
+					"quantity": 3
+				}
+			]
+		]
+	},
+	{
+		"name": "Slayer Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Dragon Res",
+				"points": 1
+			},
+			{
+				"skillTree": "Poison",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Dragon Seed",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Extinction Jwl[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Dragon Res",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Ancnt Drgn Bone",
+					"quantity": 1
+				},
+				{
+					"name": "Shrp Mnster Bne",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Protectn Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "Protection",
+				"points": 1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Rathian Shell",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "DvnePrtctJwl[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Protection",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Gld Rathian Cpc",
+					"quantity": 2
+				},
+				{
+					"name": "Yukumo Ticket",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Health Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Health",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Bulldrome Hide",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "FeelGood Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Rec Speed",
+				"points": 1
+			},
+			{
+				"skillTree": "Eating",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Jaggi Hide",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "FeelGood Jwl[2]",
+		"rarity": 5,
+		"slots": 2,
+		"hrRequired": 1,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "Rec Speed",
+				"points": 3
+			},
+			{
+				"skillTree": "Eating",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Gigginox Hide",
+					"quantity": 1
+				},
+				{
+					"name": "Pale Extract",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Grt Baggi Hide+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Cure Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Rec Level",
+				"points": 1
+			},
+			{
+				"skillTree": "Rec Speed",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Qurupeco Scale",
+					"quantity": 1
+				},
+				{
+					"name": "Kelbi Horn",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Cure Jewel[2]",
+		"rarity": 6,
+		"slots": 2,
+		"hrRequired": 4,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Rec Level",
+				"points": 3
+			},
+			{
+				"skillTree": "Rec Speed",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Qurupeco Scale+",
+					"quantity": 1
+				},
+				{
+					"name": "Ancient Potion",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Evade Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Evasion",
+				"points": 1
+			},
+			{
+				"skillTree": "Health",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Urukusu Belly",
+					"quantity": 2
+				},
+				{
+					"name": "Killer Beetle",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Nargacuga Wing+",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Evade Jewel[2]",
+		"rarity": 6,
+		"slots": 2,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Evasion",
+				"points": 3
+			},
+			{
+				"skillTree": "Health",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "SandBariothPlt",
+					"quantity": 2
+				},
+				{
+					"name": "Urukusu Pelt+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Jump Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "Evade Dist",
+				"points": 1
+			},
+			{
+				"skillTree": "Health",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Black Narga Plt",
+					"quantity": 2
+				},
+				{
+					"name": "Bnahabra Wing",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Barioth Carapce",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Jump Jewel[3]",
+		"rarity": 5,
+		"slots": 3,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Evade Dist",
+				"points": 4
+			},
+			{
+				"skillTree": "Health",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Grn Narga Wing",
+					"quantity": 2
+				},
+				{
+					"name": "Qurupeco Wing",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Sheathe Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Sheathe",
+				"points": 1
+			},
+			{
+				"skillTree": "Sharpener",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Shellfish",
+					"quantity": 1
+				},
+				{
+					"name": "Altarth Abdomen",
+					"quantity": 1
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Jaggi Scale+",
+					"quantity": 1
+				},
+				{
+					"name": "Drink Ticket",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Sheathe Jwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Sheathe",
+				"points": 3
+			},
+			{
+				"skillTree": "Sharpener",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Diablos Carapce",
+					"quantity": 1
+				},
+				{
+					"name": "Quality Abdomen",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "TrapMastrJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "SpeedSetup",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Glossy Hide",
+					"quantity": 1
+				},
+				{
+					"name": "Shock Trap",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "FastEaterJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "Eating",
+				"points": 1
+			},
+			{
+				"skillTree": "Rec Level",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Hapurbokka Hide",
+					"quantity": 1
+				},
+				{
+					"name": "Aoashira Arm",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Haprbokka Hide+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "FastEaterJwl[3]",
+		"rarity": 4,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Eating",
+				"points": 4
+			},
+			{
+				"skillTree": "Rec Level",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Deviljho Fang",
+					"quantity": 2
+				},
+				{
+					"name": "Tigrex Fang+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Marathon Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Stamina",
+				"points": 1
+			},
+			{
+				"skillTree": "Hunger",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "RoyalLudrothClw",
+					"quantity": 1
+				},
+				{
+					"name": "Mega Juice",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "SpongyPurplHide",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Marathon Jwl[3]",
+		"rarity": 4,
+		"slots": 3,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Stamina",
+				"points": 4
+			},
+			{
+				"skillTree": "Hunger",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Green Narga Scl",
+					"quantity": 1
+				},
+				{
+					"name": "Spongy Hide+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Constutn Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Constitutn",
+				"points": 1
+			},
+			{
+				"skillTree": "Stamina",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Regal Snout",
+					"quantity": 1
+				},
+				{
+					"name": "Froggi Scale",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Barioth Pelt+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Constutn Jwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Constitutn",
+				"points": 3
+			},
+			{
+				"skillTree": "Stamina",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Agnaktor Fin+",
+					"quantity": 1
+				},
+				{
+					"name": "Grt Frggi Hide+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "WillRecovJwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "Will Recov",
+				"points": 1
+			},
+			{
+				"skillTree": "Evasion",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Narga Scale",
+					"quantity": 1
+				},
+				{
+					"name": "Med Mnster Bone",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Rhenoplos Crpce",
+					"quantity": 2
+				},
+				{
+					"name": "HotSpringTicket",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "WillRecovJwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Will Recov",
+				"points": 3
+			},
+			{
+				"skillTree": "Evasion",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Nargacuga Fang+",
+					"quantity": 1
+				},
+				{
+					"name": "Shrp Mnster Bne",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "PickyEatrJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Hunger",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Bulldrome Tusk",
+					"quantity": 1
+				},
+				{
+					"name": "Well-Done Steak",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Fatso Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Gluttony",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Giant Bone",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Fate Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 4,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Fate",
+				"points": 1
+			},
+			{
+				"skillTree": "Whim",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "BrdWyvern Stone",
+					"quantity": 1
+				},
+				{
+					"name": "Silver Egg",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Fate Jewel[3]",
+		"rarity": 5,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Fate",
+				"points": 4
+			},
+			{
+				"skillTree": "Whim",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "GldRathianSpike",
+					"quantity": 2
+				},
+				{
+					"name": "Golden Egg",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Rewards Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 4,
+		"villageStarsRequired": 6,
+		"skills": [
+			{
+				"skillTree": "Rewards",
+				"points": 1
+			},
+			{
+				"skillTree": "Fate",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Commendation",
+					"quantity": 1
+				},
+				{
+					"name": "Jinouga Pelt",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Rewards Jwl[3]",
+		"rarity": 4,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Rewards",
+				"points": 4
+			},
+			{
+				"skillTree": "Fate",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Commendation G",
+					"quantity": 2
+				},
+				{
+					"name": "Jinouga Plate",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "HidecutterJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Carving",
+				"points": 1
+			},
+			{
+				"skillTree": "Fate",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Deviljho Hide",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "HidecutterJwl[3]",
+		"rarity": 5,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Carving",
+				"points": 4
+			},
+			{
+				"skillTree": "Fate",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Amatsu Patagium",
+					"quantity": 1
+				},
+				{
+					"name": "Jhen Mohran Jwl",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "BackpckngJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Backpackng",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Power Extract",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "GatherngJwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Gathering",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Pepipo Pumpkin",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "GrabnDashJwl[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "HiSpdGathr",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Pepipo Pumpkin",
+					"quantity": 1
+				},
+				{
+					"name": "Sm Monster Bone",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "GoodLuck Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Whim",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Iron Ore",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "FriendshipJwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Wide Area",
+				"points": 1
+			},
+			{
+				"skillTree": "Sense",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Qurupeco Feathr",
+					"quantity": 1
+				}
+			],
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Comrade Ticket",
+					"quantity": 1
+				},
+				{
+					"name": "Sm Goldenfish",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "FriendshipJwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Wide Area",
+				"points": 3
+			},
+			{
+				"skillTree": "Sense",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Red Qurpeco Wng",
+					"quantity": 1
+				},
+				{
+					"name": "Lifepowder",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Psychic Jwl[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Psychic",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Vibrant Down",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "ProfessorJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Combo Rate",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Book of Combos 1",
+					"quantity": 1
+				},
+				{
+					"name": "Gagua Feather",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Armory Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Shot Mix",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Sm Goldenfish",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "StayngPwrJwl[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "LastingPwr",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Large Fin",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Perceptn Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Perception",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Zuwaroposu Hide",
+					"quantity": 1
+				},
+				{
+					"name": "Binoculars",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Dungmastr Jwl[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "DungMaster",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Dung Bomb",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Huntsman Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Huntsman",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Sushifish",
+					"quantity": 1
+				},
+				{
+					"name": "Raw Meat",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Ninja Jewel[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Sense",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Anteka Antlers",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Artisan Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 6,
+		"skills": [
+			{
+				"skillTree": "Artisan",
+				"points": 1
+			},
+			{
+				"skillTree": "Sharpness",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Jhen Mhran Fang",
+					"quantity": 1
+				},
+				{
+					"name": "Agnaktor Claw",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Deviljho Claw",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Artisan Jwl[3]",
+		"rarity": 5,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Artisan",
+				"points": 4
+			},
+			{
+				"skillTree": "Sharpness",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Amatsu Claw",
+					"quantity": 1
+				},
+				{
+					"name": "Deviljho Jewel",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Fencing Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 6,
+		"skills": [
+			{
+				"skillTree": "Fencing",
+				"points": 1
+			},
+			{
+				"skillTree": "Artisan",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "EldrDragonBlood",
+					"quantity": 1
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Slvr Rthlos Cpc",
+					"quantity": 2
+				},
+				{
+					"name": "Ice Agnktr Tail",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Fencing Jwl[3]",
+		"rarity": 4,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Fencing",
+				"points": 4
+			},
+			{
+				"skillTree": "Artisan",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Ukanlos Shell",
+					"quantity": 2
+				},
+				{
+					"name": "Tigrex Jaw",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Razor Jewel[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 6,
+		"skills": [
+			{
+				"skillTree": "Sharpness",
+				"points": 1
+			},
+			{
+				"skillTree": "Artisan",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Agnaktor Fin",
+					"quantity": 1
+				},
+				{
+					"name": "Jinouga Shell",
+					"quantity": 1
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Rathian Plate",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Razor Jewel[3]",
+		"rarity": 4,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Sharpness",
+				"points": 4
+			},
+			{
+				"skillTree": "Artisan",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Agnaktor Fin+",
+					"quantity": 1
+				},
+				{
+					"name": "Horrific Maw",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "CritDraw Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 6,
+		"skills": [
+			{
+				"skillTree": "Crit Draw",
+				"points": 1
+			},
+			{
+				"skillTree": "Expert",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Twisted Horn",
+					"quantity": 1
+				},
+				{
+					"name": "Diablos Shell",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Uragaan Carapce",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "CritDraw Jwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Crit Draw",
+				"points": 3
+			},
+			{
+				"skillTree": "Expert",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Diablos Thorcic",
+					"quantity": 1
+				},
+				{
+					"name": "Ice Barroth Shl",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "PunshDrw Jwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "PunishDraw",
+				"points": 1
+			},
+			{
+				"skillTree": "Sharpness",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Uragaan Shield",
+					"quantity": 1
+				},
+				{
+					"name": "Monster Bone+",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Uragaan Scale+",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "PunshDrw Jwl[3]",
+		"rarity": 4,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "PunishDraw",
+				"points": 4
+			},
+			{
+				"skillTree": "Sharpness",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "MajesticBlkHorn",
+					"quantity": 1
+				},
+				{
+					"name": "Barioth Carapce",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "IronWall Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Guard",
+				"points": 1
+			},
+			{
+				"skillTree": "Constitutn",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Barroth Shell",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "IronWall Jwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 3,
+		"villageStarsRequired": 6,
+		"skills": [
+			{
+				"skillTree": "Guard",
+				"points": 3
+			},
+			{
+				"skillTree": "Constitutn",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Agnaktor Snout",
+					"quantity": 1
+				},
+				{
+					"name": "Agnaktor Shell",
+					"quantity": 3
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Ice Agnktor Fin",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "HardWall Jwl[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "Guard Up",
+				"points": 1
+			},
+			{
+				"skillTree": "Stamina",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Fire Stone",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "HardWall Jwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Guard Up",
+				"points": 3
+			},
+			{
+				"skillTree": "Stamina",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Ice Agnktor Shl",
+					"quantity": 1
+				},
+				{
+					"name": "Firecell Stone",
+					"quantity": 3
+				}
+			]
+		]
+	},
+	{
+		"name": "Grinder Jwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Sharpener",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Grt Jaggi Claw",
+					"quantity": 1
+				},
+				{
+					"name": "Machalite Ore",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "StrngShotJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "NormalS Up",
+				"points": 1
+			},
+			{
+				"skillTree": "Recoil",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Monster Bone+",
+					"quantity": 2
+				},
+				{
+					"name": "Rumblefish",
+					"quantity": 5
+				}
+			]
+		]
+	},
+	{
+		"name": "StrngShotJwl[3]",
+		"rarity": 6,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "NormalS Up",
+				"points": 4
+			},
+			{
+				"skillTree": "Recoil",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Agnaktor Carpce",
+					"quantity": 2
+				},
+				{
+					"name": "Shrp Mnster Bne",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Pierce Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "PierceS Up",
+				"points": 1
+			},
+			{
+				"skillTree": "Recoil",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Uragaan Jaw",
+					"quantity": 1
+				},
+				{
+					"name": "Hercudrome",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Pierce Jewel[3]",
+		"rarity": 4,
+		"slots": 3,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "PierceS Up",
+				"points": 4
+			},
+			{
+				"skillTree": "Recoil",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Uragaan Ruby",
+					"quantity": 1
+				},
+				{
+					"name": "King Scarab",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Pellet Jewel[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "PelletS Up",
+				"points": 1
+			},
+			{
+				"skillTree": "Recoil",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Isisium Ore",
+					"quantity": 2
+				},
+				{
+					"name": "Wyvern Fang",
+					"quantity": 5
+				}
+			]
+		]
+	},
+	{
+		"name": "Pellet Jewel[3]",
+		"rarity": 4,
+		"slots": 3,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "PelletS Up",
+				"points": 4
+			},
+			{
+				"skillTree": "Recoil",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "SteelUrgnShield",
+					"quantity": 1
+				},
+				{
+					"name": "Gracium Ore",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "ShotBonusJwl[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "NormalSAdd",
+				"points": 1
+			},
+			{
+				"skillTree": "Reload Spd",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Med Mnster Bone",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "ShotBonusJwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 2,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "NormalSAdd",
+				"points": 3
+			},
+			{
+				"skillTree": "Reload Spd",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Monster Bone+",
+					"quantity": 2
+				},
+				{
+					"name": "Cutlassfish",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Rangurtora Clw+",
+					"quantity": 1
+				},
+				{
+					"name": "Stout Bone",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "PrceBonusJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "PierceSAdd",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Dragonite Ore",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "PlltBonusJwl[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "PelletSAdd",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Hapurubokka Shl",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "BombBonusJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "Crag S Add",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Rathalos Shell",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "ScttrBnusJwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "ClustS Add",
+				"points": 1
+			},
+			{
+				"skillTree": "Reload Spd",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Uragaan Scale",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "CuttrBnus Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "CutterSAdd",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Urukusu Pelt",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "RapidFireJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 3,
+		"villageStarsRequired": 6,
+		"skills": [
+			{
+				"skillTree": "Rapid Fire",
+				"points": 1
+			},
+			{
+				"skillTree": "Reload Spd",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Tigrex Fang",
+					"quantity": 2
+				},
+				{
+					"name": "Barioth Claw",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "FireWyvrnBrnStm",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "RapidFireJwl[3]",
+		"rarity": 5,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Rapid Fire",
+				"points": 4
+			},
+			{
+				"skillTree": "Reload Spd",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Ukanlos Jaw",
+					"quantity": 2
+				},
+				{
+					"name": "Rathalos Plate",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "HighSpeedJwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Reload Spd",
+				"points": 1
+			},
+			{
+				"skillTree": "Recoil",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Pelagicite Ore",
+					"quantity": 3
+				}
+			]
+		]
+	},
+	{
+		"name": "HighSpeedJwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 2,
+		"villageStarsRequired": 5,
+		"skills": [
+			{
+				"skillTree": "Reload Spd",
+				"points": 3
+			},
+			{
+				"skillTree": "Recoil",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Nargacuga Fang",
+					"quantity": 2
+				},
+				{
+					"name": "Lightcrystal",
+					"quantity": 2
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "ThndrGiggnoxClw",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Recoil Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "Recoil",
+				"points": 1
+			},
+			{
+				"skillTree": "Reload Spd",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Barroth Skl Shl",
+					"quantity": 1
+				},
+				{
+					"name": "RyalLudrthCrest",
+					"quantity": 1
+				}
+			],
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Barroth Thracic",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Recoil Jewel[3]",
+		"rarity": 5,
+		"slots": 3,
+		"hrRequired": 6,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "Recoil",
+				"points": 4
+			},
+			{
+				"skillTree": "Reload Spd",
+				"points": -2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "LapisLazuli Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Doboru Tail+",
+					"quantity": 2
+				},
+				{
+					"name": "Blk Blos Spine",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Sniper Jewel[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 2,
+		"skills": [
+			{
+				"skillTree": "Precision",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Suiko Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Unknown Skull",
+					"quantity": 2
+				}
+			]
+		]
+	},
+	{
+		"name": "Para Ct Jwl[1]",
+		"rarity": 6,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "ParalyCAdd",
+				"points": 1
+			},
+			{
+				"skillTree": "Attack",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Paralysis Sac",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Para Ct Jwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "ParalyCAdd",
+				"points": 3
+			},
+			{
+				"skillTree": "Attack",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "ThdrGiggnoxHide",
+					"quantity": 1
+				},
+				{
+					"name": "Torpor Sac",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Sleep Ct Jwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "SleepCAdd",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Sleep Sac",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "PoisonCt Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "PoisonCAdd",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Poison Sac",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "Power Ct Jwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 2,
+		"villageStarsRequired": 4,
+		"skills": [
+			{
+				"skillTree": "PowerCAdd",
+				"points": 1
+			},
+			{
+				"skillTree": "Expert",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Uroktor Scale",
+					"quantity": 2
+				},
+				{
+					"name": "Nitroshroom",
+					"quantity": 5
+				}
+			]
+		]
+	},
+	{
+		"name": "Power Ct Jwl[2]",
+		"rarity": 4,
+		"slots": 2,
+		"hrRequired": 5,
+		"villageStarsRequired": 99,
+		"skills": [
+			{
+				"skillTree": "PowerCAdd",
+				"points": 3
+			},
+			{
+				"skillTree": "Expert",
+				"points": -1
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Battlefield Jwl",
+					"quantity": 1
+				},
+				{
+					"name": "Uroktor Scale+",
+					"quantity": 1
+				},
+				{
+					"name": "Magma Shard",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "ClsRngCt Jwl[1]",
+		"rarity": 5,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "RazorCAdd",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "RoyalLudrothScl",
+					"quantity": 1
+				},
+				{
+					"name": "Juvenile Sponge",
+					"quantity": 1
+				}
+			]
+		]
+	},
+	{
+		"name": "FatigeCt Jwl[1]",
+		"rarity": 4,
+		"slots": 1,
+		"hrRequired": 1,
+		"villageStarsRequired": 3,
+		"skills": [
+			{
+				"skillTree": "FatigeCAdd",
+				"points": 2
+			}
+		],
+		"recipes": [
+			[
+				{
+					"name": "Akito Jewel",
+					"quantity": 1
+				},
+				{
+					"name": "Deepsea Sardine",
+					"quantity": 2
+				},
+				{
+					"name": "Lg Monster Bone",
+					"quantity": 1
+				}
+			]
+		]
+	}
+]
