@@ -3,10 +3,14 @@
 	import ResultCard from '$lib/components/ResultCard.svelte';
 	import { armors, decorations, positiveSkillsByTree } from '$lib/gameData';
 	import { runSearch } from '$lib/search';
+	import { decryptSaveFile } from '$lib/mh3/saveCipher';
+	import { parseCharmEntries } from '$lib/mh3/charmParser';
+	import { charmSkillTree } from '$lib/mh3/skillTable';
 	import type { Charm, SearchProgress, SearchSettings, SetResult, SkillTarget } from '$lib/types';
 
 	let targetSkills = $state<SkillTarget[]>([]);
 	let charms = $state<Charm[]>([]);
+	let showCharms = $state(true);
 	let includeNoCharm = $state(false);
 	let settings = $state<SearchSettings>({
 		weaponSlots: 3,
@@ -30,6 +34,7 @@
 	const LS = {
 		targets: 'mhp3csc:targets',
 		charms: 'mhp3csc:charms',
+		showcharms: 'mhp3csc:showcharms',
 		settings: 'mhp3csc:settings',
 		nocharm: 'mhp3csc:nocharm'
 	};
@@ -60,6 +65,8 @@
 			if (t && Array.isArray(t)) targetSkills = t;
 			const c = readLS<Charm[]>(LS.charms);
 			if (c && Array.isArray(c)) charms = c;
+			const sc = readLS<boolean>(LS.showcharms);
+			showCharms = sc ?? charms.length <= 60;
 			const s = readLS<Partial<SearchSettings>>(LS.settings);
 			if (s) settings = { ...settings, ...s };
 			const nc = readLS<boolean>(LS.nocharm);
@@ -68,6 +75,7 @@
 		}
 		writeLS(LS.targets, targetSkills);
 		writeLS(LS.charms, charms);
+		writeLS(LS.showcharms, showCharms);
 		writeLS(LS.settings, settings);
 		writeLS(LS.nocharm, includeNoCharm);
 	});
@@ -117,6 +125,50 @@
 
 	function removeCharm(id: string) {
 		charms = charms.filter((c) => c.id !== id);
+	}
+
+	let importNote = $state('');
+	let importFailed = $state(false);
+
+	async function importSave(e: Event) {
+		const input = e.target as HTMLInputElement;
+		const file = input.files?.[0];
+		input.value = '';
+		if (!file) return;
+		try {
+			const plain = decryptSaveFile(new Uint8Array(await file.arrayBuffer()));
+			const parsed = parseCharmEntries(plain);
+			if (parsed.length === 0) {
+				importNote = 'No charms found in that save.';
+				importFailed = true;
+				return;
+			}
+			const imported: Charm[] = parsed.map((p) => {
+				const has1 = p.skill1Code !== 0;
+				const has2 = p.skill2Code !== 0;
+				return {
+					id: crypto.randomUUID(),
+					name: '',
+					slots: p.slots,
+					skill1: {
+						tree: has1 ? (charmSkillTree(p.skill1Code) ?? '') : '',
+						points: has1 ? p.skill1Points : 0
+					},
+					skill2: has2
+						? { tree: charmSkillTree(p.skill2Code) ?? '', points: p.skill2Points }
+						: null,
+					included: true
+				};
+			});
+			charms = [...charms, ...imported];
+			showCharms = charms.length <= 60;
+			importNote = `Imported ${imported.length} charm${imported.length === 1 ? '' : 's'} from ${file.name}.`;
+			importFailed = false;
+		} catch (err) {
+			console.error(err);
+			importNote = 'Could not read that file. It may not be a valid MHP3rd Save.BIN.';
+			importFailed = true;
+		}
 	}
 
 	async function doSearch() {
@@ -277,24 +329,62 @@
 				<section class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
 					<div class="mb-3 flex items-center justify-between">
 						<h2 class="text-sm font-semibold tracking-wide text-zinc-300 uppercase">Charms</h2>
-						<button
-							type="button"
-							onclick={addCharm}
-							class="rounded border border-zinc-700 px-2 py-1 text-xs text-zinc-200 hover:border-amber-500 hover:text-amber-300"
-						>
-							+ Add charm
-						</button>
+						<div class="flex items-center gap-2">
+							{#if charms.length > 0}
+								<button
+									type="button"
+									onclick={() => (showCharms = !showCharms)}
+									class="rounded border border-zinc-700 px-2 py-1 text-xs text-zinc-200 hover:border-amber-500 hover:text-amber-300"
+								>
+									{showCharms ? 'Hide list' : 'Show list'} ({charms.length})
+								</button>
+							{/if}
+							<button
+								type="button"
+								onclick={addCharm}
+								class="rounded border border-zinc-700 px-2 py-1 text-xs text-zinc-200 hover:border-amber-500 hover:text-amber-300"
+							>
+								+ Add charm
+							</button>
+						</div>
 					</div>
 
 					<p class="mb-3 text-xs text-zinc-500">
 						Enter the charms you own. The search will build sets using one of them.
 					</p>
 
-					<div class="space-y-2">
-						{#each charms as c (c.id)}
-							<CharmCard charm={c} onremove={() => removeCharm(c.id)} />
-						{/each}
-					</div>
+					<label
+						class="mb-3 flex cursor-pointer items-center justify-center gap-2 rounded border border-dashed border-zinc-700 px-3 py-2 text-xs text-zinc-300 hover:border-amber-500 hover:text-amber-300"
+					>
+						<input
+							type="file"
+							accept=".bin,.BIN,application/octet-stream"
+							class="hidden"
+							onchange={importSave}
+						/>
+						Import charms from a MHP3rd Save.BIN
+					</label>
+
+					{#if importNote}
+						<p class="mb-3 text-xs {importFailed ? 'text-red-400' : 'text-emerald-400'}">
+							{importNote}
+						</p>
+					{/if}
+
+					{#if charms.length > 0 && !showCharms}
+						<p class="mb-3 text-xs text-zinc-500">
+							{charms.length} charm{charms.length === 1 ? '' : 's'} hidden. Use “Show list” above to review
+							them.
+						</p>
+					{/if}
+
+					{#if showCharms}
+						<div class="space-y-2">
+							{#each charms as c (c.id)}
+								<CharmCard charm={c} onremove={() => removeCharm(c.id)} />
+							{/each}
+						</div>
+					{/if}
 
 					<label class="mt-3 flex cursor-pointer items-center gap-2 text-sm text-zinc-300">
 						<input type="checkbox" bind:checked={includeNoCharm} class="accent-amber-500" />
