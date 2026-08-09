@@ -23,7 +23,7 @@ export interface SearchData {
 	decorations: Decoration[];
 }
 
-interface PreparedPiece {
+export interface PreparedPiece {
 	id: number;
 	name: string;
 	part: number;
@@ -44,6 +44,7 @@ interface PreparedCharm {
 	name: string;
 	slots: number;
 	vec: number[];
+	total: number;
 	skill1: { tree: string; points: number };
 	skill2: { tree: string; points: number } | null;
 }
@@ -57,6 +58,13 @@ interface DecoOption {
 	clean: boolean;
 }
 
+/** Precomputed "minimum slots to reach each point need" table for a decoration pool. */
+interface DecoTable {
+	minSlots: number[];
+	picks: { index: number; count: number }[][];
+	options: DecoOption[];
+}
+
 interface SearchCtx {
 	armors: ArmorPiece[];
 	relTrees: string[];
@@ -67,16 +75,22 @@ interface SearchCtx {
 	/** Max points the body can contribute per tree (used for torso copies). */
 	bodyMaxVec: number[];
 	hardCount: number[];
+	/** Max points per slot a decoration can give, per tree. */
 	bestPPS: number[];
+	/** Max over all trees of bestPPS (joint slot bound). */
+	maxPPS: number;
 	decoByTree: Map<string, DecoOption[]>;
+	decoByName: Map<string, DecoOption>;
+	/** Per-tree min-slot tables: clean (no negative on a target) and all options. */
+	decoTables: Map<string, { clean: DecoTable; all: DecoTable }>;
 	baseSlots: number;
+	/** Best `maxResults` sets found so far, sorted best-first. */
 	results: SetResult[];
-	seen: Set<string>;
+	/** Total number of valid sets discovered (may exceed results.length). */
+	found: number;
 	nodeBudget: number;
 	maxResults: number;
-	perCharmCap: number;
 	nodes: number;
-	perCharm: Map<string, number>;
 	budgetHit: boolean;
 	onResult?: (result: SetResult) => void;
 }
@@ -88,16 +102,15 @@ interface Frame {
 	pieces: PreparedPiece[];
 }
 
-const PRIMARY_CAPS = [26, 22, 18, 14, 10];
-const SLOT_CAP = 8;
-const MET_CAP = 10;
-const YIELD_EVERY = 15000;
+const MAX_NEED = 30;
+const YIELD_EVERY = 50000;
+const SLOT_TABLE_CAP = 24;
 
 function tick(): Promise<void> {
 	return new Promise((resolve) => setTimeout(resolve, 0));
 }
 
-function buildPreparedPieces(
+export function buildPreparedPieces(
 	armors: ArmorPiece[],
 	relTrees: string[],
 	settings: SearchSettings
@@ -159,7 +172,7 @@ function buildPreparedPieces(
 }
 
 /** Remove pieces that are strictly dominated (equal or worse on every relevant axis). */
-function dominancePrune(list: PreparedPiece[]): PreparedPiece[] {
+export function dominancePrune(list: PreparedPiece[]): PreparedPiece[] {
 	const out: PreparedPiece[] = [];
 	for (const p of list) {
 		if (p.torsoInc) {
@@ -208,8 +221,6 @@ function buildSuffixBounds(
 			});
 			if (p.slots > partMaxSlots[d]) partMaxSlots[d] = p.slots;
 		}
-		// A torso-up piece on any part can copy the body's skills, so that part
-		// can contribute up to the best body piece's points too.
 		if (hasTorso && d !== 1) {
 			for (let t = 0; t < relTrees.length; t++) {
 				if (partMax[1][t] > partMax[d][t]) partMax[d][t] = partMax[1][t];
@@ -285,7 +296,68 @@ function selectHardest(pts: number[], targets: number[], hardCount: number[]): n
 	return best;
 }
 
-/** Greedy decoration covering with repair loop for negative side effects. */
+/**
+ * Minimum-slots table for a decoration pool. minSlots[d] = fewest slots needed
+ * to reach at least d points with these decorations (ignoring their negatives);
+ * picks[d] is one such optimal decoration multiset.
+ */
+function buildDecoTable(options: DecoOption[]): DecoTable {
+	const maxSlots = SLOT_TABLE_CAP;
+	const maxPoints = new Int32Array(maxSlots + 1).fill(-1);
+	const pick = new Int32Array(maxSlots + 1).fill(-1);
+	maxPoints[0] = 0;
+	for (let s = 0; s <= maxSlots; s++) {
+		if (maxPoints[s] < 0) continue;
+		for (let o = 0; o < options.length; o++) {
+			const ns = s + options[o].size;
+			if (ns > maxSlots) continue;
+			const np = maxPoints[s] + options[o].points;
+			if (np > maxPoints[ns]) {
+				maxPoints[ns] = np;
+				pick[ns] = o;
+			}
+		}
+	}
+	let best = 0;
+	const minSlots: number[] = [];
+	const picks: { index: number; count: number }[][] = [];
+	for (let d = 0; d <= MAX_NEED; d++) {
+		while (best < maxSlots && maxPoints[best] < d) best++;
+		if (maxPoints[best] >= d) {
+			minSlots.push(best);
+			const counts = new Map<number, number>();
+			let s = best;
+			while (s > 0) {
+				const o = pick[s];
+				if (o < 0) break;
+				counts.set(o, (counts.get(o) ?? 0) + 1);
+				s -= options[o].size;
+			}
+			picks.push([...counts.entries()].map(([index, count]) => ({ index, count })));
+		} else {
+			minSlots.push(Infinity);
+			picks.push([]);
+		}
+	}
+	return { minSlots, picks, options };
+}
+
+function getDecoTables(ctx: SearchCtx, tree: string): { clean: DecoTable; all: DecoTable } {
+	let cached = ctx.decoTables.get(tree);
+	if (cached) return cached;
+	const options = ctx.decoByTree.get(tree) ?? [];
+	const cleanOpts = options.filter((o) => o.clean);
+	const clean = buildDecoTable(cleanOpts.length > 0 ? cleanOpts : options);
+	const all = buildDecoTable(options);
+	cached = { clean, all };
+	ctx.decoTables.set(tree, cached);
+	return cached;
+}
+
+/**
+ * Greedy decoration covering with repair loop for negative side effects.
+ * Uses precomputed min-slot tables, so it is fast enough to run per leaf.
+ */
 function solveDeficits(
 	ctx: SearchCtx,
 	deficits: { tree: string; need: number }[],
@@ -296,7 +368,7 @@ function solveDeficits(
 	const picks = new Map<string, number>();
 	let usedSlots = 0;
 	let iter = 0;
-	const MAXITER = 80;
+	const MAXITER = 200;
 
 	while (true) {
 		if (++iter > MAXITER) return null;
@@ -310,39 +382,34 @@ function solveDeficits(
 		}
 		if (t === null) break;
 
-		const all = ctx.decoByTree.get(t) ?? [];
-		const clean = all.filter((o) => o.clean);
-		const options = clean.length > 0 ? clean : all;
-		if (options.length === 0) return null;
+		if (maxNeed > MAX_NEED) return null;
+		const { clean, all } = getDecoTables(ctx, t);
+		const table = clean.minSlots[maxNeed] <= slotsAvail - usedSlots ? clean : all;
+		const minS = table.minSlots[maxNeed];
+		if (minS === Infinity || minS > slotsAvail - usedSlots) return null;
+		usedSlots += minS;
 
-		const cover = coverTree(options, maxNeed, slotsAvail - usedSlots);
-		if (!cover) return null;
-		for (const [name, count] of cover.picks) picks.set(name, (picks.get(name) ?? 0) + count);
-		usedSlots += cover.usedSlots;
-		needs.set(t, 0);
-
-		// Apply negative side effects on selected trees.
-		for (const [name, count] of cover.picks) {
-			const opt = options.find((o) => o.name === name);
-			if (!opt) continue;
-			for (const neg of opt.negs) {
+		let covered = 0;
+		for (const { index, count } of table.picks[maxNeed]) {
+			const option = table.options[index];
+			picks.set(option.name, (picks.get(option.name) ?? 0) + count);
+			covered += option.points * count;
+			for (const neg of option.negs) {
 				if (needs.has(neg.tree)) {
 					needs.set(neg.tree, (needs.get(neg.tree) ?? 0) + neg.points * count);
 				}
 			}
 		}
+		needs.set(t, Math.max(0, needs.get(t)! - covered));
 	}
 
 	const delta = new Map<string, number>();
 	for (const [name, count] of picks) {
-		for (const list of ctx.decoByTree.values()) {
-			const opt = list.find((o) => o.name === name);
-			if (opt) {
-				delta.set(opt.tree, (delta.get(opt.tree) ?? 0) + opt.points * count);
-				for (const neg of opt.negs) {
-					delta.set(neg.tree, (delta.get(neg.tree) ?? 0) + neg.points * count);
-				}
-				break;
+		const opt = ctx.decoByName.get(name);
+		if (opt) {
+			delta.set(opt.tree, (delta.get(opt.tree) ?? 0) + opt.points * count);
+			for (const neg of opt.negs) {
+				delta.set(neg.tree, (delta.get(neg.tree) ?? 0) + neg.points * count);
 			}
 		}
 	}
@@ -354,53 +421,19 @@ function solveDeficits(
 	};
 }
 
-/** Minimal slots to reach `need` points using the given decorations. */
-function coverTree(
-	options: DecoOption[],
-	need: number,
-	slotsAvail: number
-): { picks: Map<string, number>; usedSlots: number } | null {
-	const maxSlots = Math.min(slotsAvail, need + 8);
-	const dp = new Int32Array(maxSlots + 1).fill(-1);
-	const pick = new Int32Array(maxSlots + 1).fill(-1);
-	dp[0] = 0;
-	for (let s = 0; s <= maxSlots; s++) {
-		if (dp[s] < 0) continue;
-		for (let o = 0; o < options.length; o++) {
-			const ns = s + options[o].size;
-			if (ns > maxSlots) continue;
-			const np = dp[s] + options[o].points;
-			if (np > dp[ns]) {
-				dp[ns] = np;
-				pick[ns] = o;
-			}
-		}
-	}
-	let best = -1;
-	for (let s = 0; s <= maxSlots; s++) {
-		if (dp[s] >= need) {
-			best = s;
-			break;
-		}
-	}
-	if (best < 0) return null;
-	const picks = new Map<string, number>();
-	let s = best;
-	while (s > 0) {
-		const o = pick[s];
-		if (o < 0) return null;
-		picks.set(options[o].name, (picks.get(options[o].name) ?? 0) + 1);
-		s -= options[o].size;
-	}
-	return { picks, usedSlots: best };
-}
-
-function leafResult(
+/** Validate a leaf (charms + pieces + decoration coverage) and return cheap facts. */
+function leafCore(
 	ctx: SearchCtx,
 	charm: PreparedCharm | null,
 	pieces: PreparedPiece[],
 	slots: number
-): SetResult | null {
+): {
+	full: Map<string, number>;
+	defense: number;
+	usedSlots: number;
+	decorations: DecorUse[];
+	torsoIncUsed: boolean;
+} | null {
 	const armors = ctx.armors;
 	const full = new Map<string, number>();
 	const addPoints = (tree: string, p: number) => {
@@ -449,6 +482,28 @@ function leafResult(
 		if ((full.get(ctx.relTrees[i]) ?? 0) < ctx.targets[i]) return null;
 	}
 
+	let defense = 0;
+	for (const p of pieces) defense += p.defenseMax;
+
+	return { full, defense, usedSlots, decorations, torsoIncUsed };
+}
+
+function buildResult(
+	ctx: SearchCtx,
+	charm: PreparedCharm | null,
+	pieces: PreparedPiece[],
+	slots: number,
+	core: {
+		full: Map<string, number>;
+		defense: number;
+		usedSlots: number;
+		decorations: DecorUse[];
+		torsoIncUsed: boolean;
+	}
+): SetResult {
+	const armors = ctx.armors;
+	const { full, defense, usedSlots, decorations, torsoIncUsed } = core;
+
 	const activated: ActivatedSkill[] = [];
 	const negativeActivated: ActivatedSkill[] = [];
 	if (torsoIncUsed) activated.push({ name: 'Torso Inc', tree: TORSO_INC_TREE, points: 1 });
@@ -487,17 +542,6 @@ function leafResult(
 		};
 	});
 
-	let defenseSumMax = 0;
-	for (const p of setPieces) defenseSumMax += p.defenseMax;
-
-	const key = [
-		pieces.map((p) => p.name).join('|'),
-		charm ? charm.id : 'no-charm',
-		...decorations.map((d) => `${d.name}x${d.count}`).sort()
-	].join('~');
-	if (ctx.seen.has(key)) return null;
-	ctx.seen.add(key);
-
 	const charmOut =
 		charm && charm.id !== '__nocharm'
 			? {
@@ -523,9 +567,75 @@ function leafResult(
 		treePoints,
 		activated,
 		negativeActivated,
-		defenseSumMax,
+		defenseSumMax: defense,
 		allTargetsMet: true
 	};
+}
+
+/** True when `a` ranks at least as good as `b` for the displayed top list. */
+function better(a: SetResult, b: SetResult): boolean {
+	if (a.defenseSumMax !== b.defenseSumMax) return a.defenseSumMax > b.defenseSumMax;
+	if (a.totalSlots !== b.totalSlots) return a.totalSlots > b.totalSlots;
+	if (a.usedSlots !== b.usedSlots) return a.usedSlots < b.usedSlots;
+	return a.activated.length > b.activated.length;
+}
+
+/** Insert into a fixed-cap sorted list (best first). Returns true if it made the cut. */
+function pushTop(results: SetResult[], res: SetResult, cap: number): boolean {
+	if (results.length >= cap && !better(res, results[results.length - 1])) return false;
+	let lo = 0;
+	let hi = results.length;
+	while (lo < hi) {
+		const mid = (lo + hi) >> 1;
+		if (better(results[mid], res)) lo = mid + 1;
+		else hi = mid;
+	}
+	results.splice(lo, 0, res);
+	if (results.length > cap) results.pop();
+	return true;
+}
+
+/**
+ * Remove charms that are strictly dominated: another charm has at least as many
+ * points on every relevant tree and at least as many slots. Such a charm can
+ * never enable a set the dominator cannot, so it is safe to skip (and it is
+ * strictly worse for the player). The survivors are sorted best-first.
+ */
+function pruneCharms(charms: PreparedCharm[]): PreparedCharm[] {
+	const seen = new Set<string>();
+	const uniq: PreparedCharm[] = [];
+	for (const c of charms) {
+		const sig = `${c.slots}|${c.vec.join(',')}`;
+		if (seen.has(sig)) continue;
+		seen.add(sig);
+		uniq.push(c);
+	}
+	const out: PreparedCharm[] = [];
+	for (const a of uniq) {
+		let dominated = false;
+		for (const b of uniq) {
+			if (b === a) continue;
+			if (b.slots < a.slots) continue;
+			let ge = true;
+			let strict = false;
+			for (let t = 0; t < a.vec.length; t++) {
+				if (b.vec[t] < a.vec[t]) {
+					ge = false;
+					break;
+				}
+				if (b.vec[t] > a.vec[t]) strict = true;
+			}
+			if (!ge) continue;
+			if (b.slots > a.slots) strict = true;
+			if (strict) {
+				dominated = true;
+				break;
+			}
+		}
+		if (!dominated) out.push(a);
+	}
+	out.sort((a, b) => b.total - a.total || b.slots - a.slots);
+	return out;
 }
 
 function candidatesFor(ctx: SearchCtx, frame: Frame): PreparedPiece[] {
@@ -535,35 +645,34 @@ function candidatesFor(ctx: SearchCtx, frame: Frame): PreparedPiece[] {
 	const out: PreparedPiece[] = [];
 
 	if (hardest >= 0) {
-		const primary = part.filter((p) => !p.torsoInc && p.vec[hardest] > 0);
-		primary.sort(
-			(a, b) =>
-				b.vec[hardest] - a.vec[hardest] ||
-				b.totalPos - a.totalPos ||
-				b.slots - a.slots ||
-				Number(a.hasNegOnSelected) - Number(b.hasNegOnSelected)
-		);
-		const cap = PRIMARY_CAPS[depth] ?? 12;
-		const seenNames = new Set<string>();
-		for (const p of primary) {
-			if (out.length >= cap) break;
-			if (seenNames.has(p.name)) continue;
-			seenNames.add(p.name);
-			out.push(p);
-		}
+		const primary = part
+			.filter((p) => !p.torsoInc && p.vec[hardest] > 0)
+			.sort(
+				(a, b) =>
+					b.vec[hardest] - a.vec[hardest] ||
+					b.totalPos - a.totalPos ||
+					b.slots - a.slots ||
+					Number(a.hasNegOnSelected) - Number(b.hasNegOnSelected)
+			);
+		for (const p of primary) out.push(p);
 
 		const slotPieces = part
-			.filter((p) => !p.torsoInc && p.slots >= 2 && p.vec[hardest] <= 0 && !seenNames.has(p.name))
+			.filter((p) => !p.torsoInc && p.slots >= 2 && p.vec[hardest] <= 0)
 			.sort(
 				(a, b) =>
 					b.slots - a.slots ||
 					b.totalPos - b.totalNeg - (a.totalPos - a.totalNeg) ||
 					b.defenseMax - a.defenseMax
 			);
-		for (const p of slotPieces) {
-			if (out.length >= cap + SLOT_CAP) break;
-			out.push(p);
-		}
+		for (const p of slotPieces) out.push(p);
+
+		const rest = part
+			.filter((p) => !p.torsoInc && p.slots < 2 && p.vec[hardest] <= 0)
+			.sort(
+				(a, b) =>
+					Number(a.hasNegOnSelected) - Number(b.hasNegOnSelected) || b.defenseMax - a.defenseMax
+			);
+		for (const p of rest) out.push(p);
 	} else {
 		const met = part
 			.filter((p) => !p.torsoInc)
@@ -571,10 +680,7 @@ function candidatesFor(ctx: SearchCtx, frame: Frame): PreparedPiece[] {
 				(a, b) =>
 					Number(a.hasNegOnSelected) - Number(b.hasNegOnSelected) || b.defenseMax - a.defenseMax
 			);
-		for (const p of met) {
-			if (out.length >= MET_CAP) break;
-			out.push(p);
-		}
+		for (const p of met) out.push(p);
 	}
 
 	for (const p of part) {
@@ -583,13 +689,23 @@ function candidatesFor(ctx: SearchCtx, frame: Frame): PreparedPiece[] {
 	return out;
 }
 
+/** Prune when even the most optimistic remaining contribution can't meet a target. */
 function pruned(ctx: SearchCtx, depth: number, ptsAfter: number[], slotsTotal: number): boolean {
 	const remDirect = ctx.maxDirectSuffix[depth];
 	const remSlots = ctx.maxSlotsSuffix[depth];
+	const allSlots = slotsTotal + remSlots;
 	for (let t = 0; t < ctx.relTrees.length; t++) {
-		const upper = ptsAfter[t] + remDirect[t] + ctx.bestPPS[t] * (slotsTotal + remSlots);
+		const upper = ptsAfter[t] + remDirect[t] + ctx.bestPPS[t] * allSlots;
 		if (upper < ctx.targets[t]) return true;
 	}
+	// Joint bound: the total shortfall across trees must be coverable by slots
+	// at the single best points-per-slot rate.
+	let shortfall = 0;
+	for (let t = 0; t < ctx.relTrees.length; t++) {
+		const sf = ctx.targets[t] - ptsAfter[t] - remDirect[t];
+		if (sf > 0) shortfall += sf;
+	}
+	if (shortfall > 0 && ctx.maxPPS * allSlots < shortfall) return true;
 	return false;
 }
 
@@ -600,7 +716,7 @@ export interface SearchParams {
 	settings: SearchSettings;
 	maxResults?: number;
 	nodeBudget?: number;
-	/** Called immediately whenever a new valid set is found (for live UI). */
+	/** Called whenever a new set enters the current best list (for live UI). */
 	onResult?: (result: SetResult) => void;
 }
 
@@ -624,6 +740,10 @@ export async function runSearch(
 	const bounds = buildSuffixBounds(piecesByPart, relTrees);
 	const { maxDirectSuffix, maxSlotsSuffix, bodyMaxVec } = bounds;
 	const decoByTree = buildDecoOptions(data.decorations, relTrees);
+	const decoByName = new Map<string, DecoOption>();
+	for (const list of decoByTree.values()) {
+		for (const o of list) decoByName.set(o.name, o);
+	}
 	const bestPPS = relTrees.map((tree) => {
 		const opts = decoByTree.get(tree) ?? [];
 		let best = 0;
@@ -633,8 +753,9 @@ export async function runSearch(
 		}
 		return best;
 	});
+	const maxPPS = bestPPS.reduce((a, b) => Math.max(a, b), 0);
 
-	const charms: PreparedCharm[] = [];
+	const prepared: PreparedCharm[] = [];
 	for (const c of params.charms) {
 		if (!c.included) continue;
 		const vec = relTrees.map((t) => {
@@ -643,15 +764,20 @@ export async function runSearch(
 			if (c.skill2 && c.skill2.tree === t) p += c.skill2.points;
 			return p;
 		});
-		charms.push({
+		let total = 0;
+		for (const v of vec) if (v > 0) total += v;
+		prepared.push({
 			id: c.id,
 			name: c.name || '(unnamed charm)',
 			slots: c.slots,
 			vec,
+			total,
 			skill1: c.skill1,
 			skill2: c.skill2
 		});
 	}
+
+	const charms = pruneCharms(prepared);
 
 	const ctx: SearchCtx = {
 		armors: data.armors,
@@ -663,58 +789,61 @@ export async function runSearch(
 		bodyMaxVec,
 		hardCount,
 		bestPPS,
+		maxPPS,
 		decoByTree,
+		decoByName,
+		decoTables: new Map(),
 		baseSlots: params.settings.weaponSlots,
 		results: [],
-		seen: new Set(),
-		nodeBudget: params.nodeBudget ?? 4_000_000,
+		found: 0,
+		nodeBudget: params.nodeBudget ?? 60_000_000,
 		maxResults: params.maxResults ?? 400,
-		perCharmCap: 1000,
 		nodes: 0,
-		perCharm: new Map(),
 		budgetHit: false,
 		onResult: params.onResult
 	};
 
 	const progress: SearchProgress = { phase: 'Preparing…', nodes: 0, found: 0, done: false };
+	onProgress?.({ ...progress });
 
+	const charmList: PreparedCharm[] = [];
 	for (const charm of charms) {
-		if (ctx.results.length >= ctx.maxResults) break;
-		// Skip charms that can't possibly reach every target (tight depth-0 bound).
-		if (pruned(ctx, 0, charm.vec, ctx.baseSlots + charm.slots)) {
-			continue;
-		}
-		progress.phase = `Searching ${charm.name}`;
+		if (pruned(ctx, 0, charm.vec, ctx.baseSlots + charm.slots)) continue;
+		charmList.push(charm);
+	}
+	if (params.includeNoCharm) {
+		charmList.push({
+			id: '__nocharm',
+			name: 'No charm',
+			slots: 0,
+			vec: relTrees.map(() => 0),
+			total: 0,
+			skill1: { tree: '', points: 0 },
+			skill2: null
+		});
+	}
+
+	if (charms.length > 0) {
+		progress.phase = `Pruned ${charms.length} charm${charms.length === 1 ? '' : 's'}`;
 		onProgress?.({ ...progress });
-		await searchCharm(ctx, charm, onProgress, signal, progress);
+	}
+
+	for (const charm of charmList) {
 		if (signal?.aborted) {
 			progress.done = true;
 			progress.phase = 'Aborted';
 			onProgress?.({ ...progress });
 			return ctx.results;
 		}
+		progress.phase = charm.id === '__nocharm' ? 'Searching (no charm)' : `Searching ${charm.name}`;
+		onProgress?.({ ...progress });
+		await searchCharm(ctx, charm, onProgress, signal, progress);
 	}
 
-	if (params.includeNoCharm && ctx.results.length < ctx.maxResults) {
-		const noCharm: PreparedCharm = {
-			id: '__nocharm',
-			name: 'No charm',
-			slots: 0,
-			vec: relTrees.map(() => 0),
-			skill1: { tree: '', points: 0 },
-			skill2: null
-		};
-		if (!pruned(ctx, 0, noCharm.vec, ctx.baseSlots)) {
-			progress.phase = 'Searching (no charm)';
-			onProgress?.({ ...progress });
-			await searchCharm(ctx, noCharm, onProgress, signal, progress);
-		}
-	}
-
-	ctx.results.sort((a, b) => b.defenseSumMax - a.defenseSumMax);
 	progress.done = true;
 	progress.phase = ctx.budgetHit ? 'Stopped (combination limit)' : 'Done';
-	progress.found = ctx.results.length;
+	progress.nodes = ctx.nodes;
+	progress.found = ctx.found;
 	onProgress?.({ ...progress });
 	return ctx.results;
 }
@@ -728,15 +857,8 @@ async function searchCharm(
 ): Promise<void> {
 	const stack: Frame[] = [];
 	stack.push({ depth: 0, pts: charm.vec.slice(), slots: ctx.baseSlots + charm.slots, pieces: [] });
-	const charmKey = charm.id;
 
 	while (stack.length > 0) {
-		if (
-			ctx.results.length >= ctx.maxResults ||
-			(ctx.perCharm.get(charmKey) ?? 0) >= ctx.perCharmCap
-		) {
-			return;
-		}
 		if (++ctx.nodes > ctx.nodeBudget) {
 			ctx.budgetHit = true;
 			if (progress) progress.phase = 'Stopped (node limit reached)';
@@ -746,7 +868,7 @@ async function searchCharm(
 			await tick();
 			if (progress) {
 				progress.nodes = ctx.nodes;
-				progress.found = ctx.results.length;
+				progress.found = ctx.found;
 			}
 			onProgress?.({ ...progress! });
 			if (signal?.aborted) return;
@@ -754,11 +876,21 @@ async function searchCharm(
 
 		const frame = stack.pop()!;
 		if (frame.depth === 5) {
-			const res = leafResult(ctx, charm, frame.pieces, frame.slots);
-			if (res) {
-				ctx.results.push(res);
-				ctx.perCharm.set(charmKey, (ctx.perCharm.get(charmKey) ?? 0) + 1);
-				ctx.onResult?.(res);
+			const core = leafCore(ctx, charm, frame.pieces, frame.slots);
+			if (core) {
+				ctx.found++;
+				// Only build the full result when it can still make the top list.
+				// While the list isn't full every valid set is kept; once full,
+				// only sets that can displace the current worst are built.
+				if (
+					ctx.results.length < ctx.maxResults ||
+					core.defense >= ctx.results[ctx.results.length - 1].defenseSumMax
+				) {
+					const res = buildResult(ctx, charm, frame.pieces, frame.slots, core);
+					if (pushTop(ctx.results, res, ctx.maxResults)) {
+						ctx.onResult?.(res);
+					}
+				}
 			}
 			continue;
 		}
