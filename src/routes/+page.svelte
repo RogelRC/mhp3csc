@@ -1,7 +1,13 @@
 <script lang="ts">
 	import CharmCard from '$lib/components/CharmCard.svelte';
 	import ResultCard from '$lib/components/ResultCard.svelte';
-	import { armors, decorations, positiveSkillsByTree } from '$lib/gameData';
+	import {
+		armors,
+		decorations,
+		positiveSkillsByTree,
+		SKILL_CATEGORIES,
+		treeCategory
+	} from '$lib/gameData';
 	import { runSearch } from '$lib/search';
 	import { decryptSaveFile } from '$lib/mh3/saveCipher';
 	import { parseCharmEntries } from '$lib/mh3/charmParser';
@@ -17,11 +23,13 @@
 		gender: 'Any',
 		hunterType: 'Blademaster',
 		maxRarity: null,
-		maxHr: null
+		maxHr: null,
+		maxVillageStars: null
 	});
 
 	let showSkillPicker = $state(false);
 	let skillQuery = $state('');
+	let skillCategory = $state<string>('All');
 
 	let searching = $state(false);
 	let searched = $state(false);
@@ -86,9 +94,10 @@
 				tree: g.tree,
 				skills: g.skills.filter(
 					(s) =>
-						!skillQuery ||
-						g.tree.toLowerCase().includes(skillQuery.toLowerCase()) ||
-						s.name.toLowerCase().includes(skillQuery.toLowerCase())
+						(!skillCategory || skillCategory === 'All' || treeCategory(g.tree) === skillCategory) &&
+						(!skillQuery ||
+							g.tree.toLowerCase().includes(skillQuery.toLowerCase()) ||
+							s.name.toLowerCase().includes(skillQuery.toLowerCase()))
 				)
 			}))
 			.filter((g) => g.skills.length > 0)
@@ -201,7 +210,8 @@
 					settings: {
 						...settings,
 						maxRarity: settings.maxRarity ?? null,
-						maxHr: settings.maxHr ?? null
+						maxHr: settings.maxHr ?? null,
+						maxVillageStars: settings.maxVillageStars ?? null
 					},
 					maxResults: 400,
 					onResult: (res) => {
@@ -296,12 +306,24 @@
 					</button>
 
 					{#if showSkillPicker}
-						<input
-							type="text"
-							placeholder="Search skills…"
-							bind:value={skillQuery}
-							class="mb-2 w-full rounded border border-zinc-700 bg-zinc-800 px-2 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
-						/>
+						<div class="mb-2 flex gap-2">
+							<input
+								type="text"
+								placeholder="Search skills…"
+								bind:value={skillQuery}
+								class="min-w-0 flex-1 rounded border border-zinc-700 bg-zinc-800 px-2 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
+							/>
+							<select
+								bind:value={skillCategory}
+								class="rounded border border-zinc-700 bg-zinc-800 px-1.5 py-1.5 text-xs text-zinc-100 focus:border-amber-500 focus:outline-none"
+								title="Skill category"
+							>
+								<option value="All">All</option>
+								{#each SKILL_CATEGORIES as cat (cat)}
+									<option value={cat}>{cat}</option>
+								{/each}
+							</select>
+						</div>
 						<div class="max-h-72 overflow-y-auto pr-1">
 							{#each filteredTrees as g (g.tree)}
 								<div class="mb-2">
@@ -471,6 +493,21 @@
 									{/each}
 								</select>
 							</div>
+						</div>
+						<div>
+							<span class="mb-1 block text-xs text-zinc-400">Village quest progress</span>
+							<select
+								bind:value={settings.maxVillageStars}
+								class="w-full rounded border border-zinc-700 bg-zinc-800 px-2 py-1.5 text-xs text-zinc-100 focus:border-amber-500 focus:outline-none"
+							>
+								<option value={null}>Any</option>
+								{#each [1, 2, 3, 4, 5, 6] as r (r)}
+									<option value={r}>{r}★</option>
+								{/each}
+							</select>
+							<p class="mt-1 text-[11px] text-zinc-500">
+								Only armors obtainable by this village quest rank (guild-exclusive sets excluded).
+							</p>
 						</div>
 					</div>
 				</section>

@@ -82,6 +82,32 @@ export const allPositiveSkills = positiveSkillsByTree
 	.flatMap((g) => g.skills.map((s) => ({ name: s.name, tree: g.tree, points: s.points })))
 	.sort((a, b) => a.tree.localeCompare(b.tree) || a.points - b.points);
 
+/** Athena-style skill categories used to filter the skill picker. */
+export const SKILL_CATEGORIES = [
+	'Misc',
+	'Offensive',
+	'Defensive',
+	'Blademaster',
+	'Bow/Gunner',
+	'Farming',
+	'Resistance'
+] as const;
+export type SkillCategory = (typeof SKILL_CATEGORIES)[number];
+
+const treeCategoryCache = new Map<string, string>();
+/**
+ * Category of a skill tree, derived from the tag on its positive skills
+ * (from the source data). Trees without a tag fall back to "Misc".
+ */
+export function treeCategory(tree: string): string {
+	let cached = treeCategoryCache.get(tree);
+	if (cached) return cached;
+	const tagged = skills.find((s) => s.skillTree === tree && (s.points ?? 0) > 0 && s.tag);
+	cached = tagged?.tag ?? 'Misc';
+	treeCategoryCache.set(tree, cached);
+	return cached;
+}
+
 export interface DecorationSummary {
 	name: string;
 	size: number;

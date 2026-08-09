@@ -71,6 +71,7 @@ export interface SearchSettings {
 	hunterType: 'Blademaster' | 'Gunner';
 	maxRarity: number | null;
 	maxHr: number | null;
+	maxVillageStars: number | null;
 }
 
 export interface DecorUse {

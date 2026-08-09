@@ -207,7 +207,8 @@ async function runScenario(
 		gender: 'Any',
 		hunterType: 'Blademaster',
 		maxRarity: null,
-		maxHr: null
+		maxHr: null,
+		maxVillageStars: null
 	});
 	const prunedByPart = preparedByPart.map((list) => dominancePrune(list));
 	console.log(`[${name}] pruned per part: ${prunedByPart.map((l) => l.length).join(',')}`);
@@ -254,7 +255,8 @@ async function runScenario(
 				gender: 'Any',
 				hunterType: 'Blademaster',
 				maxRarity: null,
-				maxHr: null
+				maxHr: null,
+				maxVillageStars: null
 			},
 			maxResults: 100000
 		},

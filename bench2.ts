@@ -7,7 +7,8 @@ const settings: SearchSettings = {
 	gender: 'Any',
 	hunterType: 'Blademaster',
 	maxRarity: null,
-	maxHr: null
+	maxHr: null,
+	maxVillageStars: null
 };
 
 const scenarios = {
