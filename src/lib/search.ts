@@ -121,8 +121,11 @@ export function buildPreparedPieces(
 	for (let id = 0; id < armors.length; id++) {
 		const a = armors[id];
 		if (maxRarity != null && a.rarity > maxRarity) continue;
-		if (maxHr != null && a.hrRequired > maxHr) continue;
-		if (maxVillageStars != null && a.villageStarsRequired > maxVillageStars) continue;
+		const guildOnly = a.villageStarsRequired === 99;
+		const villageOk =
+			!guildOnly && (maxVillageStars == null || a.villageStarsRequired <= maxVillageStars);
+		const hrOk = maxHr == null || a.hrRequired <= maxHr;
+		if (!villageOk && !hrOk) continue;
 		if (gender !== 'Any' && a.gender !== 'Both' && a.gender !== gender) continue;
 		if (hunterType === 'Blademaster' && a.hunterType === 'Gunner') continue;
 		if (hunterType === 'Gunner' && a.hunterType === 'Blademaster') continue;

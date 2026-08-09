@@ -506,7 +506,8 @@
 								{/each}
 							</select>
 							<p class="mt-1 text-[11px] text-zinc-500">
-								Only armors obtainable by this village quest rank (guild-exclusive sets excluded).
+								Armors obtainable via this village quest rank are always included; guild-exclusive
+								sets still require their HR.
 							</p>
 						</div>
 					</div>
