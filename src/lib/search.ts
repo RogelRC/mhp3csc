@@ -453,16 +453,20 @@ function leafResult(
 	const negativeActivated: ActivatedSkill[] = [];
 	if (torsoIncUsed) activated.push({ name: 'Torso Inc', tree: TORSO_INC_TREE, points: 1 });
 	for (const [tree, pts] of full) {
-		for (const th of treePositiveThresholds(tree)) {
-			if (pts >= th) {
-				const name = skillByTreeAndPoints.get(tree)?.get(th);
+		const posThresholds = treePositiveThresholds(tree);
+		for (let i = posThresholds.length - 1; i >= 0; i--) {
+			if (pts >= posThresholds[i]) {
+				const name = skillByTreeAndPoints.get(tree)?.get(posThresholds[i]);
 				if (name) activated.push({ name, tree, points: pts });
+				break;
 			}
 		}
-		for (const th of treeNegativeThresholds(tree)) {
-			if (pts <= th) {
-				const name = skillByTreeAndPoints.get(tree)?.get(th);
+		const negThresholds = treeNegativeThresholds(tree);
+		for (let i = 0; i < negThresholds.length; i++) {
+			if (pts <= negThresholds[i]) {
+				const name = skillByTreeAndPoints.get(tree)?.get(negThresholds[i]);
 				if (name) negativeActivated.push({ name, tree, points: pts });
+				break;
 			}
 		}
 	}
