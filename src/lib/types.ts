@@ -57,6 +57,8 @@ export interface Charm {
 	skill1: CharmSkill;
 	skill2: CharmSkill | null;
 	included: boolean;
+	/** True for auto-generated "possible" charms that don't exist in the player's save. */
+	hypothetical?: boolean;
 }
 
 export interface SkillTarget {
@@ -104,6 +106,7 @@ export interface SetResult {
 		slots: number;
 		skill1: CharmSkill;
 		skill2: CharmSkill | null;
+		hypothetical?: boolean;
 	} | null;
 	weaponSlots: number;
 	decorations: DecorUse[];

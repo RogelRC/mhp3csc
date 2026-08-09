@@ -67,6 +67,9 @@
 		{#if result.charm}
 			<span class="max-w-40 truncate text-xs text-zinc-500" title={result.charm.name}>
 				{result.charm.name || 'Charm'} · {result.charm.slots}◯
+				{#if result.charm.hypothetical}
+					<span class="ml-1 rounded bg-sky-500/15 px-1 text-[10px] text-sky-300">possible</span>
+				{/if}
 			</span>
 		{/if}
 		<span class="text-xs text-zinc-500">{open ? '▲' : '▼'}</span>
@@ -117,6 +120,11 @@
 								, {result.charm.skill2.tree}+{result.charm.skill2.points}
 							{/if}
 						</span>
+						{#if result.charm.hypothetical}
+							<span class="ml-1 rounded bg-sky-500/15 px-1 text-[10px] text-sky-300"
+								>not owned — possible charm</span
+							>
+						{/if}
 					</div>
 				{/if}
 				<div class="rounded border border-zinc-800 bg-zinc-950/50 p-2">

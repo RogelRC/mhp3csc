@@ -17,6 +17,7 @@ import {
 	treeNegativeThresholds,
 	treePositiveThresholds
 } from './gameData';
+import { CHARM_TABLE, CHARM_TREE_NAMES, CHARM_NAMES } from './mh3/charmTable';
 
 export interface SearchData {
 	armors: ArmorPiece[];
@@ -47,6 +48,7 @@ interface PreparedCharm {
 	total: number;
 	skill1: { tree: string; points: number };
 	skill2: { tree: string; points: number } | null;
+	hypothetical?: boolean;
 }
 
 interface DecoOption {
@@ -105,6 +107,51 @@ interface Frame {
 const MAX_NEED = 30;
 const YIELD_EVERY = 50000;
 const SLOT_TABLE_CAP = 24;
+
+export type PossibleCharmMode = 'slotted' | 'oneSkill' | 'twoSkills';
+
+/**
+ * Real charms from MHP3rd's official charm tables (mhp3db) that touch any of the
+ * target skill trees, so a search can report which real charm each set requires.
+ *
+ * - `slotted`: charms with at least one decoration slot (1-2 skills).
+ * - `oneSkill`: single-skill charms (any slots).
+ * - `twoSkills`: exactly two-skill charms (any slots).
+ */
+export function buildPossibleCharms(targets: SkillTarget[], mode: PossibleCharmMode): Charm[] {
+	const treeIndex = new Map<string, number>();
+	for (let i = 0; i < CHARM_TREE_NAMES.length; i++) treeIndex.set(CHARM_TREE_NAMES[i], i);
+	const targetIdx = new Set<number>();
+	for (const t of targets) {
+		const i = treeIndex.get(t.tree);
+		if (i !== undefined) targetIdx.add(i);
+	}
+	if (targetIdx.size === 0) return [];
+
+	const out: Charm[] = [];
+	let counter = 0;
+	for (const row of CHARM_TABLE) {
+		const [t1, p1, t2, p2, slots, nameIdx] = row;
+		if (mode === 'slotted' && slots < 1) continue;
+		if (mode === 'oneSkill' && t2 >= 0) continue;
+		if (mode === 'twoSkills' && t2 < 0) continue;
+		const hitsTarget = (t1 >= 0 && targetIdx.has(t1)) || (t2 >= 0 && targetIdx.has(t2));
+		if (!hitsTarget) continue;
+		out.push({
+			id: `possible-${counter++}`,
+			name: CHARM_NAMES[nameIdx] ?? 'Talisman',
+			slots,
+			skill1: {
+				tree: t1 >= 0 ? CHARM_TREE_NAMES[t1] : '',
+				points: t1 >= 0 ? p1 : 0
+			},
+			skill2: t2 >= 0 ? { tree: CHARM_TREE_NAMES[t2], points: p2 } : null,
+			included: true,
+			hypothetical: true
+		});
+	}
+	return out;
+}
 
 function tick(): Promise<void> {
 	return new Promise((resolve) => setTimeout(resolve, 0));
@@ -553,7 +600,8 @@ function buildResult(
 					name: charm.name,
 					slots: charm.slots,
 					skill1: charm.skill1,
-					skill2: charm.skill2
+					skill2: charm.skill2,
+					hypothetical: charm.hypothetical
 				}
 			: null;
 
@@ -603,15 +651,25 @@ function pushTop(results: SetResult[], res: SetResult, cap: number): boolean {
  * Remove charms that are strictly dominated: another charm has at least as many
  * points on every relevant tree and at least as many slots. Such a charm can
  * never enable a set the dominator cannot, so it is safe to skip (and it is
- * strictly worse for the player). The survivors are sorted best-first.
+ * strictly worse for the player). When a real charm and a hypothetical one share
+ * an identical profile, the real charm wins so results show what the player owns.
+ * The survivors are sorted best-first.
  */
 function pruneCharms(charms: PreparedCharm[]): PreparedCharm[] {
-	const seen = new Set<string>();
+	const seen = new Map<string, PreparedCharm>();
 	const uniq: PreparedCharm[] = [];
 	for (const c of charms) {
 		const sig = `${c.slots}|${c.vec.join(',')}`;
-		if (seen.has(sig)) continue;
-		seen.add(sig);
+		const prev = seen.get(sig);
+		if (prev) {
+			if (prev.hypothetical && !c.hypothetical) {
+				const idx = uniq.indexOf(prev);
+				uniq[idx] = c;
+				seen.set(sig, c);
+			}
+			continue;
+		}
+		seen.set(sig, c);
 		uniq.push(c);
 	}
 	const out: PreparedCharm[] = [];
@@ -717,6 +775,9 @@ export interface SearchParams {
 	targets: SkillTarget[];
 	charms: Charm[];
 	includeNoCharm?: boolean;
+	/** When set, adds auto-generated "possible" charms to the pool so results can
+	 * report which charm each set requires. */
+	possibleCharms?: PossibleCharmMode;
 	settings: SearchSettings;
 	maxResults?: number;
 	nodeBudget?: number;
@@ -777,8 +838,32 @@ export async function runSearch(
 			vec,
 			total,
 			skill1: c.skill1,
-			skill2: c.skill2
+			skill2: c.skill2,
+			hypothetical: c.hypothetical
 		});
+	}
+
+	if (params.possibleCharms) {
+		for (const c of buildPossibleCharms(params.targets, params.possibleCharms)) {
+			const vec = relTrees.map((t) => {
+				let p = 0;
+				if (c.skill1.tree === t) p += c.skill1.points;
+				if (c.skill2 && c.skill2.tree === t) p += c.skill2.points;
+				return p;
+			});
+			let total = 0;
+			for (const v of vec) if (v > 0) total += v;
+			prepared.push({
+				id: c.id,
+				name: c.name || '(possible charm)',
+				slots: c.slots,
+				vec,
+				total,
+				skill1: c.skill1,
+				skill2: c.skill2,
+				hypothetical: true
+			});
+		}
 	}
 
 	const charms = pruneCharms(prepared);

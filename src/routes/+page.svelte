@@ -9,6 +9,7 @@
 		treeCategory
 	} from '$lib/gameData';
 	import { runSearch } from '$lib/search';
+	import type { PossibleCharmMode } from '$lib/search';
 	import { decryptSaveFile } from '$lib/mh3/saveCipher';
 	import { parseCharmEntries } from '$lib/mh3/charmParser';
 	import { charmSkillTree } from '$lib/mh3/skillTable';
@@ -18,6 +19,7 @@
 	let charms = $state<Charm[]>([]);
 	let showCharms = $state(true);
 	let includeNoCharm = $state(false);
+	let possibleMode = $state<PossibleCharmMode | ''>('');
 	let settings = $state<SearchSettings>({
 		weaponSlots: 3,
 		gender: 'Any',
@@ -44,7 +46,8 @@
 		charms: 'mhp3csc:charms',
 		showcharms: 'mhp3csc:showcharms',
 		settings: 'mhp3csc:settings',
-		nocharm: 'mhp3csc:nocharm'
+		nocharm: 'mhp3csc:nocharm',
+		possiblemode: 'mhp3csc:possiblemode'
 	};
 
 	function readLS<T>(key: string): T | null {
@@ -79,6 +82,8 @@
 			if (s) settings = { ...settings, ...s };
 			const nc = readLS<boolean>(LS.nocharm);
 			if (nc != null) includeNoCharm = nc;
+			const pm = readLS<PossibleCharmMode | ''>(LS.possiblemode);
+			if (pm) possibleMode = pm;
 			return;
 		}
 		writeLS(LS.targets, targetSkills);
@@ -86,6 +91,7 @@
 		writeLS(LS.showcharms, showCharms);
 		writeLS(LS.settings, settings);
 		writeLS(LS.nocharm, includeNoCharm);
+		writeLS(LS.possiblemode, possibleMode);
 	});
 
 	const filteredTrees = $derived(
@@ -134,6 +140,10 @@
 
 	function removeCharm(id: string) {
 		charms = charms.filter((c) => c.id !== id);
+	}
+
+	function removeAllCharms() {
+		charms = [];
 	}
 
 	let importNote = $state('');
@@ -185,8 +195,8 @@
 			message = 'Select at least one target skill.';
 			return;
 		}
-		if (!includeNoCharm && !charms.some((c) => c.included)) {
-			message = 'Add at least one charm, or enable "no charm" sets.';
+		if (!includeNoCharm && !possibleMode && !charms.some((c) => c.included)) {
+			message = 'Add at least one charm, or enable "no charm" or "possible charm" sets.';
 			return;
 		}
 		message = '';
@@ -206,6 +216,7 @@
 						skill1: { ...c.skill1 },
 						skill2: c.skill2 ? { ...c.skill2 } : null
 					})),
+					possibleCharms: possibleMode || undefined,
 					includeNoCharm,
 					settings: {
 						...settings,
@@ -251,7 +262,7 @@
 	/>
 </svelte:head>
 
-<div class="min-h-screen bg-zinc-950 text-zinc-100">
+<div class="min-h-screen overflow-x-clip bg-zinc-950 text-zinc-100">
 	<header class="border-b border-zinc-800 bg-zinc-900/60">
 		<div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-4">
 			<div
@@ -271,7 +282,7 @@
 
 	<main class="mx-auto max-w-7xl px-4 py-6">
 		<div class="grid gap-6 lg:grid-cols-[400px_1fr]">
-			<aside class="space-y-5">
+			<aside class="min-w-0 space-y-5">
 				<section class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
 					<h2 class="mb-3 text-sm font-semibold tracking-wide text-zinc-300 uppercase">
 						Target skills
@@ -306,16 +317,16 @@
 					</button>
 
 					{#if showSkillPicker}
-						<div class="mb-2 flex gap-2">
+						<div class="mb-2 flex flex-wrap gap-2">
 							<input
 								type="text"
 								placeholder="Search skills…"
 								bind:value={skillQuery}
-								class="min-w-0 flex-1 rounded border border-zinc-700 bg-zinc-800 px-2 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
+								class="min-w-0 flex-1 basis-40 rounded border border-zinc-700 bg-zinc-800 px-2 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
 							/>
 							<select
 								bind:value={skillCategory}
-								class="rounded border border-zinc-700 bg-zinc-800 px-1.5 py-1.5 text-xs text-zinc-100 focus:border-amber-500 focus:outline-none"
+								class="max-w-full rounded border border-zinc-700 bg-zinc-800 px-1.5 py-1.5 text-xs text-zinc-100 focus:border-amber-500 focus:outline-none"
 								title="Skill category"
 							>
 								<option value="All">All</option>
@@ -368,6 +379,15 @@
 							>
 								+ Add charm
 							</button>
+							{#if charms.length > 0}
+								<button
+									type="button"
+									onclick={removeAllCharms}
+									class="rounded border border-red-900 px-2 py-1 text-xs text-red-400 hover:bg-red-500/10 hover:text-red-300"
+								>
+									Remove all
+								</button>
+							{/if}
 						</div>
 					</div>
 
@@ -412,6 +432,26 @@
 						<input type="checkbox" bind:checked={includeNoCharm} class="accent-amber-500" />
 						<span>Also search sets without a charm</span>
 					</label>
+
+					<div class="mt-4">
+						<span class="mb-1 block text-xs text-zinc-400">Possible charms</span>
+						<div class="flex overflow-hidden rounded border border-zinc-700">
+							{#each [{ v: '', l: 'Off' }, { v: 'oneSkill', l: '1 skill' }, { v: 'twoSkills', l: '2 skills' }, { v: 'slotted', l: 'Slotted' }] as o (o.v)}
+								<button
+									type="button"
+									onclick={() => (possibleMode = o.v as PossibleCharmMode | '')}
+									class="flex-1 px-2 py-1.5 text-xs transition-colors
+										{possibleMode === o.v ? 'bg-amber-500/20 text-amber-300' : 'text-zinc-400 hover:bg-zinc-800'}"
+								>
+									{o.l}
+								</button>
+							{/each}
+						</div>
+						<p class="mt-1 text-[11px] text-zinc-500">
+							Adds real charms from MHP3rd's official charm tables, so results tell you which charm
+							each set needs — even ones you don't own yet.
+						</p>
+					</div>
 				</section>
 
 				<section class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
@@ -555,7 +595,7 @@
 				</div>
 			</aside>
 
-			<section>
+			<section class="min-w-0">
 				<div class="mb-3 flex flex-wrap items-center justify-between gap-2">
 					<h2 class="text-sm font-semibold tracking-wide text-zinc-300 uppercase">Results</h2>
 					{#if searched}

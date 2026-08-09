@@ -56,7 +56,7 @@
 		<div class="flex items-center gap-1">
 			<select
 				bind:value={charm.skill1.tree}
-				class="rounded border border-zinc-700 bg-zinc-800 px-1 py-1 text-xs text-zinc-200 focus:border-amber-500 focus:outline-none"
+				class="max-w-full rounded border border-zinc-700 bg-zinc-800 px-1 py-1 text-xs text-zinc-200 focus:border-amber-500 focus:outline-none"
 			>
 				<option value="">Skill 1…</option>
 				{#each SKILL_TREE_NAMES as tree (tree)}
@@ -76,7 +76,7 @@
 			<div class="flex items-center gap-1">
 				<select
 					bind:value={second.tree}
-					class="rounded border border-zinc-700 bg-zinc-800 px-1 py-1 text-xs text-zinc-200 focus:border-amber-500 focus:outline-none"
+					class="max-w-full rounded border border-zinc-700 bg-zinc-800 px-1 py-1 text-xs text-zinc-200 focus:border-amber-500 focus:outline-none"
 				>
 					<option value="">Skill 2…</option>
 					{#each SKILL_TREE_NAMES as tree (tree)}
