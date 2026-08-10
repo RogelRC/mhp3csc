@@ -611,14 +611,14 @@ function buildResult(
 		.sort((a, b) => b.points - a.points);
 
 	let defenseBase = 0;
-	let rarity = 0;
-	let hr = 0;
+	let raritySum = 0;
+	let hrSum = 0;
 	const res = { fire: 0, water: 0, ice: 0, thunder: 0, dragon: 0 };
 	for (const p of pieces) {
 		const orig = armors[p.id];
 		defenseBase += orig.defenseBase;
-		if (orig.rarity > rarity) rarity = orig.rarity;
-		if (orig.hrRequired > hr) hr = orig.hrRequired;
+		raritySum += orig.rarity;
+		hrSum += orig.hrRequired;
 		res.fire += orig.resistances.fire;
 		res.water += orig.resistances.water;
 		res.ice += orig.resistances.ice;
@@ -639,8 +639,8 @@ function buildResult(
 		defenseSumMax: defense,
 		defenseSumBase: defenseBase,
 		resistanceSum: res,
-		maxRarity: rarity,
-		maxHr: hr,
+		raritySum,
+		hrSum,
 		slotsLeft: slots - usedSlots,
 		allTargetsMet: true
 	};

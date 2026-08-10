@@ -99,9 +99,9 @@
 			case 'dragon':
 				return r.resistanceSum.dragon;
 			case 'difficulty':
-				return r.maxHr;
+				return r.hrSum;
 			case 'rarity':
-				return r.maxRarity;
+				return r.raritySum;
 			case 'slotsLeft':
 				return r.slotsLeft;
 			default:

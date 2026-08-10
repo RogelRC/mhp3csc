@@ -122,11 +122,11 @@
 					</span>
 					<span class="text-zinc-300">
 						💎 Rarity
-						<span class="text-zinc-100"> R{result.maxRarity}</span>
+						<span class="text-zinc-100"> R{result.raritySum}</span>
 					</span>
 					<span class="text-zinc-300">
 						⭐ Difficulty
-						<span class="text-zinc-100"> HR {result.maxHr}</span>
+						<span class="text-zinc-100"> HR {result.hrSum}</span>
 					</span>
 				</div>
 				<div class="mt-1.5 flex flex-wrap gap-x-4 gap-y-1.5">

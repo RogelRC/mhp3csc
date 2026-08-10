@@ -120,8 +120,8 @@ export interface SetResult {
 	defenseSumMax: number;
 	defenseSumBase: number;
 	resistanceSum: { fire: number; water: number; ice: number; thunder: number; dragon: number };
-	maxRarity: number;
-	maxHr: number;
+	raritySum: number;
+	hrSum: number;
 	slotsLeft: number;
 	allTargetsMet: boolean;
 }
