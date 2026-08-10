@@ -46,33 +46,37 @@
 	<button
 		type="button"
 		onclick={() => (open = !open)}
-		class="flex w-full flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3 text-left hover:bg-zinc-800/60"
+		class="flex w-full flex-col gap-2 px-4 py-3 text-left hover:bg-zinc-800/60"
 	>
-		<span class="text-sm font-bold text-amber-400">#{index + 1}</span>
-		<div class="flex min-w-0 flex-1 flex-wrap items-center gap-1.5">
-			{#each result.activated as a (a.tree + ':' + a.name)}
-				<span
-					class="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[11px] font-medium text-emerald-300"
-				>
-					{a.name}
-				</span>
-			{/each}
-			{#each result.negativeActivated as a (a.tree + ':' + a.name)}
-				<span class="rounded bg-red-500/15 px-1.5 py-0.5 text-[11px] font-medium text-red-300">
-					{a.name}
-				</span>
-			{/each}
+		<div class="flex items-center gap-2">
+			<span class="text-sm font-bold text-amber-400">#{index + 1}</span>
+			<div class="flex min-w-0 flex-1 flex-wrap items-center gap-1.5">
+				{#each result.activated as a (a.tree + ':' + a.name)}
+					<span
+						class="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[11px] font-medium text-emerald-300"
+					>
+						{a.name}
+					</span>
+				{/each}
+				{#each result.negativeActivated as a (a.tree + ':' + a.name)}
+					<span class="rounded bg-red-500/15 px-1.5 py-0.5 text-[11px] font-medium text-red-300">
+						{a.name}
+					</span>
+				{/each}
+			</div>
 		</div>
-		<span class="text-sm text-zinc-300">Def {result.defenseSumMax}</span>
-		{#if result.charm}
-			<span class="max-w-40 truncate text-xs text-zinc-500" title={result.charm.name}>
-				{result.charm.name || 'Charm'} · {result.charm.slots}◯
-				{#if result.charm.hypothetical}
-					<span class="ml-1 rounded bg-sky-500/15 px-1 text-[10px] text-sky-300">possible</span>
-				{/if}
-			</span>
-		{/if}
-		<span class="text-xs text-zinc-500">{open ? '▲' : '▼'}</span>
+		<div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+			<span class="text-sm text-zinc-300">Def {result.defenseSumMax}</span>
+			{#if result.charm}
+				<span class="min-w-0 flex-1 truncate text-xs text-zinc-500" title={result.charm.name}>
+					{result.charm.name || 'Charm'} · {result.charm.slots}◯
+					{#if result.charm.hypothetical}
+						<span class="ml-1 rounded bg-sky-500/15 px-1 text-[10px] text-sky-300">possible</span>
+					{/if}
+				</span>
+			{/if}
+			<span class="ml-auto text-zinc-500">{open ? '▲' : '▼'}</span>
+		</div>
 	</button>
 
 	{#if open}
