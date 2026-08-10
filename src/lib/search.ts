@@ -407,6 +407,28 @@ function getDecoTables(ctx: SearchCtx, tree: string): { clean: DecoTable; all: D
 }
 
 /**
+ * Can a multiset of decoration sizes (1-3) be physically placed into the given
+ * slot capacities (1-3)? A [2] gem needs a hole of at least 2, a [3] a hole of 3.
+ * Largest-first greedy filling each slot is exact for sizes <= 3 (smaller gems
+ * fit anywhere a larger one fits), so it never reports an impossible set as OK.
+ */
+function canPackSlots(caps: number[], sizes: number[]): boolean {
+	const slots = caps.filter((c) => c > 0).sort((a, b) => b - a);
+	const jewels = sizes.filter((s) => s > 0).sort((a, b) => b - a);
+	if (jewels.length === 0) return true;
+	if (slots.length === 0) return false;
+	for (const slot of slots) {
+		let remaining = slot;
+		for (let j = 0; j < jewels.length; j++) {
+			if (jewels[j] === 0 || jewels[j] > remaining) continue;
+			remaining -= jewels[j];
+			jewels[j] = 0;
+		}
+	}
+	return jewels.every((j) => j === 0);
+}
+
+/**
  * Greedy decoration covering with repair loop for negative side effects.
  * Uses precomputed min-slot tables, so it is fast enough to run per leaf.
  */
@@ -473,7 +495,83 @@ function solveDeficits(
 	};
 }
 
-/** Validate a leaf (charms + pieces + decoration coverage) and return cheap facts. */
+/**
+ * Physical decoration solver: places gems one by one into the actual slot
+ * capacities (weapon + charm + armor pieces). Used when the fast min-slot plan
+ * cannot be packed into the real hole sizes.
+ */
+function solveDeficitsPhysical(
+	ctx: SearchCtx,
+	deficits: { tree: string; need: number }[],
+	caps: number[]
+): { uses: DecorUse[]; usedSlots: number; delta: Map<string, number> } | null {
+	const needs = new Map<string, number>();
+	for (const d of deficits) needs.set(d.tree, d.need);
+	const picks = new Map<string, number>();
+	const slots = caps.filter((c) => c > 0).sort((a, b) => b - a);
+	let usedSlots = 0;
+	let iter = 0;
+	const MAXITER = 200;
+
+	while (true) {
+		if (++iter > MAXITER) return null;
+		let t: string | null = null;
+		let maxNeed = 0;
+		for (const [tree, need] of needs) {
+			if (need > 0 && need > maxNeed) {
+				maxNeed = need;
+				t = tree;
+			}
+		}
+		if (t === null) break;
+		if (maxNeed > MAX_NEED) return null;
+
+		const options = ctx.decoByTree.get(t) ?? [];
+		let covered = 0;
+		for (const opt of options) {
+			while (covered < maxNeed) {
+				// Smallest remaining hole big enough for this gem.
+				let idx = -1;
+				let cap = Infinity;
+				for (let s = 0; s < slots.length; s++) {
+					if (slots[s] >= opt.size && slots[s] < cap) {
+						cap = slots[s];
+						idx = s;
+					}
+				}
+				if (idx < 0) break;
+				slots[idx] -= opt.size;
+				usedSlots += opt.size;
+				covered += opt.points;
+				picks.set(opt.name, (picks.get(opt.name) ?? 0) + 1);
+				for (const neg of opt.negs) {
+					if (needs.has(neg.tree)) {
+						needs.set(neg.tree, (needs.get(neg.tree) ?? 0) + neg.points);
+					}
+				}
+			}
+		}
+		if (covered < maxNeed) return null;
+		needs.set(t, Math.max(0, needs.get(t)! - covered));
+	}
+
+	const delta = new Map<string, number>();
+	for (const [name, count] of picks) {
+		const opt = ctx.decoByName.get(name);
+		if (opt) {
+			delta.set(opt.tree, (delta.get(opt.tree) ?? 0) + opt.points * count);
+			for (const neg of opt.negs) {
+				delta.set(neg.tree, (delta.get(neg.tree) ?? 0) + neg.points * count);
+			}
+		}
+	}
+
+	return {
+		uses: [...picks.entries()].map(([name, count]) => ({ name, count })),
+		usedSlots,
+		delta
+	};
+} /** Validate a leaf (charms + pieces + decoration coverage) and return cheap facts. */
 function leafCore(
 	ctx: SearchCtx,
 	charm: PreparedCharm | null,
@@ -524,9 +622,26 @@ function leafCore(
 	if (deficits.length > 0) {
 		const solved = solveDeficits(ctx, deficits, slots);
 		if (!solved) return null;
-		decorations = solved.uses;
-		usedSlots = solved.usedSlots;
-		for (const [tree, pts] of solved.delta) addPoints(tree, pts);
+		// The fast solver only checks total slot count; the gem sizes must also
+		// physically fit into the real hole sizes (e.g. a [2] gem needs a 2+ hole).
+		const caps = [ctx.baseSlots, charm?.slots ?? 0, ...pieces.map((p) => p.slots)];
+		const sizes = [
+			...solved.uses.flatMap((u) => {
+				const opt = ctx.decoByName.get(u.name);
+				return opt ? Array(u.count).fill(opt.size) : [];
+			})
+		];
+		if (!canPackSlots(caps, sizes)) {
+			const physical = solveDeficitsPhysical(ctx, deficits, caps);
+			if (!physical) return null;
+			decorations = physical.uses;
+			usedSlots = physical.usedSlots;
+			for (const [tree, pts] of physical.delta) addPoints(tree, pts);
+		} else {
+			decorations = solved.uses;
+			usedSlots = solved.usedSlots;
+			for (const [tree, pts] of solved.delta) addPoints(tree, pts);
+		}
 	}
 
 	// Verify all targets met after decorations.
