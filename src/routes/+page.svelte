@@ -26,7 +26,8 @@
 		hunterType: 'Blademaster',
 		maxRarity: null,
 		maxHr: null,
-		maxVillageStars: null
+		maxVillageStars: null,
+		allowPiercings: true
 	});
 
 	let showSkillPicker = $state(false);
@@ -41,13 +42,118 @@
 	let progress = $state<SearchProgress>({ phase: '', nodes: 0, found: 0, done: false });
 	let controller: AbortController | null = null;
 
+	let hideNegative = $state(false);
+	let sortBy = $state<
+		| 'defenseMax'
+		| 'defenseBase'
+		| 'fire'
+		| 'water'
+		| 'ice'
+		| 'thunder'
+		| 'dragon'
+		| 'difficulty'
+		| 'rarity'
+		| 'slotsLeft'
+	>('defenseMax');
+	let charmFilterId = $state('__all');
+	let sortDir = $state<'asc' | 'desc'>('desc');
+
+	const SORT_OPTIONS: { key: typeof sortBy; label: string }[] = [
+		{ key: 'defenseMax', label: 'Def max' },
+		{ key: 'defenseBase', label: 'Def base' },
+		{ key: 'fire', label: 'Fire' },
+		{ key: 'water', label: 'Water' },
+		{ key: 'ice', label: 'Ice' },
+		{ key: 'thunder', label: 'Thunder' },
+		{ key: 'dragon', label: 'Dragon' },
+		{ key: 'difficulty', label: 'Difficulty' },
+		{ key: 'rarity', label: 'Rarity' },
+		{ key: 'slotsLeft', label: 'Empty slots' }
+	];
+
+	const SORT_ICONS: Record<typeof sortBy, string> = {
+		defenseMax: '🛡',
+		defenseBase: '🛡',
+		fire: '🔥',
+		water: '💧',
+		ice: '❄',
+		thunder: '⚡',
+		dragon: '🐉',
+		difficulty: '⭐',
+		rarity: '💎',
+		slotsLeft: '◯'
+	};
+
+	function sortValue(r: SetResult): number {
+		switch (sortBy) {
+			case 'defenseBase':
+				return r.defenseSumBase;
+			case 'fire':
+				return r.resistanceSum.fire;
+			case 'water':
+				return r.resistanceSum.water;
+			case 'ice':
+				return r.resistanceSum.ice;
+			case 'thunder':
+				return r.resistanceSum.thunder;
+			case 'dragon':
+				return r.resistanceSum.dragon;
+			case 'difficulty':
+				return r.maxHr;
+			case 'rarity':
+				return r.maxRarity;
+			case 'slotsLeft':
+				return r.slotsLeft;
+			default:
+				return r.defenseSumMax;
+		}
+	}
+
+	const charmFilterOptions = $derived.by(() => {
+		const seen: Record<string, string> = {};
+		for (const r of results) {
+			if (!r.charm) continue;
+			const id = r.charm.id;
+			if (!(id in seen)) seen[id] = charmLabel(r.charm);
+		}
+		return Object.entries(seen);
+	});
+
+	function charmLabel(c: NonNullable<SetResult['charm']>): string {
+		const skills =
+			`${c.skill1.tree}+${c.skill1.points}` +
+			(c.skill2 && c.skill2.tree ? `, ${c.skill2.tree}+${c.skill2.points}` : '');
+		return `${c.name || '(unnamed)'} [${c.slots}◯] ${skills}`;
+	}
+
+	const displayResults = $derived.by(() => {
+		let list = results;
+		if (hideNegative) list = list.filter((r) => r.negativeActivated.length === 0);
+		if (charmFilterId === '__none') {
+			list = list.filter((r) => r.charm === null);
+		} else if (charmFilterId !== '__all') {
+			list = list.filter((r) => r.charm?.id === charmFilterId);
+		}
+		const withIdx = list.map((r, i) => ({ r, i }));
+		withIdx.sort((a, b) => {
+			const va = sortValue(a.r);
+			const vb = sortValue(b.r);
+			if (va !== vb) return sortDir === 'desc' ? vb - va : va - vb;
+			return a.i - b.i;
+		});
+		return withIdx.map((x) => x.r);
+	});
+
 	const LS = {
 		targets: 'mhp3csc:targets',
 		charms: 'mhp3csc:charms',
 		showcharms: 'mhp3csc:showcharms',
 		settings: 'mhp3csc:settings',
 		nocharm: 'mhp3csc:nocharm',
-		possiblemode: 'mhp3csc:possiblemode'
+		possiblemode: 'mhp3csc:possiblemode',
+		hideneg: 'mhp3csc:hideneg',
+		sortby: 'mhp3csc:sortby',
+		sortdir: 'mhp3csc:sortdir'
 	};
 
 	function readLS<T>(key: string): T | null {
@@ -84,6 +190,12 @@
 			if (nc != null) includeNoCharm = nc;
 			const pm = readLS<PossibleCharmMode | ''>(LS.possiblemode);
 			if (pm) possibleMode = pm;
+			const hn = readLS<boolean>(LS.hideneg);
+			if (hn != null) hideNegative = hn;
+			const sb = readLS<typeof sortBy>(LS.sortby);
+			if (sb) sortBy = sb;
+			const sd = readLS<typeof sortDir>(LS.sortdir);
+			if (sd === 'asc' || sd === 'desc') sortDir = sd;
 			return;
 		}
 		writeLS(LS.targets, targetSkills);
@@ -92,6 +204,9 @@
 		writeLS(LS.settings, settings);
 		writeLS(LS.nocharm, includeNoCharm);
 		writeLS(LS.possiblemode, possibleMode);
+		writeLS(LS.hideneg, hideNegative);
+		writeLS(LS.sortby, sortBy);
+		writeLS(LS.sortdir, sortDir);
 	});
 
 	const filteredTrees = $derived(
@@ -204,6 +319,7 @@
 		searching = true;
 		searched = true;
 		results = [];
+		charmFilterId = '__all';
 		searchTime = 0;
 		progress = { phase: 'Starting…', nodes: 0, found: 0, done: false };
 		const t0 = performance.now();
@@ -550,6 +666,14 @@
 								sets still require their HR.
 							</p>
 						</div>
+						<label class="flex cursor-pointer items-center gap-2 text-zinc-300">
+							<input
+								type="checkbox"
+								bind:checked={settings.allowPiercings}
+								class="accent-amber-500"
+							/>
+							<span>Use piercings (Sword Saint, Barrage)</span>
+						</label>
 					</div>
 				</section>
 
@@ -600,7 +724,10 @@
 					<h2 class="text-sm font-semibold tracking-wide text-zinc-300 uppercase">Results</h2>
 					{#if searched}
 						<span class="text-xs text-zinc-500">
-							{results.length} set{results.length === 1 ? '' : 's'}
+							{displayResults.length} set{displayResults.length === 1 ? '' : 's'}
+							{#if displayResults.length !== results.length}
+								(of {results.length})
+							{/if}
 							{#if !searching && searchTime > 0}
 								· {Math.round(searchTime)}ms
 							{/if}
@@ -611,15 +738,66 @@
 					{/if}
 				</div>
 
+				{#if searched && results.length > 0}
+					<div
+						class="mb-3 flex flex-wrap items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2"
+					>
+						<label class="flex cursor-pointer items-center gap-1.5 text-xs text-zinc-300">
+							<input type="checkbox" bind:checked={hideNegative} class="accent-amber-500" />
+							No negative skills
+						</label>
+						<span class="mx-1 h-4 w-px bg-zinc-700"></span>
+						<div class="flex flex-wrap items-center gap-1">
+							{#each SORT_OPTIONS as o (o.key)}
+								<button
+									type="button"
+									onclick={() => (sortBy = o.key)}
+									title={o.label}
+									class="flex items-center gap-1 rounded px-1.5 py-1 text-[11px] transition-colors
+										{sortBy === o.key
+										? 'bg-amber-500/20 text-amber-300'
+										: 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'}"
+								>
+									<span>{SORT_ICONS[o.key]}</span>
+									<span>{o.label}</span>
+								</button>
+							{/each}
+						</div>
+						<span class="mx-1 h-4 w-px bg-zinc-700"></span>
+						<button
+							type="button"
+							title={sortDir === 'desc' ? 'Descending (high to low)' : 'Ascending (low to high)'}
+							onclick={() => (sortDir = sortDir === 'desc' ? 'asc' : 'desc')}
+							class="flex items-center gap-1 rounded px-1.5 py-1 text-[11px] transition-colors
+								{sortDir === 'desc' ? 'bg-amber-500/20 text-amber-300' : 'bg-zinc-800 text-amber-300'}"
+						>
+							<span>{sortDir === 'desc' ? '⬇' : '⬆'}</span>
+							<span>{sortDir === 'desc' ? 'Desc' : 'Asc'}</span>
+						</button>
+						<span class="mx-1 h-4 w-px bg-zinc-700"></span>
+						<select
+							bind:value={charmFilterId}
+							title="Filter by charm"
+							class="max-w-56 rounded border border-zinc-700 bg-zinc-800 px-1.5 py-1 text-xs text-zinc-100 focus:border-amber-500 focus:outline-none"
+						>
+							<option value="__all">All charms</option>
+							<option value="__none">No charm</option>
+							{#each charmFilterOptions as [id, label] (id)}
+								<option value={id}>{label}</option>
+							{/each}
+						</select>
+					</div>
+				{/if}
+
 				{#if !searched}
 					<div
 						class="flex h-64 items-center justify-center rounded-lg border border-dashed border-zinc-800 text-sm text-zinc-600"
 					>
 						Configure your skills and charms, then run a search.
 					</div>
-				{:else if results.length > 0}
+				{:else if displayResults.length > 0}
 					<div class="space-y-2">
-						{#each results as r, i (i)}
+						{#each displayResults as r, i (i)}
 							<ResultCard result={r} index={i} />
 						{/each}
 					</div>
@@ -627,8 +805,12 @@
 					<div
 						class="flex h-64 items-center justify-center rounded-lg border border-dashed border-zinc-800 text-sm text-zinc-500"
 					>
-						No sets found. Try loosening your requirements (fewer skills, more charm points, or
-						allow higher rarity armor).
+						{#if results.length > 0}
+							No sets match the current filters.
+						{:else}
+							No sets found. Try loosening your requirements (fewer skills, more charm points, or
+							allow higher rarity armor).
+						{/if}
 					</div>
 				{:else}
 					<div

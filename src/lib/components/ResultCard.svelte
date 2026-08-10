@@ -109,6 +109,45 @@
 				</tbody>
 			</table>
 
+			<div class="mt-3 rounded border border-zinc-800 bg-zinc-950/50 p-2 text-xs">
+				<span class="text-zinc-500">Stats:</span>
+				<div class="mt-1 flex flex-wrap gap-x-5 gap-y-1.5">
+					<span class="text-zinc-300">
+						🛡 Def base
+						<span class="text-zinc-100"> {result.defenseSumBase}</span>
+					</span>
+					<span class="text-zinc-300">
+						🛡 Def max
+						<span class="text-zinc-100"> {result.defenseSumMax}</span>
+					</span>
+					<span class="text-zinc-300">
+						💎 Rarity
+						<span class="text-zinc-100"> R{result.maxRarity}</span>
+					</span>
+					<span class="text-zinc-300">
+						⭐ Difficulty
+						<span class="text-zinc-100"> HR {result.maxHr}</span>
+					</span>
+				</div>
+				<div class="mt-1.5 flex flex-wrap gap-x-4 gap-y-1.5">
+					{#each [{ label: 'Fire', icon: '🔥', value: result.resistanceSum.fire }, { label: 'Water', icon: '💧', value: result.resistanceSum.water }, { label: 'Ice', icon: '❄', value: result.resistanceSum.ice }, { label: 'Thunder', icon: '⚡', value: result.resistanceSum.thunder }, { label: 'Dragon', icon: '🐉', value: result.resistanceSum.dragon }] as r (r.label)}
+						<span class="text-zinc-300">
+							{r.icon}
+							{r.label}
+							<span
+								class={r.value > 0
+									? 'text-emerald-400'
+									: r.value < 0
+										? 'text-red-400'
+										: 'text-zinc-400'}
+							>
+								{r.value > 0 ? '+' : ''}{r.value}
+							</span>
+						</span>
+					{/each}
+				</div>
+			</div>
+
 			<div class="mt-3 grid gap-2 text-xs sm:grid-cols-2">
 				{#if result.charm}
 					<div class="rounded border border-zinc-800 bg-zinc-950/50 p-2">

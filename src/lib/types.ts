@@ -74,6 +74,8 @@ export interface SearchSettings {
 	maxRarity: number | null;
 	maxHr: number | null;
 	maxVillageStars: number | null;
+	/** Include "Piercing" head pieces (Sword Saint, Barrage) in searches. */
+	allowPiercings: boolean;
 }
 
 export interface DecorUse {
@@ -116,6 +118,11 @@ export interface SetResult {
 	activated: ActivatedSkill[];
 	negativeActivated: ActivatedSkill[];
 	defenseSumMax: number;
+	defenseSumBase: number;
+	resistanceSum: { fire: number; water: number; ice: number; thunder: number; dragon: number };
+	maxRarity: number;
+	maxHr: number;
+	slotsLeft: number;
 	allTargetsMet: boolean;
 }
 

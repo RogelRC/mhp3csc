@@ -162,12 +162,13 @@ export function buildPreparedPieces(
 	relTrees: string[],
 	settings: SearchSettings
 ): PreparedPiece[][] {
-	const { gender, hunterType, maxRarity, maxHr, maxVillageStars } = settings;
+	const { gender, hunterType, maxRarity, maxHr, maxVillageStars, allowPiercings } = settings;
 	const piecesByPart: PreparedPiece[][] = PARTS.map(() => []);
 	const seenSig = new Map<string, { totalPos: number; defense: number }>();
 	for (let id = 0; id < armors.length; id++) {
 		const a = armors[id];
 		if (maxRarity != null && a.rarity > maxRarity) continue;
+		if (!allowPiercings && /Piercing$/.test(a.name)) continue;
 		const guildOnly = a.villageStarsRequired === 99;
 		const villageOk =
 			!guildOnly && (maxVillageStars == null || a.villageStarsRequired <= maxVillageStars);
@@ -609,6 +610,22 @@ function buildResult(
 		.map(([tree, points]) => ({ tree, points }))
 		.sort((a, b) => b.points - a.points);
 
+	let defenseBase = 0;
+	let rarity = 0;
+	let hr = 0;
+	const res = { fire: 0, water: 0, ice: 0, thunder: 0, dragon: 0 };
+	for (const p of pieces) {
+		const orig = armors[p.id];
+		defenseBase += orig.defenseBase;
+		if (orig.rarity > rarity) rarity = orig.rarity;
+		if (orig.hrRequired > hr) hr = orig.hrRequired;
+		res.fire += orig.resistances.fire;
+		res.water += orig.resistances.water;
+		res.ice += orig.resistances.ice;
+		res.thunder += orig.resistances.thunder;
+		res.dragon += orig.resistances.dragon;
+	}
+
 	return {
 		pieces: setPieces,
 		charm: charmOut,
@@ -620,6 +637,11 @@ function buildResult(
 		activated,
 		negativeActivated,
 		defenseSumMax: defense,
+		defenseSumBase: defenseBase,
+		resistanceSum: res,
+		maxRarity: rarity,
+		maxHr: hr,
+		slotsLeft: slots - usedSlots,
 		allTargetsMet: true
 	};
 }
