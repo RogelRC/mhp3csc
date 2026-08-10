@@ -16,9 +16,31 @@
 	import { charmSkillTree } from '$lib/mh3/skillTable';
 	import type { Charm, SearchProgress, SearchSettings, SetResult, SkillTarget } from '$lib/types';
 
+	interface SearchHistoryEntry {
+		id: string;
+		ts: number;
+		when: string;
+		label: string;
+		key: string;
+		targets: SkillTarget[];
+		charms: Charm[];
+		includeNoCharm: boolean;
+		possibleMode: PossibleCharmMode | '';
+		settings: SearchSettings;
+		showCharms: boolean;
+	}
+
+	const POSSIBLE_LABELS: Record<PossibleCharmMode, string> = {
+		oneSkill: '1 skill',
+		twoSkills: '2 skills',
+		slotted: 'slotted'
+	};
+
 	let targetSkills = $state<SkillTarget[]>([]);
 	let charms = $state<Charm[]>([]);
 	let showCharms = $state(true);
+	let history = $state<SearchHistoryEntry[]>([]);
+	let showHistory = $state(false);
 	let includeNoCharm = $state(false);
 	let possibleMode = $state<PossibleCharmMode | ''>('');
 	let settings = $state<SearchSettings>({
@@ -154,7 +176,8 @@
 		possiblemode: 'mhp3csc:possiblemode',
 		hideneg: 'mhp3csc:hideneg',
 		sortby: 'mhp3csc:sortby',
-		sortdir: 'mhp3csc:sortdir'
+		sortdir: 'mhp3csc:sortdir',
+		history: 'mhp3csc:history'
 	};
 
 	function readLS<T>(key: string): T | null {
@@ -197,6 +220,8 @@
 			if (sb) sortBy = sb;
 			const sd = readLS<typeof sortDir>(LS.sortdir);
 			if (sd === 'asc' || sd === 'desc') sortDir = sd;
+			const h = readLS<SearchHistoryEntry[]>(LS.history);
+			if (h && Array.isArray(h)) history = h;
 			return;
 		}
 		writeLS(LS.targets, targetSkills);
@@ -208,6 +233,7 @@
 		writeLS(LS.hideneg, hideNegative);
 		writeLS(LS.sortby, sortBy);
 		writeLS(LS.sortdir, sortDir);
+		writeLS(LS.history, history);
 	});
 
 	const filteredTrees = $derived(
@@ -353,6 +379,7 @@
 				controller.signal
 			);
 			results = found;
+			pushHistory();
 		} catch (e) {
 			console.error(e);
 			message = 'Search failed.';
@@ -368,6 +395,82 @@
 
 	function stopSearch() {
 		controller?.abort();
+	}
+
+	function historyLabel(): string {
+		const targetPart = targetSkills.map((t) => `${t.tree} +${t.points}`).join(', ') || 'No skills';
+		let charmPart: string;
+		if (possibleMode) charmPart = `possible (${POSSIBLE_LABELS[possibleMode]})`;
+		else if (charms.length > 0)
+			charmPart = `${charms.length} charm${charms.length === 1 ? '' : 's'}`;
+		else charmPart = 'no charms';
+		const extras = includeNoCharm ? ' · +no charm' : '';
+		return `${targetPart} · ${charmPart}${extras}`;
+	}
+
+	function pushHistory() {
+		const key = JSON.stringify({ targetSkills, charms, includeNoCharm, possibleMode, settings });
+		const entry: SearchHistoryEntry = {
+			id: crypto.randomUUID(),
+			ts: Date.now(),
+			when: new Date().toLocaleString([], {
+				month: 'short',
+				day: 'numeric',
+				hour: '2-digit',
+				minute: '2-digit'
+			}),
+			label: historyLabel(),
+			key,
+			targets: targetSkills.map((t) => ({ ...t })),
+			charms: charms.map((c) => ({
+				...c,
+				skill1: { ...c.skill1 },
+				skill2: c.skill2 ? { ...c.skill2 } : null
+			})),
+			includeNoCharm,
+			possibleMode,
+			settings: { ...settings },
+			showCharms
+		};
+		history = [entry, ...history.filter((h) => h.key !== key)].slice(0, 50);
+	}
+
+	function loadHistory(h: SearchHistoryEntry) {
+		targetSkills = h.targets.map((t) => ({ ...t }));
+		charms = h.charms.map((c) => ({
+			...c,
+			skill1: { ...c.skill1 },
+			skill2: c.skill2 ? { ...c.skill2 } : null
+		}));
+		includeNoCharm = h.includeNoCharm;
+		possibleMode = h.possibleMode;
+		settings = { ...h.settings };
+		showCharms = h.showCharms;
+		searched = false;
+		results = [];
+		message = '';
+		searchTime = 0;
+		document.getElementById('search-btn')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+	}
+
+	function clearHistory() {
+		history = [];
+	}
+
+	let showScrollTop = $state(false);
+
+	$effect(() => {
+		if (typeof window === 'undefined') return;
+		const onScroll = () => {
+			showScrollTop = window.scrollY > 400;
+		};
+		window.addEventListener('scroll', onScroll, { passive: true });
+		onScroll();
+		return () => window.removeEventListener('scroll', onScroll);
+	});
+
+	function scrollToTop() {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 </script>
 
@@ -678,9 +781,59 @@
 					</div>
 				</section>
 
+				<section class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
+					<div class="flex items-center justify-between">
+						<button
+							type="button"
+							onclick={() => (showHistory = !showHistory)}
+							class="flex items-center gap-2 text-left"
+						>
+							<h2 class="text-sm font-semibold tracking-wide text-zinc-300 uppercase">History</h2>
+							<span
+								class="text-xs text-zinc-400 transition-transform {showHistory ? 'rotate-180' : ''}"
+								>▾</span
+							>
+						</button>
+						{#if history.length > 0}
+							<button
+								type="button"
+								onclick={clearHistory}
+								class="rounded border border-zinc-700 px-2 py-1 text-xs text-zinc-200 hover:border-red-700 hover:text-red-400"
+							>
+								Clear
+							</button>
+						{/if}
+					</div>
+
+					{#if showHistory}
+						<div class="mt-3">
+							{#if history.length === 0}
+								<p class="text-xs text-zinc-500">Your last searches will show up here.</p>
+							{:else}
+								<div class="max-h-72 space-y-1 overflow-y-auto pr-1">
+									{#each history as h (h.id)}
+										<button
+											type="button"
+											onclick={() => loadHistory(h)}
+											title={h.label}
+											class="flex w-full items-center justify-between gap-2 rounded border border-zinc-800 bg-zinc-800/50 px-2 py-1.5 text-left text-xs hover:border-amber-500 hover:bg-zinc-800"
+										>
+											<span class="min-w-0 flex-1">
+												<span class="block truncate text-zinc-200">{h.label}</span>
+												<span class="block text-[10px] text-zinc-500">{h.when}</span>
+											</span>
+										</button>
+									{/each}
+								</div>
+							{/if}
+						</div>
+					{/if}
+				</section>
+
 				<div class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
 					<button
 						type="button"
+						id="search-btn"
 						onclick={doSearch}
 						disabled={searching}
 						class="w-full rounded bg-amber-500 px-4 py-2.5 text-sm font-bold text-zinc-950 transition-colors hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-50"
@@ -827,4 +980,15 @@
 	<footer class="border-t border-zinc-800 py-4 text-center text-xs text-zinc-600">
 		Data extracted from Athena's ASS for Monster Hunter Portable 3rd. Not affiliated with Capcom.
 	</footer>
+
+	<button
+		type="button"
+		onclick={scrollToTop}
+		aria-label="Back to top"
+		title="Back to top"
+		class="fixed right-4 bottom-4 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 text-lg text-zinc-300 shadow-lg transition-opacity hover:border-amber-500 hover:text-amber-300
+			{showScrollTop ? 'opacity-100' : 'pointer-events-none opacity-0'}"
+	>
+		↑
+	</button>
 </div>
