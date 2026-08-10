@@ -108,6 +108,13 @@ const MAX_NEED = 30;
 const YIELD_EVERY = 50000;
 const SLOT_TABLE_CAP = 24;
 
+let DEBUG_FAST_OK = 0;
+let DEBUG_FALLBACK_OK = 0;
+let DEBUG_FALLBACK_FAIL = 0;
+export function debugCounters() {
+	return { fastOk: DEBUG_FAST_OK, fallbackOk: DEBUG_FALLBACK_OK, fallbackFail: DEBUG_FALLBACK_FAIL };
+}
+
 export type PossibleCharmMode = 'slotted' | 'oneSkill' | 'twoSkills';
 
 /**
@@ -496,82 +503,138 @@ function solveDeficits(
 }
 
 /**
- * Physical decoration solver: places gems one by one into the actual slot
- * capacities (weapon + charm + armor pieces). Used when the fast min-slot plan
- * cannot be packed into the real hole sizes.
+ * Complete physical decoration solver: explores placing gems into the actual
+ * slot capacities (weapon + charm + armor pieces) with memoization and a
+ * min-slot lower-bound prune. Used when the fast min-slot plan cannot be packed
+ * into the real hole sizes, so no feasible leaf is thrown away.
  */
-function solveDeficitsPhysical(
+function solveDeficitsExact(
 	ctx: SearchCtx,
 	deficits: { tree: string; need: number }[],
 	caps: number[]
 ): { uses: DecorUse[]; usedSlots: number; delta: Map<string, number> } | null {
 	const needs = new Map<string, number>();
 	for (const d of deficits) needs.set(d.tree, d.need);
+	const holes = caps.filter((c) => c > 0).sort((a, b) => b - a);
 	const picks = new Map<string, number>();
-	const slots = caps.filter((c) => c > 0).sort((a, b) => b - a);
-	let usedSlots = 0;
-	let iter = 0;
-	const MAXITER = 200;
+	const memo = new Map<string, boolean>();
+	let nodes = 0;
+	const MAXNODES = 200000;
 
-	while (true) {
-		if (++iter > MAXITER) return null;
-		let t: string | null = null;
-		let maxNeed = 0;
-		for (const [tree, need] of needs) {
-			if (need > 0 && need > maxNeed) {
-				maxNeed = need;
-				t = tree;
-			}
-		}
-		if (t === null) break;
-		if (maxNeed > MAX_NEED) return null;
-
-		const options = ctx.decoByTree.get(t) ?? [];
-		let covered = 0;
-		for (const opt of options) {
-			while (covered < maxNeed) {
-				// Smallest remaining hole big enough for this gem.
-				let idx = -1;
-				let cap = Infinity;
-				for (let s = 0; s < slots.length; s++) {
-					if (slots[s] >= opt.size && slots[s] < cap) {
-						cap = slots[s];
-						idx = s;
-					}
-				}
-				if (idx < 0) break;
-				slots[idx] -= opt.size;
-				usedSlots += opt.size;
-				covered += opt.points;
-				picks.set(opt.name, (picks.get(opt.name) ?? 0) + 1);
-				for (const neg of opt.negs) {
-					if (needs.has(neg.tree)) {
-						needs.set(neg.tree, (needs.get(neg.tree) ?? 0) + neg.points);
-					}
-				}
-			}
-		}
-		if (covered < maxNeed) return null;
-		needs.set(t, Math.max(0, needs.get(t)! - covered));
+	function stateKey(): string {
+		const n = [...needs.entries()]
+			.filter(([, v]) => v > 0)
+			.sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0))
+			.map(([t, v]) => `${t}:${v}`)
+			.join(',');
+		return `${holes.join('')}|${n}`;
 	}
 
+	function totalCap(): number {
+		let s = 0;
+		for (const h of holes) s += h;
+		return s;
+	}
+
+	function dfs(): boolean {
+		if (++nodes > MAXNODES) return false;
+		const k = stateKey();
+		const cached = memo.get(k);
+		if (cached !== undefined) return cached;
+
+		let maxTree: string | null = null;
+		let maxNeed = 0;
+		for (const [t, v] of needs) {
+			if (v > 0 && v > maxNeed) {
+				maxNeed = v;
+				maxTree = t;
+			}
+		}
+		if (maxTree === null) {
+			memo.set(k, true);
+			return true;
+		}
+		if (maxNeed > MAX_NEED) {
+			memo.set(k, false);
+			return false;
+		}
+
+		// Sound lower bound: each gem covers exactly one positive tree, so the
+		// sum of per-tree minimum slots must fit in the remaining capacity.
+		let minSlotsSum = 0;
+		for (const [t, v] of needs) {
+			if (v <= 0) continue;
+			const { clean, all } = getDecoTables(ctx, t);
+			const m = Math.min(clean.minSlots[v], all.minSlots[v]);
+			if (m === Infinity) {
+				memo.set(k, false);
+				return false;
+			}
+			minSlotsSum += m;
+		}
+		if (minSlotsSum > totalCap()) {
+			memo.set(k, false);
+			return false;
+		}
+
+		const options = ctx.decoByTree.get(maxTree) ?? [];
+		const prevNeed = needs.get(maxTree)!;
+		for (const opt of options) {
+			const usedCap = new Set<number>();
+			for (let i = 0; i < holes.length; i++) {
+				if (holes[i] < opt.size || usedCap.has(holes[i])) continue;
+				usedCap.add(holes[i]);
+				holes[i] -= opt.size;
+				picks.set(opt.name, (picks.get(opt.name) ?? 0) + 1);
+				needs.set(maxTree, Math.max(0, prevNeed - opt.points));
+				const rollbackNeeds: [string, number][] = [];
+				for (const neg of opt.negs) {
+					if (needs.has(neg.tree)) {
+						const pv = needs.get(neg.tree)!;
+						needs.set(neg.tree, pv + neg.points);
+						rollbackNeeds.push([neg.tree, pv]);
+					}
+				}
+				if (dfs()) {
+					needs.set(maxTree, prevNeed);
+					for (const [t, pv] of rollbackNeeds) needs.set(t, pv);
+					holes[i] += opt.size;
+					memo.set(k, true);
+					return true;
+				}
+				picks.set(opt.name, picks.get(opt.name)! - 1);
+				if (picks.get(opt.name) === 0) picks.delete(opt.name);
+				needs.set(maxTree, prevNeed);
+				for (const [t, pv] of rollbackNeeds) needs.set(t, pv);
+				holes[i] += opt.size;
+			}
+		}
+		memo.set(k, false);
+		return false;
+	}
+
+	if (!dfs()) return null;
+
 	const delta = new Map<string, number>();
+	let usedSlots = 0;
 	for (const [name, count] of picks) {
 		const opt = ctx.decoByName.get(name);
 		if (opt) {
+			usedSlots += opt.size * count;
 			delta.set(opt.tree, (delta.get(opt.tree) ?? 0) + opt.points * count);
 			for (const neg of opt.negs) {
 				delta.set(neg.tree, (delta.get(neg.tree) ?? 0) + neg.points * count);
 			}
 		}
 	}
-
 	return {
 		uses: [...picks.entries()].map(([name, count]) => ({ name, count })),
 		usedSlots,
 		delta
 	};
-} /** Validate a leaf (charms + pieces + decoration coverage) and return cheap facts. */
+}
+
+/** Validate a leaf (charms + pieces + decoration coverage) and return cheap facts. */
 function leafCore(
 	ctx: SearchCtx,
 	charm: PreparedCharm | null,
@@ -632,12 +695,15 @@ function leafCore(
 			})
 		];
 		if (!canPackSlots(caps, sizes)) {
-			const physical = solveDeficitsPhysical(ctx, deficits, caps);
+			DEBUG_FALLBACK_FAIL++;
+			const physical = solveDeficitsExact(ctx, deficits, caps);
 			if (!physical) return null;
+			DEBUG_FALLBACK_OK++;
 			decorations = physical.uses;
 			usedSlots = physical.usedSlots;
 			for (const [tree, pts] of physical.delta) addPoints(tree, pts);
 		} else {
+			DEBUG_FAST_OK++;
 			decorations = solved.uses;
 			usedSlots = solved.usedSlots;
 			for (const [tree, pts] of solved.delta) addPoints(tree, pts);
