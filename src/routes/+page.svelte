@@ -782,22 +782,32 @@
 				</section>
 
 				<section class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
-					<div class="flex items-center justify-between">
-						<button
-							type="button"
-							onclick={() => (showHistory = !showHistory)}
-							class="flex items-center gap-2 text-left"
-						>
+					<div
+						role="button"
+						tabindex="0"
+						onclick={() => (showHistory = !showHistory)}
+						onkeydown={(e) => {
+							if (e.key === 'Enter' || e.key === ' ') {
+								e.preventDefault();
+								showHistory = !showHistory;
+							}
+						}}
+						class="flex w-full cursor-pointer items-center justify-between select-none"
+					>
+						<span class="flex items-center gap-2">
 							<h2 class="text-sm font-semibold tracking-wide text-zinc-300 uppercase">History</h2>
 							<span
 								class="text-xs text-zinc-400 transition-transform {showHistory ? 'rotate-180' : ''}"
 								>▾</span
 							>
-						</button>
+						</span>
 						{#if history.length > 0}
 							<button
 								type="button"
-								onclick={clearHistory}
+								onclick={(e) => {
+									e.stopPropagation();
+									clearHistory();
+								}}
 								class="rounded border border-zinc-700 px-2 py-1 text-xs text-zinc-200 hover:border-red-700 hover:text-red-400"
 							>
 								Clear
