@@ -12,6 +12,7 @@
 	import type { PossibleCharmMode } from '$lib/search';
 	import { decryptSaveFile } from '$lib/mh3/saveCipher';
 	import { parseCharmEntries } from '$lib/mh3/charmParser';
+	import { charmNameForRarity } from '$lib/mh3/charmTable';
 	import { charmSkillTree } from '$lib/mh3/skillTable';
 	import type { Charm, SearchProgress, SearchSettings, SetResult, SkillTarget } from '$lib/types';
 
@@ -282,7 +283,7 @@
 				const has2 = p.skill2Code !== 0;
 				return {
 					id: crypto.randomUUID(),
-					name: '',
+					name: charmNameForRarity(p.rarity),
 					slots: p.slots,
 					skill1: {
 						tree: has1 ? (charmSkillTree(p.skill1Code) ?? '') : '',

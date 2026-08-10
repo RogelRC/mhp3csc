@@ -112,6 +112,15 @@ export const CHARM_NAMES = [
 	'Queen Talisman'
 ];
 
+/**
+ * In-game talisman name for a charm rarity (1-7) read from the save.
+ * Rarities 1-4 all display as Common Talisman; 5=Queen, 6=King, 7=Dragon.
+ */
+export function charmNameForRarity(rarity: number): string {
+	if (rarity >= 5 && rarity <= 7) return CHARM_NAMES[8 - rarity];
+	return CHARM_NAMES[0];
+}
+
 export const CHARM_TABLE = [
 	[0, 4, 14, 6, 0, 0],
 	[0, 4, 22, 4, 0, 0],
