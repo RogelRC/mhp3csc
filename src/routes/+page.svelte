@@ -14,7 +14,14 @@
 	import { parseCharmEntries } from '$lib/mh3/charmParser';
 	import { charmNameForRarity } from '$lib/mh3/charmTable';
 	import { charmSkillTree } from '$lib/mh3/skillTable';
-	import type { Charm, SearchProgress, SearchSettings, SetResult, SkillTarget } from '$lib/types';
+	import type {
+		ArmorPart,
+		Charm,
+		SearchProgress,
+		SearchSettings,
+		SetResult,
+		SkillTarget
+	} from '$lib/types';
 
 	interface SearchHistoryEntry {
 		id: string;
@@ -66,6 +73,9 @@
 	let controller: AbortController | null = null;
 
 	let hideNegative = $state(false);
+	let showAdvanced = $state(false);
+	let excludedPieces = $state<Set<string>>(new Set());
+	let excludedDecos = $state<Set<string>>(new Set());
 	let sortBy = $state<
 		| 'defenseMax'
 		| 'defenseBase'
@@ -157,6 +167,12 @@
 		} else if (charmFilterId !== '__all') {
 			list = list.filter((r) => r.charm?.id === charmFilterId);
 		}
+		if (excludedPieces.size > 0) {
+			list = list.filter((r) => !r.pieces.some((p) => excludedPieces.has(`${p.part}:${p.name}`)));
+		}
+		if (excludedDecos.size > 0) {
+			list = list.filter((r) => !r.decorations.some((d) => excludedDecos.has(d.name)));
+		}
 		const withIdx = list.map((r, i) => ({ r, i }));
 		withIdx.sort((a, b) => {
 			const va = sortValue(a.r);
@@ -165,6 +181,32 @@
 			return a.i - b.i;
 		});
 		return withIdx.map((x) => x.r);
+	});
+
+	const advancedFilters = $derived.by(() => {
+		const order: ArmorPart[] = ['Head', 'Body', 'Arms', 'Waist', 'Legs'];
+		const parts = order.map((part) => {
+			const counts = new Map<string, number>();
+			for (const r of results) {
+				for (const p of r.pieces) {
+					if (p.part === part) counts.set(p.name, (counts.get(p.name) ?? 0) + 1);
+				}
+			}
+			const items = [...counts.entries()]
+				.map(([name, count]) => ({ key: `${part}:${name}`, name, count }))
+				.sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+			return { part, items };
+		});
+		const decoCounts = new Map<string, number>();
+		for (const r of results) {
+			for (const d of r.decorations) {
+				decoCounts.set(d.name, (decoCounts.get(d.name) ?? 0) + d.count);
+			}
+		}
+		const decos = [...decoCounts.entries()]
+			.map(([name, count]) => ({ key: `deco:${name}`, name, count }))
+			.sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+		return { parts, decos };
 	});
 
 	const LS = {
@@ -347,6 +389,8 @@
 		searched = true;
 		results = [];
 		charmFilterId = '__all';
+		showAdvanced = false;
+		resetAdvancedFilters();
 		searchTime = 0;
 		progress = { phase: 'Starting…', nodes: 0, found: 0, done: false };
 		const t0 = performance.now();
@@ -396,6 +440,32 @@
 	function stopSearch() {
 		controller?.abort();
 	}
+
+	function togglePiece(key: string, allowed: boolean) {
+		const next = new Set(excludedPieces);
+		if (allowed) next.delete(key);
+		else next.add(key);
+		excludedPieces = next;
+	}
+
+	function toggleDeco(key: string, allowed: boolean) {
+		const next = new Set(excludedDecos);
+		if (allowed) next.delete(key);
+		else next.add(key);
+		excludedDecos = next;
+	}
+
+	function resetAdvancedFilters() {
+		excludedPieces = new Set();
+		excludedDecos = new Set();
+	}
+
+	function excludeAllAdvanced() {
+		excludedPieces = new Set(advancedFilters.parts.flatMap((p) => p.items.map((i) => i.key)));
+		excludedDecos = new Set(advancedFilters.decos.map((d) => d.key));
+	}
+
+	const excludedCount = $derived(excludedPieces.size + excludedDecos.size);
 
 	function historyLabel(): string {
 		const targetPart = targetSkills.map((t) => `${t.tree} +${t.points}`).join(', ') || 'No skills';
@@ -950,6 +1020,103 @@
 								<option value={id}>{label}</option>
 							{/each}
 						</select>
+						<span class="mx-1 h-4 w-px bg-zinc-700"></span>
+						<button
+							type="button"
+							onclick={() => (showAdvanced = !showAdvanced)}
+							class="flex items-center gap-1 rounded px-1.5 py-1 text-[11px] transition-colors
+								{showAdvanced
+								? 'bg-amber-500/20 text-amber-300'
+								: 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'}"
+						>
+							<span>{showAdvanced ? '▾' : '▸'}</span>
+							<span>Advanced search</span>
+							{#if excludedCount > 0}
+								<span class="rounded-full bg-red-500/20 px-1.5 text-[10px] text-red-300">
+									{excludedCount}
+								</span>
+							{/if}
+						</button>
+					</div>
+				{/if}
+
+				{#if showAdvanced}
+					<div class="mb-3 rounded-lg border border-zinc-800 bg-zinc-900 p-3">
+						<div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+							<h3 class="text-xs font-semibold tracking-wide text-zinc-300 uppercase">
+								Uncheck a piece to see only sets that don't need it
+							</h3>
+							<div class="flex items-center gap-2">
+								<button
+									type="button"
+									onclick={resetAdvancedFilters}
+									class="rounded border border-zinc-700 px-2 py-1 text-[11px] text-zinc-200 hover:border-amber-500 hover:text-amber-300"
+								>
+									Select all
+								</button>
+								<button
+									type="button"
+									onclick={excludeAllAdvanced}
+									class="rounded border border-zinc-700 px-2 py-1 text-[11px] text-zinc-200 hover:border-red-700 hover:text-red-400"
+								>
+									Unselect all
+								</button>
+							</div>
+						</div>
+
+						<div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+							{#each advancedFilters.parts as g (g.part)}
+								<div>
+									<div class="mb-1 text-[11px] font-semibold text-zinc-500 uppercase">{g.part}</div>
+									{#if g.items.length === 0}
+										<p class="text-xs text-zinc-600">None used.</p>
+									{:else}
+										<div class="max-h-44 space-y-0.5 overflow-y-auto pr-1">
+											{#each g.items as it (it.key)}
+												<label
+													class="flex cursor-pointer items-center gap-1.5 text-xs text-zinc-300 hover:text-zinc-100"
+												>
+													<input
+														type="checkbox"
+														checked={!excludedPieces.has(it.key)}
+														onchange={(e) => togglePiece(it.key, e.currentTarget.checked)}
+														class="accent-amber-500"
+													/>
+													<span class="min-w-0 flex-1 truncate">{it.name}</span>
+													<span class="text-[10px] text-zinc-500">×{it.count}</span>
+												</label>
+											{/each}
+										</div>
+									{/if}
+								</div>
+							{/each}
+						</div>
+
+						<div class="mt-3">
+							<div class="mb-1 text-[11px] font-semibold text-zinc-500 uppercase">
+								Decorations (gems)
+							</div>
+							{#if advancedFilters.decos.length === 0}
+								<p class="text-xs text-zinc-600">None used.</p>
+							{:else}
+								<div class="max-h-44 space-y-0.5 overflow-y-auto pr-1">
+									{#each advancedFilters.decos as it (it.key)}
+										<label
+											class="flex cursor-pointer items-center gap-1.5 text-xs text-zinc-300 hover:text-zinc-100"
+										>
+											<input
+												type="checkbox"
+												checked={!excludedDecos.has(it.name)}
+												onchange={(e) => toggleDeco(it.name, e.currentTarget.checked)}
+												class="accent-amber-500"
+											/>
+											<span class="min-w-0 flex-1 truncate">{it.name}</span>
+											<span class="text-[10px] text-zinc-500">×{it.count}</span>
+										</label>
+									{/each}
+								</div>
+							{/if}
+						</div>
 					</div>
 				{/if}
 
