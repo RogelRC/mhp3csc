@@ -3,6 +3,32 @@
 
 	let { result, index }: { result: SetResult; index: number } = $props();
 	let open = $state(false);
+	let cardEl: HTMLElement | null = $state(null);
+	let exporting = $state(false);
+
+	async function exportImage() {
+		if (!cardEl) return;
+		open = true;
+		exporting = true;
+		await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+		try {
+			const { toPng } = await import('html-to-image');
+			const dataUrl = await toPng(cardEl, {
+				pixelRatio: 2,
+				backgroundColor: '#18181b',
+				cacheBust: true,
+				filter: (node) => !(node instanceof HTMLElement && node.hasAttribute('data-no-export'))
+			});
+			const a = document.createElement('a');
+			a.download = `mhp3-set-${index + 1}.png`;
+			a.href = dataUrl;
+			a.click();
+		} catch (e) {
+			console.error(e);
+		} finally {
+			exporting = false;
+		}
+	}
 
 	function slotsMarkup(n: number): string {
 		return 'O'.repeat(Math.min(n, 3));
@@ -42,7 +68,7 @@
 	}
 </script>
 
-<div class="overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900">
+<div class="overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900" bind:this={cardEl}>
 	<button
 		type="button"
 		onclick={() => (open = !open)}
@@ -205,13 +231,23 @@
 				</div>
 			</div>
 
-			<div class="mt-3 flex gap-2">
+			<div class="mt-3 flex gap-2" data-no-export>
 				<button
 					type="button"
 					onclick={copy}
 					class="rounded border border-zinc-700 px-2.5 py-1 text-xs text-zinc-300 hover:border-amber-500 hover:text-amber-300"
 				>
 					Copy set
+				</button>
+				<button
+					type="button"
+					onclick={exportImage}
+					disabled={exporting}
+					title="Export as image"
+					aria-label="Export as image"
+					class="rounded border border-zinc-700 px-2.5 py-1 text-xs text-zinc-300 hover:border-amber-500 hover:text-amber-300"
+				>
+					{exporting ? '…' : 'Export image'}
 				</button>
 			</div>
 		</div>
