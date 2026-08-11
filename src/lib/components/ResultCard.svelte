@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { SetResult } from '$lib/types';
+	import { formatSkillPoints } from '$lib/gameData';
 
 	let { result, index }: { result: SetResult; index: number } = $props();
 	let open = $state(false);
@@ -44,7 +45,7 @@
 		}
 		const c = result.charm;
 		lines.push(
-			`  Charm: ${c ? `${c.name || '(unnamed)'} [${slotsMarkup(c.slots)}] ${c.skill1.tree}+${c.skill1.points}${c.skill2 && c.skill2.tree ? `, ${c.skill2.tree}+${c.skill2.points}` : ''}` : 'None'}`
+			`  Charm: ${c ? `${c.name || '(unnamed)'} [${slotsMarkup(c.slots)}] ${c.skill1.tree}${formatSkillPoints(c.skill1.points)}${c.skill2 && c.skill2.tree ? `, ${c.skill2.tree}${formatSkillPoints(c.skill2.points)}` : ''}` : 'None'}`
 		);
 		lines.push(`  Weapon slots: ${result.weaponSlots}`);
 		if (result.decorations.length) {
@@ -184,9 +185,9 @@
 						<span class="text-zinc-500">Charm:</span>
 						<span class="text-zinc-200">
 							{result.charm.name || '(unnamed)'} [{slotsMarkup(result.charm.slots)}]
-							{result.charm.skill1.tree}+{result.charm.skill1.points}
+							{result.charm.skill1.tree}{formatSkillPoints(result.charm.skill1.points)}
 							{#if result.charm.skill2 && result.charm.skill2.tree}
-								, {result.charm.skill2.tree}+{result.charm.skill2.points}
+								, {result.charm.skill2.tree}{formatSkillPoints(result.charm.skill2.points)}
 							{/if}
 						</span>
 						{#if result.charm.hypothetical}

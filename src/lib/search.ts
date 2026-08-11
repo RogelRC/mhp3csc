@@ -112,7 +112,11 @@ let DEBUG_FAST_OK = 0;
 let DEBUG_FALLBACK_OK = 0;
 let DEBUG_FALLBACK_FAIL = 0;
 export function debugCounters() {
-	return { fastOk: DEBUG_FAST_OK, fallbackOk: DEBUG_FALLBACK_OK, fallbackFail: DEBUG_FALLBACK_FAIL };
+	return {
+		fastOk: DEBUG_FAST_OK,
+		fallbackOk: DEBUG_FALLBACK_OK,
+		fallbackFail: DEBUG_FALLBACK_FAIL
+	};
 }
 
 export type PossibleCharmMode = 'slotted' | 'oneSkill' | 'twoSkills';
@@ -721,6 +725,34 @@ function leafCore(
 	return { full, defense, usedSlots, decorations, torsoIncUsed };
 }
 
+/** Elemental resistance trees and the stat they affect. */
+const RESISTANCE_TREES: Record<string, 'fire' | 'water' | 'ice' | 'thunder' | 'dragon'> = {
+	'Fire Res': 'fire',
+	'Water Res': 'water',
+	ThunderRes: 'thunder',
+	'Ice Res': 'ice',
+	'Dragon Res': 'dragon'
+};
+
+const DEFENSE_TREE = 'Defense';
+
+/**
+ * Stat modifier granted by an activated skill at `threshold` points.
+ * Defense skills grant defense equal to their threshold (e.g. 10/15/20);
+ * resistance skills grant the amount named in the skill (e.g. "Fire Res +10" → +10).
+ */
+function statModifier(tree: string, threshold: number): number {
+	if (tree === DEFENSE_TREE) return threshold;
+	if (RESISTANCE_TREES[tree]) {
+		const name = skillByTreeAndPoints.get(tree)?.get(threshold);
+		if (name) {
+			const m = /[+-]?\d+/.exec(name);
+			if (m) return parseInt(m[0], 10);
+		}
+	}
+	return 0;
+}
+
 function buildResult(
 	ctx: SearchCtx,
 	charm: PreparedCharm | null,
@@ -739,13 +771,28 @@ function buildResult(
 
 	const activated: ActivatedSkill[] = [];
 	const negativeActivated: ActivatedSkill[] = [];
+	let defenseMod = 0;
+	const resMod = { fire: 0, water: 0, ice: 0, thunder: 0, dragon: 0 };
+	const applyStatMod = (tree: string, threshold: number) => {
+		const mod = statModifier(tree, threshold);
+		if (mod === 0) return;
+		if (tree === DEFENSE_TREE) {
+			defenseMod += mod;
+		} else {
+			const el = RESISTANCE_TREES[tree];
+			if (el) resMod[el] += mod;
+		}
+	};
 	if (torsoIncUsed) activated.push({ name: 'Torso Up', tree: TORSO_INC_TREE, points: 1 });
 	for (const [tree, pts] of full) {
 		const posThresholds = treePositiveThresholds(tree);
 		for (let i = posThresholds.length - 1; i >= 0; i--) {
 			if (pts >= posThresholds[i]) {
 				const name = skillByTreeAndPoints.get(tree)?.get(posThresholds[i]);
-				if (name) activated.push({ name, tree, points: pts });
+				if (name) {
+					activated.push({ name, tree, points: pts });
+					applyStatMod(tree, posThresholds[i]);
+				}
 				break;
 			}
 		}
@@ -753,7 +800,10 @@ function buildResult(
 		for (let i = 0; i < negThresholds.length; i++) {
 			if (pts <= negThresholds[i]) {
 				const name = skillByTreeAndPoints.get(tree)?.get(negThresholds[i]);
-				if (name) negativeActivated.push({ name, tree, points: pts });
+				if (name) {
+					negativeActivated.push({ name, tree, points: pts });
+					applyStatMod(tree, negThresholds[i]);
+				}
 				break;
 			}
 		}
@@ -794,7 +844,7 @@ function buildResult(
 	let defenseBase = 0;
 	let raritySum = 0;
 	let hrSum = 0;
-	const res = { fire: 0, water: 0, ice: 0, thunder: 0, dragon: 0 };
+	const res = { ...resMod };
 	for (const p of pieces) {
 		const orig = armors[p.id];
 		defenseBase += orig.defenseBase;
@@ -817,8 +867,8 @@ function buildResult(
 		treePoints,
 		activated,
 		negativeActivated,
-		defenseSumMax: defense,
-		defenseSumBase: defenseBase,
+		defenseSumMax: defense + defenseMod,
+		defenseSumBase: defenseBase + defenseMod,
 		resistanceSum: res,
 		raritySum,
 		hrSum,

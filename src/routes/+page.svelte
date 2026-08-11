@@ -6,7 +6,8 @@
 		decorations,
 		positiveSkillsByTree,
 		SKILL_CATEGORIES,
-		treeCategory
+		treeCategory,
+		formatSkillPoints
 	} from '$lib/gameData';
 	import { runSearch } from '$lib/search';
 	import type { PossibleCharmMode } from '$lib/search';
@@ -154,8 +155,8 @@
 
 	function charmLabel(c: NonNullable<SetResult['charm']>): string {
 		const skills =
-			`${c.skill1.tree}+${c.skill1.points}` +
-			(c.skill2 && c.skill2.tree ? `, ${c.skill2.tree}+${c.skill2.points}` : '');
+			`${c.skill1.tree}${formatSkillPoints(c.skill1.points)}` +
+			(c.skill2 && c.skill2.tree ? `, ${c.skill2.tree}${formatSkillPoints(c.skill2.points)}` : '');
 		return `${c.name || '(unnamed)'} [${c.slots}◯] ${skills}`;
 	}
 

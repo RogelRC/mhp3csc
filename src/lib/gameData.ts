@@ -15,6 +15,11 @@ export const tags = tagsJson as string[];
 
 export const TORSO_INC_TREE = 'Torso Up';
 
+/** Formats skill points with an explicit sign, e.g. "+10" or "-9". */
+export function formatSkillPoints(points: number): string {
+	return points >= 0 ? `+${points}` : `${points}`;
+}
+
 /** Map from tree name to the positive thresholds available on that tree (e.g. [10, 15, 20]). */
 const thresholdsCache = new Map<string, number[]>();
 export function treePositiveThresholds(tree: string): number[] {
