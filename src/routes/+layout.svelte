@@ -20,6 +20,9 @@
 <footer class="bg-zinc-950 pt-2 pb-6">
 	<div class="mx-auto w-full max-w-4xl px-4">
 		<p class="text-center text-xs text-zinc-500">
+			<span class="mr-1">Special thanks to Bae</span>
+		</p>
+		<p class="mt-1 text-center text-xs text-zinc-500">
 			<span class="mr-1">Found a bug?</span>
 			<a
 				href="https://discord.com/users/1136464673479340203"
