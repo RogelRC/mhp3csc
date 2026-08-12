@@ -38,6 +38,18 @@
 		showCharms: boolean;
 	}
 
+	interface TopSetEntry {
+		key: string;
+		label: string;
+		count: number;
+		targets: SkillTarget[];
+		charms: Charm[];
+		includeNoCharm: boolean;
+		possibleMode: PossibleCharmMode | '';
+		settings: SearchSettings;
+		showCharms: boolean;
+	}
+
 	const POSSIBLE_LABELS: Record<PossibleCharmMode, string> = {
 		oneSkill: '1 skill',
 		twoSkills: '2 skills',
@@ -49,6 +61,8 @@
 	let showCharms = $state(true);
 	let history = $state<SearchHistoryEntry[]>([]);
 	let showHistory = $state(false);
+	let topSets = $state<TopSetEntry[]>([]);
+	let showTopSets = $state(false);
 	let includeNoCharm = $state(false);
 	let possibleMode = $state<PossibleCharmMode | ''>('');
 	let settings = $state<SearchSettings>({
@@ -72,6 +86,23 @@
 	let results = $state<SetResult[]>([]);
 	let progress = $state<SearchProgress>({ phase: '', nodes: 0, found: 0, done: false });
 	let controller: AbortController | null = null;
+
+	let formDirty = $state(false);
+	let formBaseline = formSnapshot();
+	$effect(() => {
+		if (formSnapshot() !== formBaseline) formDirty = true;
+	});
+
+	function formSnapshot(): string {
+		return JSON.stringify({
+			targets: targetSkills,
+			charms,
+			showCharms,
+			includeNoCharm,
+			possibleMode,
+			settings
+		});
+	}
 
 	let hideNegative = $state(false);
 	let showAdvanced = $state(false);
@@ -265,6 +296,7 @@
 			if (sd === 'asc' || sd === 'desc') sortDir = sd;
 			const h = readLS<SearchHistoryEntry[]>(LS.history);
 			if (h && Array.isArray(h)) history = h;
+			refreshTopSets();
 			return;
 		}
 		writeLS(LS.targets, targetSkills);
@@ -378,13 +410,21 @@
 	async function doSearch() {
 		if (targetSkills.length === 0) {
 			message = 'Select at least one target skill.';
+			document
+				.getElementById('search-form')
+				?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			return;
 		}
 		if (!includeNoCharm && !possibleMode && !charms.some((c) => c.included)) {
 			message = 'Add at least one charm, or enable "no charm" or "possible charm" sets.';
+			document
+				.getElementById('search-form')
+				?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			return;
 		}
 		message = '';
+		formBaseline = formSnapshot();
+		formDirty = false;
 		controller = new AbortController();
 		searching = true;
 		searched = true;
@@ -425,6 +465,7 @@
 			);
 			results = found;
 			pushHistory();
+			if (found.length > 0) void recordSearch();
 		} catch (e) {
 			console.error(e);
 			message = 'Search failed.';
@@ -479,6 +520,28 @@
 		return `${targetPart} · ${charmPart}${extras}`;
 	}
 
+	// Label for the "most searched" list: charms are personal to each user, so
+	// only the shared constraints (skills, weapon slots, hunter type) are shown.
+	function topSetLabel(): string {
+		const targetPart = targetSkills.map((t) => `${t.tree} +${t.points}`).join(', ') || 'No skills';
+		const weaponPart =
+			settings.weaponSlots === 0
+				? 'no slots'
+				: `${settings.weaponSlots} slot${settings.weaponSlots === 1 ? '' : 's'}`;
+		return `${targetPart} · ${weaponPart} · ${settings.hunterType}`;
+	}
+
+	// Display label for a stored top set, derived from its data so old entries
+	// with charm-count labels never show charm information.
+	function topSetLabelFor(t: TopSetEntry): string {
+		const targetPart = t.targets.map((x) => `${x.tree} +${x.points}`).join(', ') || 'No skills';
+		const weaponSlots = t.settings.weaponSlots;
+		const weaponPart = !weaponSlots
+			? 'no slots'
+			: `${weaponSlots} slot${weaponSlots === 1 ? '' : 's'}`;
+		return `${targetPart} · ${weaponPart} · ${t.settings.hunterType || ''}`.trimEnd();
+	}
+
 	function pushHistory() {
 		const key = JSON.stringify({ targetSkills, charms, includeNoCharm, possibleMode, settings });
 		const entry: SearchHistoryEntry = {
@@ -521,23 +584,102 @@
 		results = [];
 		message = '';
 		searchTime = 0;
-		document.getElementById('search-btn')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		formBaseline = formSnapshot();
+		formDirty = true;
+		document.getElementById('search-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 
 	function clearHistory() {
 		history = [];
 	}
 
-	let showScrollTop = $state(false);
+	async function refreshTopSets() {
+		try {
+			const res = await fetch('/api/top-sets', { cache: 'no-store' });
+			if (res.ok) topSets = (await res.json()) as TopSetEntry[];
+		} catch {
+			/* offline or API unavailable */
+		}
+	}
 
+	async function recordSearch() {
+		try {
+			const settingsNoGender = Object.fromEntries(
+				Object.entries(settings).filter(([k]) => k !== 'gender')
+			);
+			await fetch('/api/search-log', {
+				method: 'POST',
+				headers: { 'content-type': 'application/json' },
+				body: JSON.stringify({
+					label: topSetLabel(),
+					targets: targetSkills.map((t) => ({ ...t })),
+					charms: charms.map((c) => ({
+						...c,
+						skill1: { ...c.skill1 },
+						skill2: c.skill2 ? { ...c.skill2 } : null
+					})),
+					includeNoCharm,
+					possibleMode,
+					settings: settingsNoGender,
+					showCharms
+				})
+			});
+		} catch {
+			/* offline or API unavailable */
+		}
+		await refreshTopSets();
+	}
+
+	function loadTopSet(t: TopSetEntry) {
+		targetSkills = t.targets.map((x) => ({ ...x }));
+		// Charms and charm options are personal to each user, so they stay as the
+		// user has them. Only the shared constraints are loaded: the skills and
+		// the weapon slots + hunter type.
+		settings = {
+			...settings,
+			weaponSlots: t.settings.weaponSlots ?? settings.weaponSlots,
+			hunterType: t.settings.hunterType ?? settings.hunterType
+		};
+		searched = false;
+		results = [];
+		message = '';
+		searchTime = 0;
+		formBaseline = formSnapshot();
+		formDirty = true;
+		document.getElementById('search-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
+
+	let showScrollTop = $state(false);
+	let showFab = $state(true);
+
+	let lastScrollY = 0;
 	$effect(() => {
 		if (typeof window === 'undefined') return;
+		const updateFab = () => {
+			const footers = document.querySelectorAll('footer');
+			const footer = footers[footers.length - 1];
+			const footerTop = footer ? footer.getBoundingClientRect().top : Infinity;
+			showFab = footerTop >= window.innerHeight;
+		};
 		const onScroll = () => {
-			showScrollTop = window.scrollY > 400;
+			const y = window.scrollY;
+			const form = document.getElementById('search-form');
+			// "Outside the form": its top edge has scrolled above the viewport, so
+			// the user is reading the results, not the form.
+			const rect = form ? form.getBoundingClientRect() : null;
+			const outsideForm = !rect || rect.top < 0;
+			const scrollingUp = y < lastScrollY;
+			showScrollTop = y > 0 && outsideForm && scrollingUp;
+			updateFab();
+			lastScrollY = y;
 		};
 		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', updateFab);
 		onScroll();
-		return () => window.removeEventListener('scroll', onScroll);
+		return () => {
+			window.removeEventListener('scroll', onScroll);
+			window.removeEventListener('resize', updateFab);
+		};
 	});
 
 	function scrollToTop() {
@@ -573,7 +715,7 @@
 
 	<main class="mx-auto max-w-7xl px-4 py-6">
 		<div class="grid gap-6 lg:grid-cols-[400px_1fr]">
-			<aside class="min-w-0 space-y-5">
+			<aside id="search-form" class="min-w-0 space-y-5">
 				<section class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
 					<h2 class="mb-3 text-sm font-semibold tracking-wide text-zinc-300 uppercase">
 						Target skills
@@ -911,13 +1053,71 @@
 					{/if}
 				</section>
 
-				<div class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
+				<section class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
+					<div
+						role="button"
+						tabindex="0"
+						onclick={() => (showTopSets = !showTopSets)}
+						onkeydown={(e) => {
+							if (e.key === 'Enter' || e.key === ' ') {
+								e.preventDefault();
+								showTopSets = !showTopSets;
+							}
+						}}
+						class="flex w-full cursor-pointer items-center justify-between select-none"
+					>
+						<span class="flex items-center gap-2">
+							<h2 class="text-sm font-semibold tracking-wide text-zinc-300 uppercase">
+								Most searched
+							</h2>
+							<span
+								class="text-xs text-zinc-400 transition-transform {showTopSets ? 'rotate-180' : ''}"
+								>▾</span
+							>
+						</span>
+					</div>
+
+					{#if showTopSets}
+						<div class="mt-3">
+							{#if topSets.length === 0}
+								<p class="text-xs text-zinc-500">
+									The most-searched skill sets from all visitors will show up here.
+								</p>
+							{:else}
+								<div class="max-h-72 space-y-1 overflow-y-auto pr-1">
+									{#each topSets as t (t.key)}
+										<button
+											type="button"
+											onclick={() => loadTopSet(t)}
+											title={topSetLabelFor(t)}
+											class="flex w-full items-center justify-between gap-2 rounded border border-zinc-800 bg-zinc-800/50 px-2 py-1.5 text-left text-xs hover:border-amber-500 hover:bg-zinc-800"
+										>
+											<span class="min-w-0 flex-1">
+												<span class="block truncate text-zinc-200">{topSetLabelFor(t)}</span>
+												<span class="block text-[10px] text-zinc-500">searched {t.count}×</span>
+											</span>
+											<span
+												class="rounded bg-amber-500/15 px-1.5 py-0.5 text-[11px] font-bold text-amber-400"
+												>{t.count}</span
+											>
+										</button>
+									{/each}
+								</div>
+							{/if}
+						</div>
+					{/if}
+				</section>
+
+				<div
+					class="rounded-lg border border-zinc-800 bg-zinc-900 p-4
+						{searching || message ? 'block' : 'hidden'} lg:block"
+				>
 					<button
 						type="button"
 						id="search-btn"
 						onclick={doSearch}
 						disabled={searching}
-						class="w-full rounded bg-amber-500 px-4 py-2.5 text-sm font-bold text-zinc-950 transition-colors hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-50"
+						class="hidden w-full rounded bg-amber-500 px-4 py-2.5 text-sm font-bold text-zinc-950 transition-colors hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-50 lg:block"
 					>
 						{searching ? 'Searching…' : 'Search sets'}
 					</button>
@@ -1155,7 +1355,7 @@
 		</div>
 	</main>
 
-	<footer class="border-t border-zinc-800 py-4 text-center text-xs text-zinc-600">
+	<footer class="border-t border-zinc-800 px-4 py-4 text-center text-xs text-zinc-600">
 		Data extracted from Athena's ASS for Monster Hunter Portable 3rd. Not affiliated with Capcom.
 	</footer>
 
@@ -1164,9 +1364,42 @@
 		onclick={scrollToTop}
 		aria-label="Back to top"
 		title="Back to top"
-		class="fixed right-4 bottom-4 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 text-lg text-zinc-300 shadow-lg transition-opacity hover:border-amber-500 hover:text-amber-300
+		class="fixed bottom-4 left-1/2 z-40 flex h-11 w-11 -translate-x-1/2 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 text-lg text-zinc-300 shadow-lg transition-opacity hover:border-amber-500 hover:text-amber-300
 			{showScrollTop ? 'opacity-100' : 'pointer-events-none opacity-0'}"
 	>
 		↑
+	</button>
+
+	<button
+		type="button"
+		onclick={doSearch}
+		disabled={!formDirty || searching}
+		aria-label="Search sets"
+		title="Search sets"
+		class="fixed right-4 bottom-4 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-all lg:hidden
+			{showFab ? 'opacity-100' : 'pointer-events-none opacity-0'}
+			{formDirty || searching
+			? 'bg-amber-500 text-zinc-950 ring-1 shadow-amber-500/30 ring-amber-300/50 hover:bg-amber-400'
+			: 'cursor-not-allowed bg-zinc-800 text-zinc-500 ring-1 ring-zinc-700'}"
+	>
+		{#if searching}
+			<span
+				class="h-6 w-6 animate-spin rounded-full border-[3px] border-zinc-900/30 border-t-zinc-900"
+			></span>
+		{:else}
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2.5"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="h-6 w-6"
+			>
+				<circle cx="11" cy="11" r="8"></circle>
+				<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+			</svg>
+		{/if}
 	</button>
 </div>
