@@ -464,7 +464,7 @@
 			);
 			results = found;
 			pushHistory();
-			if (found.length > 0) void recordSearch();
+			void recordSearch();
 		} catch (e) {
 			console.error(e);
 			message = 'Search failed.';
@@ -1097,21 +1097,28 @@
 								</p>
 							{:else}
 								<div class="max-h-72 space-y-1 overflow-y-auto pr-1">
-									{#each topSets as t (t.key)}
+									{#each topSets as t, i (t.key)}
+										{@const rank = i + 1}
 										<button
 											type="button"
 											onclick={() => loadTopSet(t)}
 											title={topSetLabelFor(t)}
 											class="flex w-full items-center justify-between gap-2 rounded border border-zinc-800 bg-zinc-800/50 px-2 py-1.5 text-left text-xs hover:border-amber-500 hover:bg-zinc-800"
 										>
+											<span
+												class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold {rank ===
+												1
+													? 'bg-yellow-400 text-yellow-950'
+													: rank === 2
+														? 'bg-zinc-300 text-zinc-800'
+														: rank === 3
+															? 'bg-orange-700 text-orange-50'
+															: 'bg-zinc-800 text-zinc-400'}">{rank}</span
+											>
 											<span class="min-w-0 flex-1">
-												<span class="block truncate text-zinc-200">{topSetLabelFor(t)}</span>
+												<span class="block text-zinc-200">{topSetLabelFor(t)}</span>
 												<span class="block text-[10px] text-zinc-500">searched {t.count}×</span>
 											</span>
-											<span
-												class="rounded bg-amber-500/15 px-1.5 py-0.5 text-[11px] font-bold text-amber-400"
-												>{t.count}</span
-											>
 										</button>
 									{/each}
 								</div>
