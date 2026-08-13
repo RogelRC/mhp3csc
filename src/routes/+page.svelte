@@ -510,7 +510,7 @@
 	const excludedCount = $derived(excludedPieces.size + excludedDecos.size);
 
 	function historyLabel(): string {
-		const targetPart = targetSkills.map((t) => `${t.tree} +${t.points}`).join(', ') || 'No skills';
+		const targetPart = targetSkills.map((t) => t.name).join(', ') || 'No skills';
 		let charmPart: string;
 		if (possibleMode) charmPart = `possible (${POSSIBLE_LABELS[possibleMode]})`;
 		else if (charms.length > 0)
@@ -520,10 +520,23 @@
 		return `${targetPart} · ${charmPart}${extras}`;
 	}
 
+	// Display label for a history entry, derived from its stored skills so old
+	// entries (saved with points-only labels) still show the skill names.
+	function historyLabelFor(h: SearchHistoryEntry): string {
+		const targetPart = h.targets.map((t) => t.name).join(', ') || 'No skills';
+		let charmPart: string;
+		if (h.possibleMode) charmPart = `possible (${POSSIBLE_LABELS[h.possibleMode]})`;
+		else if (h.charms.length > 0)
+			charmPart = `${h.charms.length} charm${h.charms.length === 1 ? '' : 's'}`;
+		else charmPart = 'no charms';
+		const extras = h.includeNoCharm ? ' · +no charm' : '';
+		return `${targetPart} · ${charmPart}${extras}`;
+	}
+
 	// Label for the "most searched" list: charms are personal to each user, so
 	// only the shared constraints (skills, weapon slots, hunter type) are shown.
 	function topSetLabel(): string {
-		const targetPart = targetSkills.map((t) => `${t.tree} +${t.points}`).join(', ') || 'No skills';
+		const targetPart = targetSkills.map((t) => t.name).join(', ') || 'No skills';
 		const weaponPart =
 			settings.weaponSlots === 0
 				? 'no slots'
@@ -534,7 +547,7 @@
 	// Display label for a stored top set, derived from its data so old entries
 	// with charm-count labels never show charm information.
 	function topSetLabelFor(t: TopSetEntry): string {
-		const targetPart = t.targets.map((x) => `${x.tree} +${x.points}`).join(', ') || 'No skills';
+		const targetPart = t.targets.map((x) => x.name).join(', ') || 'No skills';
 		const weaponSlots = t.settings.weaponSlots;
 		const weaponPart = !weaponSlots
 			? 'no slots'
@@ -1038,11 +1051,11 @@
 										<button
 											type="button"
 											onclick={() => loadHistory(h)}
-											title={h.label}
+											title={historyLabelFor(h)}
 											class="flex w-full items-center justify-between gap-2 rounded border border-zinc-800 bg-zinc-800/50 px-2 py-1.5 text-left text-xs hover:border-amber-500 hover:bg-zinc-800"
 										>
 											<span class="min-w-0 flex-1">
-												<span class="block truncate text-zinc-200">{h.label}</span>
+												<span class="block truncate text-zinc-200">{historyLabelFor(h)}</span>
 												<span class="block text-[10px] text-zinc-500">{h.when}</span>
 											</span>
 										</button>
