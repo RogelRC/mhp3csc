@@ -43,7 +43,6 @@
 		label: string;
 		count: number;
 		targets: SkillTarget[];
-		charms: Charm[];
 		includeNoCharm: boolean;
 		possibleMode: PossibleCharmMode | '';
 		settings: SearchSettings;

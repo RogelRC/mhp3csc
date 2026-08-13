@@ -22,7 +22,6 @@ export interface StoredTopSet {
 	label: string;
 	count: number;
 	targets: { name: string; tree: string; points: number }[];
-	charms: StoredCharm[];
 	includeNoCharm: boolean;
 	possibleMode: string;
 	settings: Record<string, unknown>;
@@ -70,9 +69,10 @@ function withoutGender(settings: Record<string, unknown>): Record<string, unknow
 function keyFor(input: RecordSearchInput): string {
 	// Gender is intentionally excluded so the same set searched with any
 	// gender counts as a single entry.
+	// Order-independent: the same skills/charms in any order count as one set.
 	const serialized = JSON.stringify({
-		targets: input.targets,
-		charms: input.charms,
+		targets: [...input.targets].sort((a, b) => a.tree.localeCompare(b.tree) || a.points - b.points),
+		charms: [...input.charms].sort((a, b) => a.id.localeCompare(b.id)),
 		includeNoCharm: input.includeNoCharm,
 		possibleMode: input.possibleMode,
 		settings: withoutGender(input.settings)
@@ -90,7 +90,6 @@ export async function recordSearch(input: RecordSearchInput): Promise<number> {
 	await client.hset(SET_PREFIX + key, {
 		label: input.label,
 		targets: JSON.stringify(input.targets),
-		charms: JSON.stringify(input.charms),
 		includeNoCharm: String(input.includeNoCharm),
 		possibleMode: input.possibleMode,
 		settings: JSON.stringify(withoutGender(input.settings)),
@@ -112,7 +111,6 @@ function parseEntry(
 			count: score,
 			label: str(data.label) || key,
 			targets: Array.isArray(data.targets) ? (data.targets as StoredTopSet['targets']) : [],
-			charms: Array.isArray(data.charms) ? (data.charms as StoredCharm[]) : [],
 			includeNoCharm: data.includeNoCharm === true,
 			possibleMode: str(data.possibleMode),
 			settings:
