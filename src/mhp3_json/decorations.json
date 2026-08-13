@@ -1,6 +1,6 @@
 [
 	{
-		"name": "SteadfastJwl[1]",
+		"name": "Steadfast Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -29,7 +29,7 @@
 		]
 	},
 	{
-		"name": "VigilanceJwl[1]",
+		"name": "Steadfast Jewel[2]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 1,
@@ -68,7 +68,7 @@
 		]
 	},
 	{
-		"name": "ParalysisJwl[1]",
+		"name": "Paralysis Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -97,7 +97,7 @@
 		]
 	},
 	{
-		"name": "ParalysisJwl[2]",
+		"name": "Paralysis Jewel[2]",
 		"rarity": 6,
 		"slots": 2,
 		"hrRequired": 1,
@@ -212,7 +212,7 @@
 		]
 	},
 	{
-		"name": "Antidote Jwl[1]",
+		"name": "Antidote Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -241,7 +241,7 @@
 		]
 	},
 	{
-		"name": "Antidote Jwl[2]",
+		"name": "Antidote Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 1,
@@ -284,7 +284,7 @@
 		]
 	},
 	{
-		"name": "FortitudeJwl[1]",
+		"name": "Prevention Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -338,7 +338,7 @@
 		]
 	},
 	{
-		"name": "Teflon Jewel[1]",
+		"name": "Weather Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -367,7 +367,7 @@
 		]
 	},
 	{
-		"name": "LubricantJwl[1]",
+		"name": "Weather Jewel[2]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 2,
@@ -396,7 +396,7 @@
 		]
 	},
 	{
-		"name": "RetroviralJwl[1]",
+		"name": "Antiseptic Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -425,7 +425,7 @@
 		]
 	},
 	{
-		"name": "AntiviralJwl[1]",
+		"name": "Antiseptic Jewel[2]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -454,7 +454,7 @@
 		]
 	},
 	{
-		"name": "Anchor Jewel[1]",
+		"name": "Footing Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 1,
@@ -483,7 +483,7 @@
 		]
 	},
 	{
-		"name": "Tectonic Jwl[1]",
+		"name": "Tectonic Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 2,
@@ -512,7 +512,7 @@
 		]
 	},
 	{
-		"name": "Cooling Jwl[1]",
+		"name": "Breeze Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 1,
@@ -537,7 +537,7 @@
 		]
 	},
 	{
-		"name": "Warming Jwl[1]",
+		"name": "Warmth Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 2,
@@ -562,7 +562,7 @@
 		]
 	},
 	{
-		"name": "Earplug Jwl[1]",
+		"name": "Earplug Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 2,
@@ -605,7 +605,7 @@
 		]
 	},
 	{
-		"name": "Earplug Jwl[3]",
+		"name": "Earplug Jewel[3]",
 		"rarity": 6,
 		"slots": 3,
 		"hrRequired": 6,
@@ -638,7 +638,7 @@
 		]
 	},
 	{
-		"name": "WindpressJwl[1]",
+		"name": "Wind-Proof Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 3,
@@ -671,7 +671,7 @@
 		]
 	},
 	{
-		"name": "WindpressJwl[2]",
+		"name": "Wind-Proof Jewel[2]",
 		"rarity": 5,
 		"slots": 2,
 		"hrRequired": 5,
@@ -912,7 +912,7 @@
 		]
 	},
 	{
-		"name": "SpcialAtkJwl[1]",
+		"name": "Disabler Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -959,7 +959,7 @@
 		]
 	},
 	{
-		"name": "SpcialAtkJwl[2]",
+		"name": "Disabler Jewel[2]",
 		"rarity": 5,
 		"slots": 2,
 		"hrRequired": 5,
@@ -992,7 +992,7 @@
 		]
 	},
 	{
-		"name": "Element Jwl[1]",
+		"name": "Element Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 6,
@@ -1021,7 +1021,7 @@
 		]
 	},
 	{
-		"name": "Element Jwl[3]",
+		"name": "Element Jewel[3]",
 		"rarity": 6,
 		"slots": 3,
 		"hrRequired": 6,
@@ -1054,7 +1054,7 @@
 		]
 	},
 	{
-		"name": "Fire Atk Jwl[1]",
+		"name": "Fire Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 2,
@@ -1083,7 +1083,7 @@
 		]
 	},
 	{
-		"name": "Fire Atk Jwl[2]",
+		"name": "Fire Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 5,
@@ -1116,7 +1116,7 @@
 		]
 	},
 	{
-		"name": "WaterAtk Jwl[1]",
+		"name": "Water Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -1145,7 +1145,7 @@
 		]
 	},
 	{
-		"name": "WaterAtk Jwl[2]",
+		"name": "Water Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 5,
@@ -1178,7 +1178,7 @@
 		]
 	},
 	{
-		"name": "ThndrAtk Jwl[1]",
+		"name": "Thunder Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 2,
@@ -1211,7 +1211,7 @@
 		]
 	},
 	{
-		"name": "ThndrAtk Jwl[2]",
+		"name": "Thunder Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 5,
@@ -1244,7 +1244,7 @@
 		]
 	},
 	{
-		"name": "Ice Atk Jwl[1]",
+		"name": "Freezer Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 2,
@@ -1273,7 +1273,7 @@
 		]
 	},
 	{
-		"name": "Ice Atk Jwl[2]",
+		"name": "Freezer Jewel[2]",
 		"rarity": 5,
 		"slots": 2,
 		"hrRequired": 5,
@@ -1306,7 +1306,7 @@
 		]
 	},
 	{
-		"name": "DragnAtk Jwl[1]",
+		"name": "Dragon Jewel[1]",
 		"rarity": 6,
 		"slots": 1,
 		"hrRequired": 3,
@@ -1335,7 +1335,7 @@
 		]
 	},
 	{
-		"name": "DragnAtk Jwl[2]",
+		"name": "Dragon Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 5,
@@ -1368,7 +1368,7 @@
 		]
 	},
 	{
-		"name": "DeblitateJwl[1]",
+		"name": "Stinger Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 3,
@@ -1411,7 +1411,7 @@
 		]
 	},
 	{
-		"name": "DeblitateJwl[3]",
+		"name": "Stinger Jewel[3]",
 		"rarity": 6,
 		"slots": 3,
 		"hrRequired": 6,
@@ -1444,7 +1444,7 @@
 		]
 	},
 	{
-		"name": "Slam Jewel[1]",
+		"name": "Heavy Attack Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 3,
@@ -1487,7 +1487,7 @@
 		]
 	},
 	{
-		"name": "Slam Jewel[3]",
+		"name": "Heavy Attack Jewel[3]",
 		"rarity": 6,
 		"slots": 3,
 		"hrRequired": 6,
@@ -1520,7 +1520,7 @@
 		]
 	},
 	{
-		"name": "Ammo Box Jwl[1]",
+		"name": "Chamber Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 3,
@@ -1563,7 +1563,7 @@
 		]
 	},
 	{
-		"name": "Ammo Box Jwl[3]",
+		"name": "Chamber Jewel[3]",
 		"rarity": 4,
 		"slots": 3,
 		"hrRequired": 6,
@@ -1596,7 +1596,7 @@
 		]
 	},
 	{
-		"name": "FastChargJwl[1]",
+		"name": "Charger Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 2,
@@ -1639,7 +1639,7 @@
 		]
 	},
 	{
-		"name": "FastChargJwl[3]",
+		"name": "Charger Jewel[3]",
 		"rarity": 4,
 		"slots": 3,
 		"hrRequired": 6,
@@ -1672,7 +1672,7 @@
 		]
 	},
 	{
-		"name": "Unlock Jewel[1]",
+		"name": "Unleashed Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 3,
@@ -1715,7 +1715,7 @@
 		]
 	},
 	{
-		"name": "Unlock Jewel[2]",
+		"name": "Unleashed Jewel[2]",
 		"rarity": 6,
 		"slots": 2,
 		"hrRequired": 6,
@@ -1824,7 +1824,7 @@
 		]
 	},
 	{
-		"name": "FatigeAtkJwl[1]",
+		"name": "Exhaust Jewel[1]",
 		"rarity": 6,
 		"slots": 1,
 		"hrRequired": 1,
@@ -1857,7 +1857,7 @@
 		]
 	},
 	{
-		"name": "FatigeAtkJwl[2]",
+		"name": "Exhaust Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 2,
@@ -1900,7 +1900,7 @@
 		]
 	},
 	{
-		"name": "PotentialJwl[1]",
+		"name": "Potential Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 3,
@@ -1929,7 +1929,7 @@
 		]
 	},
 	{
-		"name": "PotentialJwl[2]",
+		"name": "Potential Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 5,
@@ -1962,7 +1962,7 @@
 		]
 	},
 	{
-		"name": "AdversityJwl[1]",
+		"name": "Adversity Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -1991,7 +1991,7 @@
 		]
 	},
 	{
-		"name": "AdversityJwl[2]",
+		"name": "Adversity Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 4,
@@ -2020,7 +2020,7 @@
 		]
 	},
 	{
-		"name": "BombrdierJwl[1]",
+		"name": "Bombardier Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2049,7 +2049,7 @@
 		]
 	},
 	{
-		"name": "Fife Jewel[1]",
+		"name": "Flute Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2078,7 +2078,7 @@
 		]
 	},
 	{
-		"name": "Howitzer Jwl[1]",
+		"name": "Gunnery Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2107,7 +2107,7 @@
 		]
 	},
 	{
-		"name": "Defense Jwl[1]",
+		"name": "Defense Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2140,7 +2140,7 @@
 		]
 	},
 	{
-		"name": "Defense Jwl[2]",
+		"name": "Defense Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 2,
@@ -2187,7 +2187,7 @@
 		]
 	},
 	{
-		"name": "Blight Jewel[1]",
+		"name": "Resistor Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 6,
@@ -2216,7 +2216,7 @@
 		]
 	},
 	{
-		"name": "Blight Jewel[3]",
+		"name": "Resistor Jewel[3]",
 		"rarity": 5,
 		"slots": 3,
 		"hrRequired": 6,
@@ -2245,7 +2245,7 @@
 		]
 	},
 	{
-		"name": "Inferno Jwl[1]",
+		"name": "Fire Res Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2274,7 +2274,7 @@
 		]
 	},
 	{
-		"name": "Crimson Jwl[1]",
+		"name": "Crimson Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 2,
@@ -2303,7 +2303,7 @@
 		]
 	},
 	{
-		"name": "Stream Jewel[1]",
+		"name": "Water Res Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2332,7 +2332,7 @@
 		]
 	},
 	{
-		"name": "Torrent Jwl[1]",
+		"name": "Torrent Jewel[1]",
 		"rarity": 6,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2361,7 +2361,7 @@
 		]
 	},
 	{
-		"name": "Thunder Jwl[1]",
+		"name": "Thunder Res Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2390,7 +2390,7 @@
 		]
 	},
 	{
-		"name": "LightningJwl[1]",
+		"name": "Storm Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 3,
@@ -2419,7 +2419,7 @@
 		]
 	},
 	{
-		"name": "Freeze Jewel[1]",
+		"name": "Ice Res Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2448,7 +2448,7 @@
 		]
 	},
 	{
-		"name": "GlacierJwl[1]",
+		"name": "Glacier Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 2,
@@ -2477,7 +2477,7 @@
 		]
 	},
 	{
-		"name": "Slayer Jewel[1]",
+		"name": "Dragon Res Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2506,7 +2506,7 @@
 		]
 	},
 	{
-		"name": "Extinction Jwl[1]",
+		"name": "Dragonbane Jewel[1]",
 		"rarity": 6,
 		"slots": 1,
 		"hrRequired": 5,
@@ -2535,7 +2535,7 @@
 		]
 	},
 	{
-		"name": "Protectn Jwl[1]",
+		"name": "Protection Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 2,
@@ -2560,7 +2560,7 @@
 		]
 	},
 	{
-		"name": "DvnePrtctJwl[1]",
+		"name": "Asylum Jewel[1]",
 		"rarity": 6,
 		"slots": 1,
 		"hrRequired": 6,
@@ -2589,7 +2589,7 @@
 		]
 	},
 	{
-		"name": "Health Jewel[1]",
+		"name": "Strength Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2614,7 +2614,7 @@
 		]
 	},
 	{
-		"name": "FeelGood Jwl[1]",
+		"name": "Recovery Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2643,7 +2643,7 @@
 		]
 	},
 	{
-		"name": "FeelGood Jwl[2]",
+		"name": "Recovery Jewel[2]",
 		"rarity": 5,
 		"slots": 2,
 		"hrRequired": 1,
@@ -2686,7 +2686,7 @@
 		]
 	},
 	{
-		"name": "Cure Jewel[1]",
+		"name": "Medicine Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2719,7 +2719,7 @@
 		]
 	},
 	{
-		"name": "Cure Jewel[2]",
+		"name": "Medicine Jewel[2]",
 		"rarity": 6,
 		"slots": 2,
 		"hrRequired": 4,
@@ -2828,7 +2828,7 @@
 		]
 	},
 	{
-		"name": "Jump Jewel[1]",
+		"name": "Jumping Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 2,
@@ -2871,7 +2871,7 @@
 		]
 	},
 	{
-		"name": "Jump Jewel[3]",
+		"name": "Jumping Jewel[3]",
 		"rarity": 5,
 		"slots": 3,
 		"hrRequired": 5,
@@ -2904,7 +2904,7 @@
 		]
 	},
 	{
-		"name": "Sheathe Jwl[1]",
+		"name": "Sheathing Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -2951,7 +2951,7 @@
 		]
 	},
 	{
-		"name": "Sheathe Jwl[2]",
+		"name": "Sheathing Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 6,
@@ -2984,7 +2984,7 @@
 		]
 	},
 	{
-		"name": "TrapMastrJwl[1]",
+		"name": "Trapmaster Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3013,7 +3013,7 @@
 		]
 	},
 	{
-		"name": "FastEaterJwl[1]",
+		"name": "Gobbler Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3056,7 +3056,7 @@
 		]
 	},
 	{
-		"name": "FastEaterJwl[3]",
+		"name": "Gobbler Jewel[3]",
 		"rarity": 4,
 		"slots": 3,
 		"hrRequired": 6,
@@ -3089,7 +3089,7 @@
 		]
 	},
 	{
-		"name": "Marathon Jwl[1]",
+		"name": "Sprinter Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3132,7 +3132,7 @@
 		]
 	},
 	{
-		"name": "Marathon Jwl[3]",
+		"name": "Sprinter Jewel[3]",
 		"rarity": 4,
 		"slots": 3,
 		"hrRequired": 5,
@@ -3165,7 +3165,7 @@
 		]
 	},
 	{
-		"name": "Constutn Jwl[1]",
+		"name": "Physique Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3208,7 +3208,7 @@
 		]
 	},
 	{
-		"name": "Constutn Jwl[2]",
+		"name": "Physique Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 6,
@@ -3241,7 +3241,7 @@
 		]
 	},
 	{
-		"name": "WillRecovJwl[1]",
+		"name": "Gear Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 2,
@@ -3288,7 +3288,7 @@
 		]
 	},
 	{
-		"name": "WillRecovJwl[2]",
+		"name": "Gear Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 5,
@@ -3321,7 +3321,7 @@
 		]
 	},
 	{
-		"name": "PickyEatrJwl[1]",
+		"name": "Hungerless Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3350,7 +3350,7 @@
 		]
 	},
 	{
-		"name": "Fatso Jewel[1]",
+		"name": "Metabolism Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3441,7 +3441,7 @@
 		]
 	},
 	{
-		"name": "Rewards Jwl[1]",
+		"name": "Tranq Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 4,
@@ -3474,7 +3474,7 @@
 		]
 	},
 	{
-		"name": "Rewards Jwl[3]",
+		"name": "Tranq Jewel[3]",
 		"rarity": 4,
 		"slots": 3,
 		"hrRequired": 6,
@@ -3507,7 +3507,7 @@
 		]
 	},
 	{
-		"name": "HidecutterJwl[1]",
+		"name": "Carver Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 6,
@@ -3536,7 +3536,7 @@
 		]
 	},
 	{
-		"name": "HidecutterJwl[3]",
+		"name": "Carver Jewel[3]",
 		"rarity": 5,
 		"slots": 3,
 		"hrRequired": 6,
@@ -3569,7 +3569,7 @@
 		]
 	},
 	{
-		"name": "BackpckngJwl[1]",
+		"name": "Transportr Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3594,7 +3594,7 @@
 		]
 	},
 	{
-		"name": "GatherngJwl[1]",
+		"name": "Gathering Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3619,7 +3619,7 @@
 		]
 	},
 	{
-		"name": "GrabnDashJwl[1]",
+		"name": "Spree Jewel[1]",
 		"rarity": 6,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3648,7 +3648,7 @@
 		]
 	},
 	{
-		"name": "GoodLuck Jwl[1]",
+		"name": "Blessing Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3673,7 +3673,7 @@
 		]
 	},
 	{
-		"name": "FriendshipJwl[1]",
+		"name": "Friendship Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3716,7 +3716,7 @@
 		]
 	},
 	{
-		"name": "FriendshipJwl[2]",
+		"name": "Friendship Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 5,
@@ -3749,7 +3749,7 @@
 		]
 	},
 	{
-		"name": "Psychic Jwl[1]",
+		"name": "Psychic Jewel[1]",
 		"rarity": 6,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3774,7 +3774,7 @@
 		]
 	},
 	{
-		"name": "ProfessorJwl[1]",
+		"name": "Professor Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3803,7 +3803,7 @@
 		]
 	},
 	{
-		"name": "Armory Jewel[1]",
+		"name": "Factory Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3828,7 +3828,7 @@
 		]
 	},
 	{
-		"name": "StayngPwrJwl[1]",
+		"name": "Enduring Jewel[1]",
 		"rarity": 6,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3853,7 +3853,7 @@
 		]
 	},
 	{
-		"name": "Perceptn Jwl[1]",
+		"name": "Perception Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3882,7 +3882,7 @@
 		]
 	},
 	{
-		"name": "Dungmastr Jwl[1]",
+		"name": "Fertilizer Jewel[1]",
 		"rarity": 6,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3907,7 +3907,7 @@
 		]
 	},
 	{
-		"name": "Huntsman Jwl[1]",
+		"name": "Hunter Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -3961,7 +3961,7 @@
 		]
 	},
 	{
-		"name": "Artisan Jwl[1]",
+		"name": "Handicraft Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 3,
@@ -4004,7 +4004,7 @@
 		]
 	},
 	{
-		"name": "Artisan Jwl[3]",
+		"name": "Handicraft Jewel[3]",
 		"rarity": 5,
 		"slots": 3,
 		"hrRequired": 6,
@@ -4037,7 +4037,7 @@
 		]
 	},
 	{
-		"name": "Fencing Jwl[1]",
+		"name": "Fencer Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 3,
@@ -4080,7 +4080,7 @@
 		]
 	},
 	{
-		"name": "Fencing Jwl[3]",
+		"name": "Fencer Jewel[3]",
 		"rarity": 4,
 		"slots": 3,
 		"hrRequired": 6,
@@ -4189,7 +4189,7 @@
 		]
 	},
 	{
-		"name": "CritDraw Jwl[1]",
+		"name": "Draw Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 3,
@@ -4232,7 +4232,7 @@
 		]
 	},
 	{
-		"name": "CritDraw Jwl[2]",
+		"name": "Draw Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 6,
@@ -4265,7 +4265,7 @@
 		]
 	},
 	{
-		"name": "PunshDrw Jwl[1]",
+		"name": "Gambit Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 2,
@@ -4308,7 +4308,7 @@
 		]
 	},
 	{
-		"name": "PunshDrw Jwl[3]",
+		"name": "Gambit Jewel[3]",
 		"rarity": 4,
 		"slots": 3,
 		"hrRequired": 6,
@@ -4341,7 +4341,7 @@
 		]
 	},
 	{
-		"name": "IronWall Jwl[1]",
+		"name": "Iron Wall Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -4370,7 +4370,7 @@
 		]
 	},
 	{
-		"name": "IronWall Jwl[2]",
+		"name": "Iron Wall Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 3,
@@ -4413,7 +4413,7 @@
 		]
 	},
 	{
-		"name": "HardWall Jwl[1]",
+		"name": "Strong Wall Jewel[1]",
 		"rarity": 6,
 		"slots": 1,
 		"hrRequired": 2,
@@ -4442,7 +4442,7 @@
 		]
 	},
 	{
-		"name": "HardWall Jwl[2]",
+		"name": "Strong Wall Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 6,
@@ -4475,7 +4475,7 @@
 		]
 	},
 	{
-		"name": "Grinder Jwl[1]",
+		"name": "Grinder Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 1,
@@ -4504,7 +4504,7 @@
 		]
 	},
 	{
-		"name": "StrngShotJwl[1]",
+		"name": "Forceshot Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 2,
@@ -4537,7 +4537,7 @@
 		]
 	},
 	{
-		"name": "StrngShotJwl[3]",
+		"name": "Forceshot Jewel[3]",
 		"rarity": 6,
 		"slots": 3,
 		"hrRequired": 6,
@@ -4702,7 +4702,7 @@
 		]
 	},
 	{
-		"name": "ShotBonusJwl[1]",
+		"name": "ShotPlus Jewel[1]",
 		"rarity": 6,
 		"slots": 1,
 		"hrRequired": 1,
@@ -4731,7 +4731,7 @@
 		]
 	},
 	{
-		"name": "ShotBonusJwl[2]",
+		"name": "ShotPlus Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 2,
@@ -4778,7 +4778,7 @@
 		]
 	},
 	{
-		"name": "PrceBonusJwl[1]",
+		"name": "PiercePlus Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 2,
@@ -4803,7 +4803,7 @@
 		]
 	},
 	{
-		"name": "PlltBonusJwl[1]",
+		"name": "PelletPlus Jewel[1]",
 		"rarity": 6,
 		"slots": 1,
 		"hrRequired": 1,
@@ -4828,7 +4828,7 @@
 		]
 	},
 	{
-		"name": "BombBonusJwl[1]",
+		"name": "CragPlus Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 3,
@@ -4853,7 +4853,7 @@
 		]
 	},
 	{
-		"name": "ScttrBnusJwl[1]",
+		"name": "ClustPlus Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 2,
@@ -4882,7 +4882,7 @@
 		]
 	},
 	{
-		"name": "CuttrBnus Jwl[1]",
+		"name": "SlicePlus Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -4907,7 +4907,7 @@
 		]
 	},
 	{
-		"name": "RapidFireJwl[1]",
+		"name": "Salvo Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 3,
@@ -4950,7 +4950,7 @@
 		]
 	},
 	{
-		"name": "RapidFireJwl[3]",
+		"name": "Salvo Jewel[3]",
 		"rarity": 5,
 		"slots": 3,
 		"hrRequired": 6,
@@ -4983,7 +4983,7 @@
 		]
 	},
 	{
-		"name": "HighSpeedJwl[1]",
+		"name": "Quickload Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -5012,7 +5012,7 @@
 		]
 	},
 	{
-		"name": "HighSpeedJwl[2]",
+		"name": "Quickload Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 2,
@@ -5055,7 +5055,7 @@
 		]
 	},
 	{
-		"name": "Recoil Jewel[1]",
+		"name": "Absorber Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -5098,7 +5098,7 @@
 		]
 	},
 	{
-		"name": "Recoil Jewel[3]",
+		"name": "Absorber Jewel[3]",
 		"rarity": 5,
 		"slots": 3,
 		"hrRequired": 6,
@@ -5156,7 +5156,7 @@
 		]
 	},
 	{
-		"name": "Para Ct Jwl[1]",
+		"name": "Para Plus Jewel[1]",
 		"rarity": 6,
 		"slots": 1,
 		"hrRequired": 1,
@@ -5185,7 +5185,7 @@
 		]
 	},
 	{
-		"name": "Para Ct Jwl[2]",
+		"name": "Para Plus Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 5,
@@ -5218,7 +5218,7 @@
 		]
 	},
 	{
-		"name": "Sleep Ct Jwl[1]",
+		"name": "Sleep Plus Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 2,
@@ -5243,7 +5243,7 @@
 		]
 	},
 	{
-		"name": "PoisonCt Jwl[1]",
+		"name": "Poison Plus Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
@@ -5268,7 +5268,7 @@
 		]
 	},
 	{
-		"name": "Power Ct Jwl[1]",
+		"name": "Power Plus Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 2,
@@ -5301,7 +5301,7 @@
 		]
 	},
 	{
-		"name": "Power Ct Jwl[2]",
+		"name": "Power Plus Jewel[2]",
 		"rarity": 4,
 		"slots": 2,
 		"hrRequired": 5,
@@ -5334,7 +5334,7 @@
 		]
 	},
 	{
-		"name": "ClsRngCt Jwl[1]",
+		"name": "Close Range Jewel[1]",
 		"rarity": 5,
 		"slots": 1,
 		"hrRequired": 1,
@@ -5363,7 +5363,7 @@
 		]
 	},
 	{
-		"name": "FatigeCt Jwl[1]",
+		"name": "Exhaust Plus Jewel[1]",
 		"rarity": 4,
 		"slots": 1,
 		"hrRequired": 1,
