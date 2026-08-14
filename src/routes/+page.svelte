@@ -81,7 +81,11 @@
 	let searching = $state(false);
 	let searched = $state(false);
 	let searchTime = $state(0);
-	let message = $state('');
+	let toast = $state('');
+
+	function showToast(msg: string) {
+		toast = msg;
+	}
 	let results = $state<SetResult[]>([]);
 	let progress = $state<SearchProgress>({ phase: '', nodes: 0, found: 0, done: false });
 	let controller: AbortController | null = null;
@@ -408,20 +412,19 @@
 
 	async function doSearch() {
 		if (targetSkills.length === 0) {
-			message = 'Select at least one target skill.';
+			showToast('Select at least one target skill.');
 			document
 				.getElementById('search-form')
 				?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			return;
 		}
 		if (!includeNoCharm && !possibleMode && !charms.some((c) => c.included)) {
-			message = 'Add at least one charm, or enable "no charm" or "possible charm" sets.';
+			showToast('Add at least one charm, or enable "no charm" or "possible charm" sets.');
 			document
 				.getElementById('search-form')
 				?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			return;
 		}
-		message = '';
 		formBaseline = formSnapshot();
 		formDirty = false;
 		controller = new AbortController();
@@ -467,13 +470,14 @@
 			void recordSearch();
 		} catch (e) {
 			console.error(e);
-			message = 'Search failed.';
+			showToast('Search failed.');
 		} finally {
 			searching = false;
 			searchTime = performance.now() - t0;
 			if (progress.phase.includes('combination limit')) {
-				message =
-					'Too many combinations to check exhaustively. Showing best found so far — try loosening your skills or adding a stronger charm.';
+				showToast(
+					'Too many combinations to check exhaustively. Showing best found so far — try loosening your skills or adding a stronger charm.'
+				);
 			}
 		}
 	}
@@ -594,7 +598,6 @@
 		showCharms = h.showCharms;
 		searched = false;
 		results = [];
-		message = '';
 		searchTime = 0;
 		formBaseline = formSnapshot();
 		formDirty = true;
@@ -654,7 +657,6 @@
 		};
 		searched = false;
 		results = [];
-		message = '';
 		searchTime = 0;
 		formBaseline = formSnapshot();
 		formDirty = true;
@@ -1128,8 +1130,9 @@
 				</section>
 
 				<div
-					class="rounded-lg border border-zinc-800 bg-zinc-900 p-4
-						{searching || message ? 'block' : 'hidden'} lg:block"
+					class="rounded-lg border border-zinc-800 bg-zinc-900 p-4 {searching
+						? 'block'
+						: 'hidden'} lg:block"
 				>
 					<button
 						type="button"
@@ -1161,14 +1164,6 @@
 								Stop
 							</button>
 						</div>
-					{/if}
-
-					{#if message}
-						<p
-							class="mt-3 rounded border border-red-800 bg-red-500/10 px-3 py-2 text-xs text-red-300"
-						>
-							{message}
-						</p>
 					{/if}
 				</div>
 			</aside>
@@ -1421,4 +1416,21 @@
 			</svg>
 		{/if}
 	</button>
+
+	{#if toast}
+		<div class="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 px-4">
+			<div
+				class="pointer-events-auto flex max-w-sm flex-col gap-4 rounded-lg border border-zinc-700 bg-zinc-900 px-5 py-4 shadow-2xl"
+			>
+				<p class="text-sm text-red-300">{toast}</p>
+				<button
+					type="button"
+					onclick={() => (toast = '')}
+					class="self-end rounded bg-amber-500 px-4 py-1.5 text-sm font-bold text-zinc-950 hover:bg-amber-400"
+				>
+					OK
+				</button>
+			</div>
+		</div>
+	{/if}
 </div>
