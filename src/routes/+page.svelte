@@ -521,15 +521,15 @@
 
 	// Display label for a history entry, derived from its stored skills so old
 	// entries (saved with points-only labels) still show the skill names.
+	// Matches the "most searched" format: skills · weapon slots · hunter type
+	// (charms are personal to each user, so they're not shown).
 	function historyLabelFor(h: SearchHistoryEntry): string {
 		const targetPart = h.targets.map((t) => t.name).join(', ') || 'No skills';
-		let charmPart: string;
-		if (h.possibleMode) charmPart = `possible (${POSSIBLE_LABELS[h.possibleMode]})`;
-		else if (h.charms.length > 0)
-			charmPart = `${h.charms.length} charm${h.charms.length === 1 ? '' : 's'}`;
-		else charmPart = 'no charms';
-		const extras = h.includeNoCharm ? ' · +no charm' : '';
-		return `${targetPart} · ${charmPart}${extras}`;
+		const weaponSlots = h.settings.weaponSlots;
+		const weaponPart = !weaponSlots
+			? 'no slots'
+			: `${weaponSlots} slot${weaponSlots === 1 ? '' : 's'}`;
+		return `${targetPart} · ${weaponPart} · ${h.settings.hunterType || ''}`.trimEnd();
 	}
 
 	// Label for the "most searched" list: charms are personal to each user, so
@@ -1054,7 +1054,7 @@
 											class="flex w-full items-center justify-between gap-2 rounded border border-zinc-800 bg-zinc-800/50 px-2 py-1.5 text-left text-xs hover:border-amber-500 hover:bg-zinc-800"
 										>
 											<span class="min-w-0 flex-1">
-												<span class="block truncate text-zinc-200">{historyLabelFor(h)}</span>
+												<span class="block text-zinc-200">{historyLabelFor(h)}</span>
 												<span class="block text-[10px] text-zinc-500">{h.when}</span>
 											</span>
 										</button>
@@ -1112,7 +1112,7 @@
 													: rank === 2
 														? 'bg-zinc-300 text-zinc-800'
 														: rank === 3
-															? 'bg-orange-700 text-orange-50'
+															? 'bg-[#b87333] text-white'
 															: 'bg-zinc-800 text-zinc-400'}">{rank}</span
 											>
 											<span class="min-w-0 flex-1">
