@@ -13,6 +13,35 @@ export const skillTrees = skillTreesJson as SkillTree[];
 export const decorations = decorationsJson as Decoration[];
 export const tags = tagsJson as string[];
 
+/** Decorations indexed by name, for resolving crafting recipes. */
+export const decorationsByName = new Map<string, Decoration>();
+for (const d of decorations) decorationsByName.set(d.name, d);
+
+/**
+ * Total raw materials to build a set: every armor piece's materials plus the
+ * first recipe of each decoration used (recipes[0]). Aggregated by material.
+ */
+export function aggregateSetMaterials(
+	pieceMaterials: { name: string; quantity: number }[],
+	decorationUses: { name: string; count: number }[]
+): { name: string; quantity: number }[] {
+	const totals = new Map<string, number>();
+	for (const m of pieceMaterials) {
+		totals.set(m.name, (totals.get(m.name) ?? 0) + m.quantity);
+	}
+	for (const d of decorationUses) {
+		const dec = decorationsByName.get(d.name);
+		const recipe = dec?.recipes[0];
+		if (!recipe) continue;
+		for (const m of recipe) {
+			totals.set(m.name, (totals.get(m.name) ?? 0) + m.quantity * d.count);
+		}
+	}
+	return [...totals.entries()]
+		.map(([name, quantity]) => ({ name, quantity }))
+		.sort((a, b) => b.quantity - a.quantity || a.name.localeCompare(b.name));
+}
+
 export const TORSO_INC_TREE = 'Torso Up';
 
 /** Formats skill points with an explicit sign, e.g. "+10" or "-9". */

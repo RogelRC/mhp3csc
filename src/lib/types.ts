@@ -92,6 +92,7 @@ export interface SetPiece {
 	rarity: number;
 	hrRequired: number;
 	isTorsoInc: boolean;
+	materials: { name: string; quantity: number }[];
 }
 
 export interface ActivatedSkill {

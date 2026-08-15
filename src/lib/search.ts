@@ -821,7 +821,8 @@ function buildResult(
 			defenseMax: orig.defenseMax,
 			rarity: orig.rarity,
 			hrRequired: orig.hrRequired,
-			isTorsoInc: p.torsoInc
+			isTorsoInc: p.torsoInc,
+			materials: orig.materials
 		};
 	});
 

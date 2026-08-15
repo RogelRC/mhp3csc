@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { SetResult } from '$lib/types';
-	import { formatSkillPoints } from '$lib/gameData';
+	import { aggregateSetMaterials, formatSkillPoints } from '$lib/gameData';
 
 	let { result, index }: { result: SetResult; index: number } = $props();
 	let open = $state(false);
@@ -57,6 +57,8 @@
 		if (result.negativeActivated.length) {
 			lines.push(`  Negative skills: ${result.negativeActivated.map((a) => a.name).join(', ')}`);
 		}
+		const matLine = materialsMarkup();
+		if (matLine) lines.push(`  Materials: ${matLine}`);
 		return lines.join('\n');
 	}
 
@@ -66,6 +68,15 @@
 		} catch {
 			/* clipboard unavailable */
 		}
+	}
+
+	function materialsMarkup(): string {
+		return aggregateSetMaterials(
+			result.pieces.flatMap((p) => p.materials),
+			result.decorations
+		)
+			.map((m) => `${m.name} x${m.quantity}`)
+			.join(', ');
 	}
 </script>
 
@@ -231,6 +242,20 @@
 					{/each}
 				</div>
 			</div>
+
+			{#if materialsMarkup()}
+				<div class="mt-2 rounded border border-zinc-800 bg-zinc-950/50 p-2 text-xs">
+					<span class="text-zinc-500">Materials:</span>
+					<div class="mt-1 flex flex-wrap gap-x-4 gap-y-1">
+						{#each aggregateSetMaterials( result.pieces.flatMap((p) => p.materials), result.decorations ) as m (m.name)}
+							<span class="text-zinc-300">
+								{m.name}
+								<span class="text-amber-400">x{m.quantity}</span>
+							</span>
+						{/each}
+					</div>
+				</div>
+			{/if}
 
 			<div class="mt-3 flex gap-2" data-no-export>
 				<button
