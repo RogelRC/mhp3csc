@@ -178,3 +178,19 @@ export function buildDecoIndex(selectedTrees: Set<string>): Map<string, Decorati
 
 export const TORSO_INC_PIECE = (piece: ArmorPiece): boolean =>
 	piece.skills.some((s) => s.skillTree === TORSO_INC_TREE);
+
+/** MHP3rd rarity colors (from the game's item box). */
+const RARITY_COLORS: Record<number, string> = {
+	1: '#F5F5F5',
+	2: '#B192F1',
+	3: '#DED460',
+	4: '#E88E9E',
+	5: '#70C674',
+	6: '#708EF7',
+	7: '#DA565A'
+};
+
+/** The in-game color of a rarity, falling back to the standard text color. */
+export function rarityColor(rarity: number): string {
+	return RARITY_COLORS[rarity] ?? '#71717a';
+}

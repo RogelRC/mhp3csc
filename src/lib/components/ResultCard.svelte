@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { SetResult } from '$lib/types';
-	import { aggregateSetMaterials, formatSkillPoints } from '$lib/gameData';
+	import { aggregateSetMaterials, formatSkillPoints, rarityColor } from '$lib/gameData';
 
 	let { result, index }: { result: SetResult; index: number } = $props();
 	let open = $state(false);
@@ -145,7 +145,9 @@
 							<td class="py-1 text-right text-zinc-300">
 								{p.defenseBase}–{p.defenseMax}
 							</td>
-							<td class="py-1 text-right text-zinc-400">R{p.rarity}</td>
+							<td class="py-1 text-right" style="color: {rarityColor(p.rarity)}">
+								R{p.rarity}
+							</td>
 						</tr>
 					{/each}
 				</tbody>
@@ -164,7 +166,7 @@
 					</span>
 					<span class="text-zinc-300">
 						💎 Rarity
-						<span class="text-zinc-100"> R{result.raritySum}</span>
+						<span style="color: {rarityColor(result.raritySum)}"> R{result.raritySum}</span>
 					</span>
 					<span class="text-zinc-300">
 						⭐ Difficulty
