@@ -67,15 +67,15 @@ function withoutGender(settings: Record<string, unknown>): Record<string, unknow
 }
 
 function keyFor(input: RecordSearchInput): string {
-	// Gender is intentionally excluded so the same set searched with any
-	// gender counts as a single entry.
-	// Order-independent: the same skills/charms in any order count as one set.
+	// A search is only distinct by its target skills, weapon slots, and hunter type.
+	// Everything else (charms, showCharms, possibleMode, gender, etc.) is ignored.
+	// Order-independent: the same skills in any order count as one set.
+	const weaponSlots = input.settings.weaponSlots;
+	const hunterType = input.settings.hunterType;
 	const serialized = JSON.stringify({
 		targets: [...input.targets].sort((a, b) => a.tree.localeCompare(b.tree) || a.points - b.points),
-		charms: [...input.charms].sort((a, b) => a.id.localeCompare(b.id)),
-		includeNoCharm: input.includeNoCharm,
-		possibleMode: input.possibleMode,
-		settings: withoutGender(input.settings)
+		weaponSlots,
+		hunterType
 	});
 	return createHash('sha256').update(serialized).digest('hex').slice(0, 16);
 }
