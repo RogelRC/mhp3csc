@@ -122,10 +122,6 @@ src/
 
 Bug reports, feature ideas and pull requests are welcome. If you find a bug, please [report it on Discord](https://discord.com/users/1136464673479340203).
 
-## 🙏 Credits
-
-- **Bae** — special thanks for data and support.
-
 ## 📄 License
 
 This project is a fan-made tool for _Monster Hunter Portable 3rd_ (© CAPCOM). It is not affiliated with or endorsed by CAPCOM. All game data belongs to their respective owners.
