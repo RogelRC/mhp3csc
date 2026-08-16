@@ -2888,7 +2888,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Agnaktor Snout",
+				"name": "Agnaktor Beak",
 				"quantity": 1
 			},
 			{
@@ -2943,7 +2943,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Agnaktor Snout",
+				"name": "Agnaktor Beak",
 				"quantity": 1
 			},
 			{
@@ -3544,7 +3544,7 @@
 		],
 		"materials": [
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 4
 			},
 			{
@@ -3599,7 +3599,7 @@
 		],
 		"materials": [
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 4
 			},
 			{
@@ -7614,7 +7614,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Agnaktor Snout",
+				"name": "Agnaktor Beak",
 				"quantity": 2
 			},
 			{
@@ -7669,7 +7669,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Agnaktor Snout",
+				"name": "Agnaktor Beak",
 				"quantity": 2
 			},
 			{
@@ -8824,7 +8824,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Ice Agnaktor Snout",
+				"name": "Ice Agnaktor Beak",
 				"quantity": 2
 			},
 			{
@@ -8879,7 +8879,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Ice Agnaktor Snout",
+				"name": "Ice Agnaktor Beak",
 				"quantity": 2
 			},
 			{
@@ -9814,7 +9814,7 @@
 				"quantity": 3
 			},
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 4
 			},
 			{
@@ -9869,7 +9869,7 @@
 				"quantity": 3
 			},
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 4
 			},
 			{
@@ -10800,11 +10800,11 @@
 		],
 		"materials": [
 			{
-				"name": "Alatreon Horn",
+				"name": "Broken Skypiercer",
 				"quantity": 4
 			},
 			{
-				"name": "Alatreon Horn+",
+				"name": "Skypiercer",
 				"quantity": 1
 			},
 			{
@@ -10855,11 +10855,11 @@
 		],
 		"materials": [
 			{
-				"name": "Alatreon Horn",
+				"name": "Broken Skypiercer",
 				"quantity": 4
 			},
 			{
-				"name": "Alatreon Horn+",
+				"name": "Skypiercer",
 				"quantity": 1
 			},
 			{
@@ -15792,7 +15792,7 @@
 		],
 		"materials": [
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 3
 			},
 			{
@@ -15847,7 +15847,7 @@
 		],
 		"materials": [
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 3
 			},
 			{
@@ -18709,7 +18709,7 @@
 				"quantity": 4
 			},
 			{
-				"name": "Fire Wyvern Brain Stem",
+				"name": "Fire Wyvern Medulla",
 				"quantity": 1
 			},
 			{
@@ -18764,7 +18764,7 @@
 				"quantity": 4
 			},
 			{
-				"name": "Fire Wyvern Brain Stem",
+				"name": "Fire Wyvern Medulla",
 				"quantity": 1
 			},
 			{
@@ -19043,7 +19043,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Nargacuga Brain Stem",
+				"name": "Nargacuga Medulla",
 				"quantity": 1
 			},
 			{
@@ -19098,7 +19098,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Nargacuga Brain Stem",
+				"name": "Nargacuga Medulla",
 				"quantity": 1
 			},
 			{
@@ -20583,7 +20583,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Nargacuga Brain Stem",
+				"name": "Nargacuga Medulla",
 				"quantity": 1
 			},
 			{
@@ -20638,7 +20638,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Nargacuga Brain Stem",
+				"name": "Nargacuga Medulla",
 				"quantity": 1
 			},
 			{
@@ -21239,7 +21239,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Fire Wyvern Brain Stem",
+				"name": "Fire Wyvern Medulla",
 				"quantity": 1
 			},
 			{
@@ -21294,7 +21294,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Fire Wyvern Brain Stem",
+				"name": "Fire Wyvern Medulla",
 				"quantity": 1
 			},
 			{
@@ -22119,7 +22119,7 @@
 				"quantity": 2
 			},
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 5
 			},
 			{
@@ -22174,7 +22174,7 @@
 				"quantity": 2
 			},
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 5
 			},
 			{
@@ -23109,7 +23109,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Ice Agnaktor Snout",
+				"name": "Ice Agnaktor Beak",
 				"quantity": 1
 			}
 		]
@@ -23164,7 +23164,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Ice Agnaktor Snout",
+				"name": "Ice Agnaktor Beak",
 				"quantity": 1
 			}
 		]
@@ -23215,7 +23215,7 @@
 				"quantity": 6
 			},
 			{
-				"name": "Alatreon Horn",
+				"name": "Broken Skypiercer",
 				"quantity": 4
 			},
 			{
@@ -23270,7 +23270,7 @@
 				"quantity": 6
 			},
 			{
-				"name": "Alatreon Horn",
+				"name": "Broken Skypiercer",
 				"quantity": 4
 			},
 			{
@@ -28136,7 +28136,7 @@
 		],
 		"materials": [
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 2
 			},
 			{
@@ -28191,7 +28191,7 @@
 		],
 		"materials": [
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 2
 			},
 			{
@@ -33030,7 +33030,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Diablos Brain Stem",
+				"name": "Diablos Medulla",
 				"quantity": 1
 			},
 			{
@@ -33085,7 +33085,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Diablos Brain Stem",
+				"name": "Diablos Medulla",
 				"quantity": 1
 			},
 			{
@@ -33466,7 +33466,7 @@
 				"quantity": 1
 			},
 			{
-				"name": "Fire Wyvern Brain Stem",
+				"name": "Fire Wyvern Medulla",
 				"quantity": 2
 			},
 			{
@@ -33521,7 +33521,7 @@
 				"quantity": 1
 			},
 			{
-				"name": "Fire Wyvern Brain Stem",
+				"name": "Fire Wyvern Medulla",
 				"quantity": 2
 			},
 			{
@@ -34236,7 +34236,7 @@
 				"quantity": 3
 			},
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 4
 			},
 			{
@@ -34291,7 +34291,7 @@
 				"quantity": 3
 			},
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 4
 			},
 			{
@@ -39666,7 +39666,7 @@
 		],
 		"materials": [
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 3
 			},
 			{
@@ -39721,7 +39721,7 @@
 		],
 		"materials": [
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 3
 			},
 			{
@@ -43291,7 +43291,7 @@
 				"quantity": 6
 			},
 			{
-				"name": "Diablos Brain Stem",
+				"name": "Diablos Medulla",
 				"quantity": 1
 			},
 			{
@@ -43346,7 +43346,7 @@
 				"quantity": 6
 			},
 			{
-				"name": "Diablos Brain Stem",
+				"name": "Diablos Medulla",
 				"quantity": 1
 			},
 			{
@@ -45683,7 +45683,7 @@
 				"quantity": 2
 			},
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 5
 			},
 			{
@@ -45738,7 +45738,7 @@
 				"quantity": 2
 			},
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 5
 			},
 			{
@@ -46017,7 +46017,7 @@
 				"quantity": 2
 			},
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 5
 			},
 			{
@@ -46072,7 +46072,7 @@
 				"quantity": 2
 			},
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 5
 			},
 			{
@@ -46412,7 +46412,7 @@
 		]
 	},
 	{
-		"name": "DarkAkantor Cincture",
+		"name": "Dark Akantor Cincture",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -46791,7 +46791,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Nargacuga Brain Stem",
+				"name": "Nargacuga Medulla",
 				"quantity": 1
 			}
 		]
@@ -46846,7 +46846,7 @@
 				"quantity": 5
 			},
 			{
-				"name": "Nargacuga Brain Stem",
+				"name": "Nargacuga Medulla",
 				"quantity": 1
 			}
 		]
@@ -51061,7 +51061,7 @@
 		],
 		"materials": [
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 2
 			},
 			{
@@ -51116,7 +51116,7 @@
 		],
 		"materials": [
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 2
 			},
 			{
@@ -54288,7 +54288,7 @@
 				"quantity": 6
 			},
 			{
-				"name": "Fire Wyvern Brain Stem",
+				"name": "Fire Wyvern Medulla",
 				"quantity": 2
 			},
 			{
@@ -54343,7 +54343,7 @@
 				"quantity": 6
 			},
 			{
-				"name": "Fire Wyvern Brain Stem",
+				"name": "Fire Wyvern Medulla",
 				"quantity": 2
 			},
 			{
@@ -57148,7 +57148,7 @@
 				"quantity": 3
 			},
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 4
 			},
 			{
@@ -57203,7 +57203,7 @@
 				"quantity": 3
 			},
 			{
-				"name": "Armord Beakfish",
+				"name": "Armored Beakfish",
 				"quantity": 4
 			},
 			{
