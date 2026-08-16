@@ -757,7 +757,7 @@
 		]
 	},
 	{
-		"name": "Aoashira Helm",
+		"name": "Arzuros Helm",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -812,7 +812,7 @@
 		]
 	},
 	{
-		"name": "Aoashira Cap",
+		"name": "Arzuros Cap",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -867,7 +867,7 @@
 		]
 	},
 	{
-		"name": "Froggi Helm",
+		"name": "Wroggi Helm",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -922,7 +922,7 @@
 		]
 	},
 	{
-		"name": "Froggi Cap",
+		"name": "Wroggi Cap",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -977,7 +977,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Helm",
+		"name": "Lagombi Helm",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -1032,7 +1032,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Cap",
+		"name": "Lagombi Cap",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -1637,7 +1637,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Helm",
+		"name": "Volvidon Helm",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -1692,7 +1692,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Cap",
+		"name": "Volvidon Cap",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -1857,7 +1857,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Helm",
+		"name": "Nibelsnarf Helm",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -1912,7 +1912,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Cap",
+		"name": "Nibelsnarf Cap",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -2077,7 +2077,7 @@
 		]
 	},
 	{
-		"name": "Narga Helm",
+		"name": "Nargacuga Helm",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -2132,7 +2132,7 @@
 		]
 	},
 	{
-		"name": "Narga Cap",
+		"name": "Nargacuga Cap",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -2517,7 +2517,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Helm",
+		"name": "Zinogre Helm",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -2572,7 +2572,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Cap",
+		"name": "Zinogre Cap",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -2957,7 +2957,7 @@
 		]
 	},
 	{
-		"name": "Doboru Helm",
+		"name": "Duramboros Helm",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -3012,7 +3012,7 @@
 		]
 	},
 	{
-		"name": "Doboru Cap",
+		"name": "Duramboros Cap",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -4057,7 +4057,7 @@
 		]
 	},
 	{
-		"name": "Gagua Mask",
+		"name": "Gargwa Mask",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -4092,7 +4092,7 @@
 		]
 	},
 	{
-		"name": "Zuwaro Helm",
+		"name": "Slagtoth Helm",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -4135,7 +4135,7 @@
 		]
 	},
 	{
-		"name": "Zuwaro Cap",
+		"name": "Slagtoth Cap",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -5483,7 +5483,7 @@
 		]
 	},
 	{
-		"name": "Froggi Helm S",
+		"name": "Wroggi Helm S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -5538,7 +5538,7 @@
 		]
 	},
 	{
-		"name": "Froggi Cap S",
+		"name": "Wroggi Cap S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -5593,7 +5593,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Helm S",
+		"name": "Lagombi Helm S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -5648,7 +5648,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Cap S",
+		"name": "Lagombi Cap S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -6253,7 +6253,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Helm S",
+		"name": "Volvidon Helm S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -6308,7 +6308,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Cap S",
+		"name": "Volvidon Cap S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -6473,7 +6473,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Helm S",
+		"name": "Nibelsnarf Helm S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -6528,7 +6528,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Cap S",
+		"name": "Nibelsnarf Cap S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -6693,7 +6693,7 @@
 		]
 	},
 	{
-		"name": "Narga Helm S",
+		"name": "Nargacuga Helm S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -6748,7 +6748,7 @@
 		]
 	},
 	{
-		"name": "Narga Cap S",
+		"name": "Nargacuga Cap S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -7243,7 +7243,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Helm S",
+		"name": "Zinogre Helm S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -7298,7 +7298,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Cap S",
+		"name": "Zinogre Cap S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -7683,7 +7683,7 @@
 		]
 	},
 	{
-		"name": "Doboru Helm S",
+		"name": "Duramboros Helm S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -7738,7 +7738,7 @@
 		]
 	},
 	{
-		"name": "Doboru Cap S",
+		"name": "Duramboros Cap S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -8233,7 +8233,7 @@
 		]
 	},
 	{
-		"name": "Narga Helm U",
+		"name": "Nargacuga Helm U",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -8288,7 +8288,7 @@
 		]
 	},
 	{
-		"name": "Narga Cap U",
+		"name": "Nargacuga Cap U",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -10983,7 +10983,7 @@
 		]
 	},
 	{
-		"name": "Gagua Mask S",
+		"name": "Gargwa Mask S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -11022,7 +11022,7 @@
 		]
 	},
 	{
-		"name": "Gagua Head S",
+		"name": "Gargwa Head S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -11061,7 +11061,7 @@
 		]
 	},
 	{
-		"name": "Zuwaro Hood S",
+		"name": "Slagtoth Hood S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -11104,7 +11104,7 @@
 		]
 	},
 	{
-		"name": "Zuwaro Head S",
+		"name": "Slagtoth Head S",
 		"part": "Head",
 		"gender": "Both",
 		"hunterType": "Both",
@@ -12954,7 +12954,7 @@
 		]
 	},
 	{
-		"name": "Aoashira Mail",
+		"name": "Arzuros Mail",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -13009,7 +13009,7 @@
 		]
 	},
 	{
-		"name": "Aoashira Vest",
+		"name": "Arzuros Vest",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -13115,7 +13115,7 @@
 		]
 	},
 	{
-		"name": "Froggi Mail",
+		"name": "Wroggi Mail",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -13170,7 +13170,7 @@
 		]
 	},
 	{
-		"name": "Froggi Vest",
+		"name": "Wroggi Vest",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -13225,7 +13225,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Mail",
+		"name": "Lagombi Mail",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -13280,7 +13280,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Vest",
+		"name": "Lagombi Vest",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -13885,7 +13885,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Mail",
+		"name": "Volvidon Mail",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -13940,7 +13940,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Vest",
+		"name": "Volvidon Vest",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -14105,7 +14105,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Mail",
+		"name": "Nibelsnarf Mail",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -14160,7 +14160,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Vest",
+		"name": "Nibelsnarf Vest",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -14325,7 +14325,7 @@
 		]
 	},
 	{
-		"name": "Narga Mail",
+		"name": "Nargacuga Mail",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -14380,7 +14380,7 @@
 		]
 	},
 	{
-		"name": "Narga Vest",
+		"name": "Nargacuga Vest",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -14765,7 +14765,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Mail",
+		"name": "Zinogre Mail",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -14820,7 +14820,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Vest",
+		"name": "Zinogre Vest",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -15205,7 +15205,7 @@
 		]
 	},
 	{
-		"name": "Doboru Mail",
+		"name": "Duramboros Mail",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -15260,7 +15260,7 @@
 		]
 	},
 	{
-		"name": "Doboru Vest",
+		"name": "Duramboros Vest",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -16407,7 +16407,7 @@
 		]
 	},
 	{
-		"name": "Zuwaro Mantle",
+		"name": "Slagtoth Mantle",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -16450,7 +16450,7 @@
 		]
 	},
 	{
-		"name": "Zuwaro Cape",
+		"name": "Slagtoth Cape",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -17788,7 +17788,7 @@
 		]
 	},
 	{
-		"name": "Froggi Mail S",
+		"name": "Wroggi Mail S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -17843,7 +17843,7 @@
 		]
 	},
 	{
-		"name": "Froggi Vest S",
+		"name": "Wroggi Vest S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -17898,7 +17898,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Mail S",
+		"name": "Lagombi Mail S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -17953,7 +17953,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Vest S",
+		"name": "Lagombi Vest S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -18558,7 +18558,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Mail S",
+		"name": "Volvidon Mail S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -18613,7 +18613,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Vest S",
+		"name": "Volvidon Vest S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -18778,7 +18778,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Mail S",
+		"name": "Nibelsnarf Mail S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -18833,7 +18833,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Vest S",
+		"name": "Nibelsnarf Vest S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -18998,7 +18998,7 @@
 		]
 	},
 	{
-		"name": "Narga Mail S",
+		"name": "Nargacuga Mail S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -19053,7 +19053,7 @@
 		]
 	},
 	{
-		"name": "Narga Vest S",
+		"name": "Nargacuga Vest S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -19548,7 +19548,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Mail S",
+		"name": "Zinogre Mail S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -19603,7 +19603,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Vest S",
+		"name": "Zinogre Vest S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -19988,7 +19988,7 @@
 		]
 	},
 	{
-		"name": "Doboru Mail S",
+		"name": "Duramboros Mail S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -20043,7 +20043,7 @@
 		]
 	},
 	{
-		"name": "Doboru Vest S",
+		"name": "Duramboros Vest S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -20538,7 +20538,7 @@
 		]
 	},
 	{
-		"name": "Narga Mail U",
+		"name": "Nargacuga Mail U",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -20593,7 +20593,7 @@
 		]
 	},
 	{
-		"name": "Narga Vest U",
+		"name": "Nargacuga Vest U",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -23390,7 +23390,7 @@
 		]
 	},
 	{
-		"name": "Zuwaro Cloak S",
+		"name": "Slagtoth Cloak S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -23433,7 +23433,7 @@
 		]
 	},
 	{
-		"name": "Zuwaro Cape S",
+		"name": "Slagtoth Cape S",
 		"part": "Body",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -25298,7 +25298,7 @@
 		]
 	},
 	{
-		"name": "Aoashira Vamraces",
+		"name": "Arzuros Vamraces",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -25353,7 +25353,7 @@
 		]
 	},
 	{
-		"name": "Aoashira Guards",
+		"name": "Arzuros Guards",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -25459,7 +25459,7 @@
 		]
 	},
 	{
-		"name": "Froggi Vambraces",
+		"name": "Wroggi Vambraces",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -25514,7 +25514,7 @@
 		]
 	},
 	{
-		"name": "Froggi Guards",
+		"name": "Wroggi Guards",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -25569,7 +25569,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Vambraces",
+		"name": "Lagombi Vambraces",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -25624,7 +25624,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Guards",
+		"name": "Lagombi Guards",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -26229,7 +26229,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Vambraces",
+		"name": "Volvidon Vambraces",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -26284,7 +26284,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Guards",
+		"name": "Volvidon Guards",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -26449,7 +26449,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Vambraces",
+		"name": "Nibelsnarf Vambraces",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -26504,7 +26504,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Guards",
+		"name": "Nibelsnarf Guards",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -26669,7 +26669,7 @@
 		]
 	},
 	{
-		"name": "Narga Vambraces",
+		"name": "Nargacuga Vambraces",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -26724,7 +26724,7 @@
 		]
 	},
 	{
-		"name": "Narga Guards",
+		"name": "Nargacuga Guards",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -27109,7 +27109,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Vambraces",
+		"name": "Zinogre Vambraces",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -27164,7 +27164,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Guards",
+		"name": "Zinogre Guards",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -27549,7 +27549,7 @@
 		]
 	},
 	{
-		"name": "Doboru Vambraces",
+		"name": "Duramboros Vambraces",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -27604,7 +27604,7 @@
 		]
 	},
 	{
-		"name": "Doboru Guards",
+		"name": "Duramboros Guards",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -29905,7 +29905,7 @@
 		]
 	},
 	{
-		"name": "Froggi Vambraces S",
+		"name": "Wroggi Vambraces S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -29960,7 +29960,7 @@
 		]
 	},
 	{
-		"name": "Froggi Guards S",
+		"name": "Wroggi Guards S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -30015,7 +30015,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Vambraces S",
+		"name": "Lagombi Vambraces S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -30070,7 +30070,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Guards S",
+		"name": "Lagombi Guards S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -30675,7 +30675,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Vambraces S",
+		"name": "Volvidon Vambraces S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -30730,7 +30730,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Guards S",
+		"name": "Volvidon Guards S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -30895,7 +30895,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Vambraces S",
+		"name": "Nibelsnarf Vambraces S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -30950,7 +30950,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Guards S",
+		"name": "Nibelsnarf Guards S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -31115,7 +31115,7 @@
 		]
 	},
 	{
-		"name": "Narga Vambraces S",
+		"name": "Nargacuga Vambraces S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -31170,7 +31170,7 @@
 		]
 	},
 	{
-		"name": "Narga Guards S",
+		"name": "Nargacuga Guards S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -31665,7 +31665,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Vambraces S",
+		"name": "Zinogre Vambraces S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -31720,7 +31720,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Guards S",
+		"name": "Zinogre Guards S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -32105,7 +32105,7 @@
 		]
 	},
 	{
-		"name": "Doboru Vambraces S",
+		"name": "Duramboros Vambraces S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -32160,7 +32160,7 @@
 		]
 	},
 	{
-		"name": "Doboru Guards S",
+		"name": "Duramboros Guards S",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -32655,7 +32655,7 @@
 		]
 	},
 	{
-		"name": "Narga Vambraces U",
+		"name": "Nargacuga Vambraces U",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -32710,7 +32710,7 @@
 		]
 	},
 	{
-		"name": "Narga Guards U",
+		"name": "Nargacuga Guards U",
 		"part": "Arms",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -36828,7 +36828,7 @@
 		]
 	},
 	{
-		"name": "Aoashira Tasset",
+		"name": "Arzuros Tasset",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -36883,7 +36883,7 @@
 		]
 	},
 	{
-		"name": "Aoashira Coat",
+		"name": "Arzuros Coat",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -36989,7 +36989,7 @@
 		]
 	},
 	{
-		"name": "Froggi Tasset",
+		"name": "Wroggi Tasset",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -37044,7 +37044,7 @@
 		]
 	},
 	{
-		"name": "Froggi Coat",
+		"name": "Wroggi Coat",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -37099,7 +37099,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Tasset",
+		"name": "Lagombi Tasset",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -37154,7 +37154,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Coat",
+		"name": "Lagombi Coat",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -37759,7 +37759,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Tasset",
+		"name": "Volvidon Tasset",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -37814,7 +37814,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Coat",
+		"name": "Volvidon Coat",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -37979,7 +37979,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Tasset",
+		"name": "Nibelsnarf Tasset",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -38034,7 +38034,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Coat",
+		"name": "Nibelsnarf Coat",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -38199,7 +38199,7 @@
 		]
 	},
 	{
-		"name": "Narga Tasset",
+		"name": "Nargacuga Tasset",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -38254,7 +38254,7 @@
 		]
 	},
 	{
-		"name": "Narga Coat",
+		"name": "Nargacuga Coat",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -38639,7 +38639,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Tasset",
+		"name": "Zinogre Tasset",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -38694,7 +38694,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Coat",
+		"name": "Zinogre Coat",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -39079,7 +39079,7 @@
 		]
 	},
 	{
-		"name": "Doboru Tasset",
+		"name": "Duramboros Tasset",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -39134,7 +39134,7 @@
 		]
 	},
 	{
-		"name": "Doboru Coat",
+		"name": "Duramboros Coat",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -41376,7 +41376,7 @@
 		]
 	},
 	{
-		"name": "Froggi Tasset S",
+		"name": "Wroggi Tasset S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -41431,7 +41431,7 @@
 		]
 	},
 	{
-		"name": "Froggi Coat S",
+		"name": "Wroggi Coat S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -41486,7 +41486,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Tasset S",
+		"name": "Lagombi Tasset S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -41541,7 +41541,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Coat S",
+		"name": "Lagombi Coat S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -42146,7 +42146,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Tasset S",
+		"name": "Volvidon Tasset S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -42201,7 +42201,7 @@
 		]
 	},
 	{
-		"name": "Rangura Coat S",
+		"name": "Volvidon Coat S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -42366,7 +42366,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Tasset S",
+		"name": "Nibelsnarf Tasset S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -42421,7 +42421,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Coat S",
+		"name": "Nibelsnarf Coat S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -42586,7 +42586,7 @@
 		]
 	},
 	{
-		"name": "Narga Tasset S",
+		"name": "Nargacuga Tasset S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -42641,7 +42641,7 @@
 		]
 	},
 	{
-		"name": "Narga Coat S",
+		"name": "Nargacuga Coat S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -43136,7 +43136,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Tasset S",
+		"name": "Zinogre Tasset S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -43191,7 +43191,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Coat S",
+		"name": "Zinogre Coat S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -43356,7 +43356,7 @@
 		]
 	},
 	{
-		"name": "Tigrex  Tasset S",
+		"name": "Tigrex Tasset S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -43576,7 +43576,7 @@
 		]
 	},
 	{
-		"name": "Doboru Tasset S",
+		"name": "Duramboros Tasset S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -43631,7 +43631,7 @@
 		]
 	},
 	{
-		"name": "Doburu Coat S",
+		"name": "Duramboros Coat S",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -44126,7 +44126,7 @@
 		]
 	},
 	{
-		"name": "Narga Tasset U",
+		"name": "Nargacuga Tasset U",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -44181,7 +44181,7 @@
 		]
 	},
 	{
-		"name": "Narga Coat U",
+		"name": "Nargacuga Coat U",
 		"part": "Waist",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -48322,7 +48322,7 @@
 		]
 	},
 	{
-		"name": "Aoashira Greaves",
+		"name": "Arzuros Greaves",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -48365,7 +48365,7 @@
 		]
 	},
 	{
-		"name": "Aoashira Leggings",
+		"name": "Arzuros Leggings",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -48408,7 +48408,7 @@
 		]
 	},
 	{
-		"name": "Froggi Greaves",
+		"name": "Wroggi Greaves",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -48463,7 +48463,7 @@
 		]
 	},
 	{
-		"name": "Froggi Leggings",
+		"name": "Wroggi Leggings",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -48518,7 +48518,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Greaves",
+		"name": "Lagombi Greaves",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -48573,7 +48573,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Leggings",
+		"name": "Lagombi Leggings",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -49178,7 +49178,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Greaves",
+		"name": "Volvidon Greaves",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -49221,7 +49221,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Leggings",
+		"name": "Volvidon Leggings",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -49374,7 +49374,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Greaves",
+		"name": "Nibelsnarf Greaves",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -49429,7 +49429,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Leggings",
+		"name": "Nibelsnarf Leggings",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -49594,7 +49594,7 @@
 		]
 	},
 	{
-		"name": "Narga Greaves",
+		"name": "Nargacuga Greaves",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -49649,7 +49649,7 @@
 		]
 	},
 	{
-		"name": "Narga Leggings",
+		"name": "Nargacuga Leggings",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -50034,7 +50034,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Greaves",
+		"name": "Zinogre Greaves",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -50089,7 +50089,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Leggings",
+		"name": "Zinogre Leggings",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -50474,7 +50474,7 @@
 		]
 	},
 	{
-		"name": "Doboru Greaves",
+		"name": "Duramboros Greaves",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -50529,7 +50529,7 @@
 		]
 	},
 	{
-		"name": "Doboru Leggings",
+		"name": "Duramboros Leggings",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -52841,7 +52841,7 @@
 		]
 	},
 	{
-		"name": "Froggi Greaves S",
+		"name": "Wroggi Greaves S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -52896,7 +52896,7 @@
 		]
 	},
 	{
-		"name": "Froggi Leggings S",
+		"name": "Wroggi Leggings S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -52951,7 +52951,7 @@
 		]
 	},
 	{
-		"name": "Urukusu Greaves S",
+		"name": "Lagombi Greaves S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -53006,7 +53006,7 @@
 		]
 	},
 	{
-		"name": "Urukuru Leggings S",
+		"name": "Lagombi Leggings S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -53611,7 +53611,7 @@
 		]
 	},
 	{
-		"name": "Ranguro Greaves S",
+		"name": "Volvidon Greaves S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -53654,7 +53654,7 @@
 		]
 	},
 	{
-		"name": "Rangura Leggings S",
+		"name": "Volvidon Leggings S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -53807,7 +53807,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Greaves S",
+		"name": "Nibelsnarf Greaves S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -53862,7 +53862,7 @@
 		]
 	},
 	{
-		"name": "Hapuru Leggings S",
+		"name": "Nibelsnarf Leggings S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -54027,7 +54027,7 @@
 		]
 	},
 	{
-		"name": "Narga Greaves S",
+		"name": "Nargacuga Greaves S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -54082,7 +54082,7 @@
 		]
 	},
 	{
-		"name": "Narga Leggings S",
+		"name": "Nargacuga Leggings S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -54577,7 +54577,7 @@
 		]
 	},
 	{
-		"name": "Jinouga  Greaves S",
+		"name": "Zinogre Greaves S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -54632,7 +54632,7 @@
 		]
 	},
 	{
-		"name": "Jinouga Leggings S",
+		"name": "Zinogre Leggings S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -55017,7 +55017,7 @@
 		]
 	},
 	{
-		"name": "Doboru Greaves S",
+		"name": "Duramboros Greaves S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -55072,7 +55072,7 @@
 		]
 	},
 	{
-		"name": "Doburu Leggings S",
+		"name": "Duramboros Leggings S",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
@@ -55567,7 +55567,7 @@
 		]
 	},
 	{
-		"name": "Narga Greaves U",
+		"name": "Nargacuga Greaves U",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Blademaster",
@@ -55622,7 +55622,7 @@
 		]
 	},
 	{
-		"name": "Narga Leggings U",
+		"name": "Nargacuga Leggings U",
 		"part": "Legs",
 		"gender": "Both",
 		"hunterType": "Gunner",
