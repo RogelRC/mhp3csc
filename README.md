@@ -3,8 +3,8 @@
 > An advanced armor set and charm skill calculator for **Monster Hunter Portable 3rd** (PSP).
 
 [![Production](https://img.shields.io/badge/Live-https%3A%2F%2Fmhp3csc.vercel.app-blue?style=flat-square&logo=vercel&logoColor=white&label=Production)](https://mhp3csc.vercel.app/)
-[![Visitors](https://mhp3csc.vercel.app/api/analytics/visitors.svg)](https://vercel.com/dashboard)
-[![Page Views](https://mhp3csc.vercel.app/api/analytics/pageviews.svg)](https://vercel.com/dashboard)
+[![Visitors](https://mhp3csc.vercel.app/api/analytics/visitors.svg?refresh=1)](https://mhp3csc.vercel.app/api/analytics)
+[![Page Views](https://mhp3csc.vercel.app/api/analytics/pageviews.svg?refresh=1)](https://mhp3csc.vercel.app/api/analytics)
 
 **MHP3 Armor Set Search** is a client-side tool that finds every armor set that activates the skills you want. Pick your skill targets, optional charms, weapon slots and hunter type, and the built-in search engine enumerates all viable combinations — with decorations, charm/table names, materials, defense and resistance breakdowns.
 
@@ -37,8 +37,8 @@ Badges below are generated on the fly from the [Vercel Web Analytics API](https:
 
 | Metric                        | Badge                                                                                                             |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| **Visitors** (last 30 days)   | [![Visitors](https://mhp3csc.vercel.app/api/analytics/visitors.svg)](https://mhp3csc.vercel.app/api/analytics)    |
-| **Page views** (last 30 days) | [![Page Views](https://mhp3csc.vercel.app/api/analytics/pageviews.svg)](https://mhp3csc.vercel.app/api/analytics) |
+| **Visitors** (last 30 days)   | [![Visitors](https://mhp3csc.vercel.app/api/analytics/visitors.svg?refresh=1)](https://mhp3csc.vercel.app/api/analytics)    |
+| **Page views** (last 30 days) | [![Page Views](https://mhp3csc.vercel.app/api/analytics/pageviews.svg?refresh=1)](https://mhp3csc.vercel.app/api/analytics) |
 
 The raw data is also available as JSON at [`/api/analytics`](https://mhp3csc.vercel.app/api/analytics).
 
