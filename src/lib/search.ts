@@ -83,8 +83,12 @@ interface SearchCtx {
 	maxPPS: number;
 	decoByTree: Map<string, DecoOption[]>;
 	decoByName: Map<string, DecoOption>;
+	/** Negative decoration options indexed by the tree they reduce. */
+	decoByNegTree: Map<string, DecoOption[]>;
 	/** Per-tree min-slot tables: clean (no negative on a target) and all options. */
 	decoTables: Map<string, { clean: DecoTable; all: DecoTable }>;
+	/** Same but for negative-decorations tables. */
+	decoNegTables: Map<string, { clean: DecoTable; all: DecoTable }>;
 	baseSlots: number;
 	/** Best `maxResults` sets found so far, sorted best-first. */
 	results: SetResult[];
@@ -107,6 +111,19 @@ interface Frame {
 const MAX_NEED = 30;
 const YIELD_EVERY = 50000;
 const SLOT_TABLE_CAP = 24;
+
+/** A deficit entry: positive need = need more positive points on this tree. */
+type Deficit = { tree: string; need: number; negTree?: boolean };
+
+/**
+ * Look up the ORIGINAL decoration option for a picked name. Negative entries
+ * use names like "Gem_neg_Tree"; we strip the suffix to find the real gem data.
+ */
+function lookupDeco(ctx: SearchCtx, name: string): DecoOption | undefined {
+	const idx = name.lastIndexOf('_neg_');
+	if (idx > 0) return ctx.decoByName.get(name.slice(0, idx));
+	return ctx.decoByName.get(name);
+}
 
 let DEBUG_FAST_OK = 0;
 let DEBUG_FALLBACK_OK = 0;
@@ -306,22 +323,36 @@ function buildSuffixBounds(
 function buildDecoOptions(
 	decorations: Decoration[],
 	relTrees: string[]
-): Map<string, DecoOption[]> {
+): { pos: Map<string, DecoOption[]>; neg: Map<string, DecoOption[]> } {
 	const selSet = new Set(relTrees);
-	const out = new Map<string, DecoOption[]>();
+	const pos = new Map<string, DecoOption[]>();
+	const neg = new Map<string, DecoOption[]>();
 	for (const d of decorations) {
+		/* --- positive entries (existing logic) --- */
 		for (const s of d.skills) {
 			if (s.points <= 0) continue;
 			const negs = d.skills
 				.filter((x) => x.points < 0)
 				.map((x) => ({ tree: x.skillTree, points: x.points }));
 			const clean = !negs.some((n) => selSet.has(n.tree));
-			const list = out.get(s.skillTree) ?? [];
+			const list = pos.get(s.skillTree) ?? [];
 			list.push({ tree: s.skillTree, name: d.name, size: d.slots, points: s.points, negs, clean });
-			out.set(s.skillTree, list);
+			pos.set(s.skillTree, list);
+		}
+		/* --- negative entries (inverted representation) --- */
+		for (const s of d.skills) {
+			if (s.points >= 0) continue;
+			const absPoints = Math.abs(s.points);
+			const otherSkills = d.skills.filter((x) => x.skillTree !== s.skillTree);
+			const invNegs = otherSkills.map((x) => ({ tree: x.skillTree, points: -x.points }));
+			const clean = !invNegs.some((n) => selSet.has(n.tree));
+			const negName = d.name + '_neg_' + s.skillTree;
+			const list = neg.get(s.skillTree) ?? [];
+			list.push({ tree: s.skillTree, name: negName, size: d.slots, points: absPoints, negs: invNegs, clean });
+			neg.set(s.skillTree, list);
 		}
 	}
-	for (const list of out.values()) {
+	for (const list of pos.values()) {
 		list.sort((a, b) => {
 			if (a.clean !== b.clean) return a.clean ? -1 : 1;
 			const effA = a.points / a.size;
@@ -330,7 +361,16 @@ function buildDecoOptions(
 			return b.points - a.points;
 		});
 	}
-	return out;
+	for (const list of neg.values()) {
+		list.sort((a, b) => {
+			if (a.clean !== b.clean) return a.clean ? -1 : 1;
+			const effA = a.points / a.size;
+			const effB = b.points / b.size;
+			if (effA !== effB) return effB - effA;
+			return b.points - a.points;
+		});
+	}
+	return { pos, neg };
 }
 
 function computeHardCounts(piecesByPart: PreparedPiece[][], relTrees: string[]): number[] {
@@ -417,6 +457,18 @@ function getDecoTables(ctx: SearchCtx, tree: string): { clean: DecoTable; all: D
 	return cached;
 }
 
+function getDecoNegTables(ctx: SearchCtx, tree: string): { clean: DecoTable; all: DecoTable } {
+	let cached = ctx.decoNegTables.get(tree);
+	if (cached) return cached;
+	const options = ctx.decoByNegTree.get(tree) ?? [];
+	const cleanOpts = options.filter((o) => o.clean);
+	const clean = buildDecoTable(cleanOpts.length > 0 ? cleanOpts : options);
+	const all = buildDecoTable(options);
+	cached = { clean, all };
+	ctx.decoNegTables.set(tree, cached);
+	return cached;
+}
+
 /**
  * Can a multiset of decoration sizes (1-3) be physically placed into the given
  * slot capacities (1-3)? A [2] gem needs a hole of at least 2, a [3] a hole of 3.
@@ -445,11 +497,11 @@ function canPackSlots(caps: number[], sizes: number[]): boolean {
  */
 function solveDeficits(
 	ctx: SearchCtx,
-	deficits: { tree: string; need: number }[],
+	deficits: Deficit[],
 	slotsAvail: number
 ): { uses: DecorUse[]; usedSlots: number; delta: Map<string, number> } | null {
-	const needs = new Map<string, number>();
-	for (const d of deficits) needs.set(d.tree, d.need);
+	const needs = new Map<string, { need: number; negTree: boolean }>();
+	for (const d of deficits) needs.set(d.tree, { need: d.need, negTree: d.negTree ?? false });
 	const picks = new Map<string, number>();
 	let usedSlots = 0;
 	let iter = 0;
@@ -459,7 +511,7 @@ function solveDeficits(
 		if (++iter > MAXITER) return null;
 		let t: string | null = null;
 		let maxNeed = 0;
-		for (const [tree, need] of needs) {
+		for (const [tree, { need }] of needs) {
 			if (need > 0 && need > maxNeed) {
 				maxNeed = need;
 				t = tree;
@@ -468,7 +520,8 @@ function solveDeficits(
 		if (t === null) break;
 
 		if (maxNeed > MAX_NEED) return null;
-		const { clean, all } = getDecoTables(ctx, t);
+		const isNeg = needs.get(t)!.negTree;
+		const { clean, all } = isNeg ? getDecoNegTables(ctx, t) : getDecoTables(ctx, t);
 		const table = clean.minSlots[maxNeed] <= slotsAvail - usedSlots ? clean : all;
 		const minS = table.minSlots[maxNeed];
 		if (minS === Infinity || minS > slotsAvail - usedSlots) return null;
@@ -481,16 +534,18 @@ function solveDeficits(
 			covered += option.points * count;
 			for (const neg of option.negs) {
 				if (needs.has(neg.tree)) {
-					needs.set(neg.tree, (needs.get(neg.tree) ?? 0) + neg.points * count);
+					const prev = needs.get(neg.tree)!;
+					needs.set(neg.tree, { need: prev.need + neg.points * count, negTree: prev.negTree });
 				}
 			}
 		}
-		needs.set(t, Math.max(0, needs.get(t)! - covered));
+		const prev = needs.get(t)!;
+		needs.set(t, { need: Math.max(0, prev.need - covered), negTree: prev.negTree });
 	}
 
 	const delta = new Map<string, number>();
 	for (const [name, count] of picks) {
-		const opt = ctx.decoByName.get(name);
+		const opt = lookupDeco(ctx, name);
 		if (opt) {
 			delta.set(opt.tree, (delta.get(opt.tree) ?? 0) + opt.points * count);
 			for (const neg of opt.negs) {
@@ -514,11 +569,11 @@ function solveDeficits(
  */
 function solveDeficitsExact(
 	ctx: SearchCtx,
-	deficits: { tree: string; need: number }[],
+	deficits: Deficit[],
 	caps: number[]
 ): { uses: DecorUse[]; usedSlots: number; delta: Map<string, number> } | null {
-	const needs = new Map<string, number>();
-	for (const d of deficits) needs.set(d.tree, d.need);
+	const needs = new Map<string, { need: number; negTree: boolean }>();
+	for (const d of deficits) needs.set(d.tree, { need: d.need, negTree: d.negTree ?? false });
 	const holes = caps.filter((c) => c > 0).sort((a, b) => b - a);
 	const picks = new Map<string, number>();
 	const memo = new Map<string, boolean>();
@@ -527,9 +582,9 @@ function solveDeficitsExact(
 
 	function stateKey(): string {
 		const n = [...needs.entries()]
-			.filter(([, v]) => v > 0)
+			.filter(([, v]) => v.need > 0)
 			.sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0))
-			.map(([t, v]) => `${t}:${v}`)
+			.map(([t, v]) => `${t}:${v.need}`)
 			.join(',');
 		return `${holes.join('')}|${n}`;
 	}
@@ -548,10 +603,12 @@ function solveDeficitsExact(
 
 		let maxTree: string | null = null;
 		let maxNeed = 0;
-		for (const [t, v] of needs) {
-			if (v > 0 && v > maxNeed) {
-				maxNeed = v;
+		let maxNegTree = false;
+		for (const [t, { need, negTree }] of needs) {
+			if (need > 0 && need > maxNeed) {
+				maxNeed = need;
 				maxTree = t;
+				maxNegTree = negTree;
 			}
 		}
 		if (maxTree === null) {
@@ -563,12 +620,11 @@ function solveDeficitsExact(
 			return false;
 		}
 
-		// Sound lower bound: each gem covers exactly one positive tree, so the
-		// sum of per-tree minimum slots must fit in the remaining capacity.
+		// Sound lower bound: sum of per-tree minimum slots must fit in capacity.
 		let minSlotsSum = 0;
-		for (const [t, v] of needs) {
+		for (const [t, { need: v, negTree }] of needs) {
 			if (v <= 0) continue;
-			const { clean, all } = getDecoTables(ctx, t);
+			const { clean, all } = negTree ? getDecoNegTables(ctx, t) : getDecoTables(ctx, t);
 			const m = Math.min(clean.minSlots[v], all.minSlots[v]);
 			if (m === Infinity) {
 				memo.set(k, false);
@@ -581,8 +637,10 @@ function solveDeficitsExact(
 			return false;
 		}
 
-		const options = ctx.decoByTree.get(maxTree) ?? [];
-		const prevNeed = needs.get(maxTree)!;
+		const options = maxNegTree
+			? (ctx.decoByNegTree.get(maxTree) ?? [])
+			: (ctx.decoByTree.get(maxTree) ?? []);
+		const prevEntry = needs.get(maxTree)!;
 		for (const opt of options) {
 			const usedCap = new Set<number>();
 			for (let i = 0; i < holes.length; i++) {
@@ -590,17 +648,17 @@ function solveDeficitsExact(
 				usedCap.add(holes[i]);
 				holes[i] -= opt.size;
 				picks.set(opt.name, (picks.get(opt.name) ?? 0) + 1);
-				needs.set(maxTree, Math.max(0, prevNeed - opt.points));
-				const rollbackNeeds: [string, number][] = [];
+				needs.set(maxTree, { need: Math.max(0, prevEntry.need - opt.points), negTree: prevEntry.negTree });
+				const rollbackNeeds: [string, { need: number; negTree: boolean }][] = [];
 				for (const neg of opt.negs) {
 					if (needs.has(neg.tree)) {
 						const pv = needs.get(neg.tree)!;
-						needs.set(neg.tree, pv + neg.points);
+						needs.set(neg.tree, { need: pv.need + neg.points, negTree: pv.negTree });
 						rollbackNeeds.push([neg.tree, pv]);
 					}
 				}
 				if (dfs()) {
-					needs.set(maxTree, prevNeed);
+					needs.set(maxTree, prevEntry);
 					for (const [t, pv] of rollbackNeeds) needs.set(t, pv);
 					holes[i] += opt.size;
 					memo.set(k, true);
@@ -608,7 +666,7 @@ function solveDeficitsExact(
 				}
 				picks.set(opt.name, picks.get(opt.name)! - 1);
 				if (picks.get(opt.name) === 0) picks.delete(opt.name);
-				needs.set(maxTree, prevNeed);
+				needs.set(maxTree, prevEntry);
 				for (const [t, pv] of rollbackNeeds) needs.set(t, pv);
 				holes[i] += opt.size;
 			}
@@ -622,7 +680,7 @@ function solveDeficitsExact(
 	const delta = new Map<string, number>();
 	let usedSlots = 0;
 	for (const [name, count] of picks) {
-		const opt = ctx.decoByName.get(name);
+		const opt = lookupDeco(ctx, name);
 		if (opt) {
 			usedSlots += opt.size * count;
 			delta.set(opt.tree, (delta.get(opt.tree) ?? 0) + opt.points * count);
@@ -677,7 +735,7 @@ function leafCore(
 	}
 
 	// Deficits on selected trees.
-	const deficits: { tree: string; need: number }[] = [];
+	const deficits: Deficit[] = [];
 	for (let i = 0; i < ctx.relTrees.length; i++) {
 		const tree = ctx.relTrees[i];
 		const target = ctx.targets[i];
@@ -685,6 +743,9 @@ function leafCore(
 		if (target >= 0) {
 			const need = target - current;
 			if (need > 0) deficits.push({ tree, need });
+		} else {
+			const need = current - target;
+			if (need > 0) deficits.push({ tree, need, negTree: true });
 		}
 	}
 
@@ -698,7 +759,7 @@ function leafCore(
 		const caps = [ctx.baseSlots, charm?.slots ?? 0, ...pieces.map((p) => p.slots)];
 		const sizes = [
 			...solved.uses.flatMap((u) => {
-				const opt = ctx.decoByName.get(u.name);
+				const opt = lookupDeco(ctx, u.name);
 				return opt ? Array(u.count).fill(opt.size) : [];
 			})
 		];
@@ -1070,13 +1131,13 @@ export async function runSearch(
 	const hardCount = computeHardCounts(piecesByPart, relTrees);
 	const bounds = buildSuffixBounds(piecesByPart, relTrees);
 	const { maxDirectSuffix, maxSlotsSuffix, bodyMaxVec } = bounds;
-	const decoByTree = buildDecoOptions(data.decorations, relTrees);
+	const { pos: decoByTree, neg: decoByNegTree } = buildDecoOptions(data.decorations, relTrees);
 	const decoByName = new Map<string, DecoOption>();
 	for (const list of decoByTree.values()) {
 		for (const o of list) decoByName.set(o.name, o);
 	}
 	const bestPPS = relTrees.map((tree) => {
-		const opts = decoByTree.get(tree) ?? [];
+		const opts = [...(decoByTree.get(tree) ?? []), ...(decoByNegTree.get(tree) ?? [])];
 		let best = 0;
 		for (const o of opts) {
 			const pps = o.points / o.size;
@@ -1147,7 +1208,9 @@ export async function runSearch(
 		maxPPS,
 		decoByTree,
 		decoByName,
+		decoByNegTree,
 		decoTables: new Map(),
+		decoNegTables: new Map(),
 		baseSlots: params.settings.weaponSlots,
 		results: [],
 		found: 0,
