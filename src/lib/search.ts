@@ -680,8 +680,12 @@ function leafCore(
 	const deficits: { tree: string; need: number }[] = [];
 	for (let i = 0; i < ctx.relTrees.length; i++) {
 		const tree = ctx.relTrees[i];
-		const need = ctx.targets[i] - (full.get(tree) ?? 0);
-		if (need > 0) deficits.push({ tree, need });
+		const target = ctx.targets[i];
+		const current = full.get(tree) ?? 0;
+		if (target >= 0) {
+			const need = target - current;
+			if (need > 0) deficits.push({ tree, need });
+		}
 	}
 
 	let decorations: DecorUse[] = [];
@@ -716,7 +720,13 @@ function leafCore(
 
 	// Verify all targets met after decorations.
 	for (let i = 0; i < ctx.relTrees.length; i++) {
-		if ((full.get(ctx.relTrees[i]) ?? 0) < ctx.targets[i]) return null;
+		const current = full.get(ctx.relTrees[i]) ?? 0;
+		const target = ctx.targets[i];
+		if (target >= 0) {
+			if (current < target) return null;
+		} else {
+			if (current > target) return null;
+		}
 	}
 
 	let defense = 0;
@@ -1011,6 +1021,7 @@ function pruned(ctx: SearchCtx, depth: number, ptsAfter: number[], slotsTotal: n
 	const remSlots = ctx.maxSlotsSuffix[depth];
 	const allSlots = slotsTotal + remSlots;
 	for (let t = 0; t < ctx.relTrees.length; t++) {
+		if (ctx.targets[t] < 0) continue;
 		const upper = ptsAfter[t] + remDirect[t] + ctx.bestPPS[t] * allSlots;
 		if (upper < ctx.targets[t]) return true;
 	}
@@ -1018,6 +1029,7 @@ function pruned(ctx: SearchCtx, depth: number, ptsAfter: number[], slotsTotal: n
 	// at the single best points-per-slot rate.
 	let shortfall = 0;
 	for (let t = 0; t < ctx.relTrees.length; t++) {
+		if (ctx.targets[t] < 0) continue;
 		const sf = ctx.targets[t] - ptsAfter[t] - remDirect[t];
 		if (sf > 0) shortfall += sf;
 	}

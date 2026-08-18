@@ -111,6 +111,17 @@ export const positiveSkillsByTree = skillTrees.map((t) => ({
 	skills: t.skills.filter((s) => s.points > 0).sort((a, b) => a.points - b.points)
 }));
 
+/** All selectable negative skills (name, tree, points), grouped by tree. */
+export const negativeSkillsByTree = skillTrees.map((t) => ({
+	tree: t.name,
+	skills: t.skills.filter((s) => s.points < 0).sort((a, b) => a.points - b.points)
+}));
+
+/** All negative skills flat, for the picker. */
+export const allNegativeSkills = negativeSkillsByTree
+	.flatMap((g) => g.skills.map((s) => ({ name: s.name, tree: g.tree, points: s.points })))
+	.sort((a, b) => a.tree.localeCompare(b.tree) || a.points - b.points);
+
 /** All skills flat, for the picker. */
 export const allPositiveSkills = positiveSkillsByTree
 	.flatMap((g) => g.skills.map((s) => ({ name: s.name, tree: g.tree, points: s.points })))

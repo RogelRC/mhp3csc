@@ -5,6 +5,7 @@
 		armors,
 		decorations,
 		positiveSkillsByTree,
+		negativeSkillsByTree,
 		SKILL_CATEGORIES,
 		treeCategory,
 		formatSkillPoints
@@ -77,6 +78,9 @@
 	let showSkillPicker = $state(false);
 	let skillQuery = $state('');
 	let skillCategory = $state<string>('All');
+	let negativeMode = $state(false);
+	let swordClickCount = $state(0);
+	let swordClickTimer = $state<ReturnType<typeof setTimeout> | null>(null);
 
 	let searching = $state(false);
 	let searched = $state(false);
@@ -85,6 +89,21 @@
 
 	function showToast(msg: string) {
 		toast = msg;
+	}
+
+	function onSwordClick() {
+		if (swordClickTimer) clearTimeout(swordClickTimer);
+		swordClickCount++;
+		swordClickTimer = setTimeout(() => {
+			swordClickCount = 0;
+		}, 2000);
+		if (swordClickCount >= 10) {
+			negativeMode = !negativeMode;
+			swordClickCount = 0;
+			showToast(
+				negativeMode ? 'Negative skill mode activated ⚔' : 'Negative skill mode deactivated'
+			);
+		}
 	}
 	let results = $state<SetResult[]>([]);
 	let progress = $state<SearchProgress>({ phase: '', nodes: 0, found: 0, done: false });
@@ -315,7 +334,16 @@
 	});
 
 	const filteredTrees = $derived(
-		positiveSkillsByTree
+		(negativeMode
+			? positiveSkillsByTree.map((pg) => {
+					const ng = negativeSkillsByTree.find((n) => n.tree === pg.tree);
+					return {
+						tree: pg.tree,
+						skills: [...pg.skills, ...(ng?.skills ?? [])]
+					};
+				})
+			: positiveSkillsByTree
+		)
 			.map((g) => ({
 				tree: g.tree,
 				skills: g.skills.filter(
@@ -713,7 +741,15 @@
 	<header class="border-b border-zinc-800 bg-zinc-900/60">
 		<div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-4">
 			<div
-				class="flex aspect-square h-10 w-10 items-center justify-center rounded-lg bg-amber-500/15 text-xl text-amber-400"
+				onclick={onSwordClick}
+				onkeydown={(e) => {
+					if (e.key === 'Enter' || e.key === ' ') onSwordClick();
+				}}
+				role="button"
+				tabindex="-1"
+				class="flex aspect-square h-10 w-10 cursor-pointer items-center justify-center rounded-lg bg-amber-500/15 text-xl text-amber-400 select-none {negativeMode
+					? 'ring-2 ring-red-500/60'
+					: ''}"
 			>
 				⚔
 			</div>
@@ -746,10 +782,13 @@
 									type="button"
 									onclick={() => removeTarget(t.tree)}
 									title="Remove"
-									class="group flex items-center gap-1 rounded border border-amber-500/40 bg-amber-500/10 px-2 py-1 text-xs text-amber-200 hover:border-red-500 hover:text-red-300"
+									class="group flex items-center gap-1 rounded border px-2 py-1 text-xs hover:border-red-500 hover:text-red-300 {t.points <
+									0
+										? 'border-red-500/40 bg-red-500/10 text-red-300'
+										: 'border-amber-500/40 bg-amber-500/10 text-amber-200'}"
 								>
 									{t.name}
-									<span class="text-amber-400/70 group-hover:text-red-400">✕</span>
+									<span class={t.points < 0 ? 'text-red-400/70' : 'text-amber-400/70'}>✕</span>
 								</button>
 							{/each}
 						</div>
@@ -793,10 +832,18 @@
 												type="button"
 												onclick={() => addSkill({ name: s.name, tree: g.tree, points: s.points })}
 												class="flex w-full items-center justify-between rounded px-2 py-1 text-left text-xs text-zinc-300 hover:bg-zinc-800
-													{selected?.points === s.points ? 'bg-amber-500/10 text-amber-200' : ''}"
+													{selected?.points === s.points
+													? s.points < 0
+														? 'bg-red-500/10 text-red-300'
+														: 'bg-amber-500/10 text-amber-200'
+													: s.points < 0
+														? 'text-red-400/80'
+														: ''}"
 											>
 												<span>{s.name}</span>
-												<span class="text-zinc-500">+{s.points}</span>
+												<span class={s.points < 0 ? 'text-red-500/70' : 'text-zinc-500'}
+													>{s.points < 0 ? s.points : `+${s.points}`}</span
+												>
 											</button>
 										{/each}
 									</div>
