@@ -36,7 +36,13 @@
       "icons/icon.ico"
     ],
     "android": {
-      "debugApplicationIdSuffix": ".debug"
+      "debugApplicationIdSuffix": ".debug",
+      "signing": {
+        "keystorePath": "release.keystore",
+        "keystorePassword": "",
+        "keyAlias": "",
+        "keyPassword": ""
+      }
     }
   }
 }
