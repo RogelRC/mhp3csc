@@ -54,6 +54,10 @@ jobs:
       - name: Install frontend dependencies
         run: npm ci
 
+      - name: Patch linuxdeploy-plugin-gtk for Wayland compat
+        if: matrix.platform == 'ubuntu-22.04'
+        run: bash scripts/patch-linuxdeploy-gtk.sh
+
       - name: Build and release
         uses: tauri-apps/tauri-action@v1
         env:
@@ -61,7 +65,13 @@ jobs:
         with:
           tagName: ${{ github.ref_name }}
           releaseName: 'MHP3 Armor Set Search ${{ github.ref_name }}'
-          releaseBody: 'See the assets below for downloadable installers.'
+          releaseBody: |
+            See the assets below for downloadable installers.
+
+            **Linux (AppImage):** If you experience display issues, try:
+            ```
+            __NV_DISABLE_EXPLICIT_SYNC=1 ./MHP3*.AppImage
+            ```
           releaseDraft: false
           prerelease: false
           args: ${{ matrix.args }}
