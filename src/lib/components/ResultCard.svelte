@@ -11,6 +11,8 @@
 		if (!cardEl) return;
 		open = true;
 		exporting = true;
+		const wm = cardEl.querySelector<HTMLElement>('[data-watermark]');
+		if (wm) wm.style.display = '';
 		await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 		try {
 			const { toPng } = await import('html-to-image');
@@ -27,6 +29,7 @@
 		} catch (e) {
 			console.error(e);
 		} finally {
+			if (wm) wm.style.display = 'none';
 			exporting = false;
 		}
 	}
@@ -81,6 +84,13 @@
 </script>
 
 <div class="overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900" bind:this={cardEl}>
+	<div
+		data-watermark
+		style="display:none"
+		class="bg-zinc-950 px-4 py-1 text-center text-[11px] font-medium tracking-wide text-zinc-500"
+	>
+		mhp3csc.vercel.app
+	</div>
 	<button
 		type="button"
 		onclick={() => (open = !open)}
