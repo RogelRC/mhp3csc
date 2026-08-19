@@ -39,17 +39,6 @@
 		showCharms: boolean;
 	}
 
-	interface TopSetEntry {
-		key: string;
-		label: string;
-		count: number;
-		targets: SkillTarget[];
-		includeNoCharm: boolean;
-		possibleMode: PossibleCharmMode | '';
-		settings: SearchSettings;
-		showCharms: boolean;
-	}
-
 	const POSSIBLE_LABELS: Record<PossibleCharmMode, string> = {
 		oneSkill: '1 skill',
 		twoSkills: '2 skills',
@@ -61,8 +50,6 @@
 	let showCharms = $state(true);
 	let history = $state<SearchHistoryEntry[]>([]);
 	let showHistory = $state(false);
-	let topSets = $state<TopSetEntry[]>([]);
-	let showTopSets = $state(false);
 	let includeNoCharm = $state(false);
 	let possibleMode = $state<PossibleCharmMode | ''>('');
 	let settings = $state<SearchSettings>({
@@ -318,7 +305,6 @@
 			if (sd === 'asc' || sd === 'desc') sortDir = sd;
 			const h = readLS<SearchHistoryEntry[]>(LS.history);
 			if (h && Array.isArray(h)) history = h;
-			refreshTopSets();
 			return;
 		}
 		writeLS(LS.targets, targetSkills);
@@ -495,7 +481,6 @@
 			);
 			results = found;
 			pushHistory();
-			void recordSearch();
 		} catch (e) {
 			console.error(e);
 			showToast('Search failed.');
@@ -564,28 +549,6 @@
 		return `${targetPart} · ${weaponPart} · ${h.settings.hunterType || ''}`.trimEnd();
 	}
 
-	// Label for the "most searched" list: charms are personal to each user, so
-	// only the shared constraints (skills, weapon slots, hunter type) are shown.
-	function topSetLabel(): string {
-		const targetPart = targetSkills.map((t) => t.name).join(', ') || 'No skills';
-		const weaponPart =
-			settings.weaponSlots === 0
-				? 'no slots'
-				: `${settings.weaponSlots} slot${settings.weaponSlots === 1 ? '' : 's'}`;
-		return `${targetPart} · ${weaponPart} · ${settings.hunterType}`;
-	}
-
-	// Display label for a stored top set, derived from its data so old entries
-	// with charm-count labels never show charm information.
-	function topSetLabelFor(t: TopSetEntry): string {
-		const targetPart = t.targets.map((x) => x.name).join(', ') || 'No skills';
-		const weaponSlots = t.settings.weaponSlots;
-		const weaponPart = !weaponSlots
-			? 'no slots'
-			: `${weaponSlots} slot${weaponSlots === 1 ? '' : 's'}`;
-		return `${targetPart} · ${weaponPart} · ${t.settings.hunterType || ''}`.trimEnd();
-	}
-
 	function pushHistory() {
 		const key = JSON.stringify({ targetSkills, charms, includeNoCharm, possibleMode, settings });
 		const entry: SearchHistoryEntry = {
@@ -634,61 +597,6 @@
 
 	function clearHistory() {
 		history = [];
-	}
-
-	async function refreshTopSets() {
-		try {
-			const res = await fetch('/api/top-sets', { cache: 'no-store' });
-			if (res.ok) topSets = (await res.json()) as TopSetEntry[];
-		} catch {
-			/* offline or API unavailable */
-		}
-	}
-
-	async function recordSearch() {
-		try {
-			const settingsNoGender = Object.fromEntries(
-				Object.entries(settings).filter(([k]) => k !== 'gender')
-			);
-			await fetch('/api/search-log', {
-				method: 'POST',
-				headers: { 'content-type': 'application/json' },
-				body: JSON.stringify({
-					label: topSetLabel(),
-					targets: targetSkills.map((t) => ({ ...t })),
-					charms: charms.map((c) => ({
-						...c,
-						skill1: { ...c.skill1 },
-						skill2: c.skill2 ? { ...c.skill2 } : null
-					})),
-					includeNoCharm,
-					possibleMode,
-					settings: settingsNoGender,
-					showCharms
-				})
-			});
-		} catch {
-			/* offline or API unavailable */
-		}
-		await refreshTopSets();
-	}
-
-	function loadTopSet(t: TopSetEntry) {
-		targetSkills = t.targets.map((x) => ({ ...x }));
-		// Charms and charm options are personal to each user, so they stay as the
-		// user has them. Only the shared constraints are loaded: the skills and
-		// the weapon slots + hunter type.
-		settings = {
-			...settings,
-			weaponSlots: t.settings.weaponSlots ?? settings.weaponSlots,
-			hunterType: t.settings.hunterType ?? settings.hunterType
-		};
-		searched = false;
-		results = [];
-		searchTime = 0;
-		formBaseline = formSnapshot();
-		formDirty = true;
-		document.getElementById('search-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 
 	let showScrollTop = $state(false);
@@ -1105,68 +1013,6 @@
 											<span class="min-w-0 flex-1">
 												<span class="block text-zinc-200">{historyLabelFor(h)}</span>
 												<span class="block text-[10px] text-zinc-500">{h.when}</span>
-											</span>
-										</button>
-									{/each}
-								</div>
-							{/if}
-						</div>
-					{/if}
-				</section>
-
-				<section class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
-					<div
-						role="button"
-						tabindex="0"
-						onclick={() => (showTopSets = !showTopSets)}
-						onkeydown={(e) => {
-							if (e.key === 'Enter' || e.key === ' ') {
-								e.preventDefault();
-								showTopSets = !showTopSets;
-							}
-						}}
-						class="flex w-full cursor-pointer items-center justify-between select-none"
-					>
-						<span class="flex items-center gap-2">
-							<h2 class="text-sm font-semibold tracking-wide text-zinc-300 uppercase">
-								Most searched
-							</h2>
-							<span
-								class="text-xs text-zinc-400 transition-transform {showTopSets ? 'rotate-180' : ''}"
-								>▾</span
-							>
-						</span>
-					</div>
-
-					{#if showTopSets}
-						<div class="mt-3">
-							{#if topSets.length === 0}
-								<p class="text-xs text-zinc-500">
-									The most-searched skill sets from all visitors will show up here.
-								</p>
-							{:else}
-								<div class="max-h-72 space-y-1 overflow-y-auto pr-1">
-									{#each topSets as t, i (t.key)}
-										{@const rank = i + 1}
-										<button
-											type="button"
-											onclick={() => loadTopSet(t)}
-											title={topSetLabelFor(t)}
-											class="flex w-full items-center justify-between gap-2 rounded border border-zinc-800 bg-zinc-800/50 px-2 py-1.5 text-left text-xs hover:border-amber-500 hover:bg-zinc-800"
-										>
-											<span
-												class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold {rank ===
-												1
-													? 'bg-yellow-400 text-yellow-950'
-													: rank === 2
-														? 'bg-zinc-300 text-zinc-800'
-														: rank === 3
-															? 'bg-[#b87333] text-white'
-															: 'bg-zinc-800 text-zinc-400'}">{rank}</span
-											>
-											<span class="min-w-0 flex-1">
-												<span class="block text-zinc-200">{topSetLabelFor(t)}</span>
-												<span class="block text-[10px] text-zinc-500">searched {t.count}×</span>
 											</span>
 										</button>
 									{/each}

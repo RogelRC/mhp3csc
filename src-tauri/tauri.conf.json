@@ -1,10 +1,10 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "mhp3csc",
+  "productName": "MHP3 Armor Set Search",
   "version": "0.1.0",
-  "identifier": "com.tauri.dev",
+  "identifier": "com.rogelrc.mhp3csc",
   "build": {
-    "frontendDist": "../public",
+    "frontendDist": "../build",
     "devUrl": "http://localhost:5173",
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build"
@@ -12,9 +12,11 @@
   "app": {
     "windows": [
       {
-        "title": "mhp3csc",
-        "width": 800,
-        "height": 600,
+        "title": "MHP3 Armor Set Search",
+        "width": 1024,
+        "height": 768,
+        "minWidth": 800,
+        "minHeight": 600,
         "resizable": true,
         "fullscreen": false
       }
