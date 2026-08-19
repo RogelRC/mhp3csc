@@ -127,13 +127,11 @@ jobs:
 
       - name: Decode keystore and configure signing
         run: |
-          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > src-tauri/release.keystore
-          jq --arg ks "$PWD/src-tauri/release.keystore" \
-             --arg ksp "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" \
-             --arg ka "${{ secrets.ANDROID_KEY_ALIAS }}" \
-             --arg kap "${{ secrets.ANDROID_KEY_PASSWORD }}" \
-             '.bundle.android.signing.keystorePath = $ks | .bundle.android.signing.keystorePassword = $ksp | .bundle.android.signing.keyAlias = $ka | .bundle.android.signing.keyPassword = $kap' \
-             src-tauri/tauri.conf.json > src-tauri/tauri.conf.json.tmp && mv src-tauri/tauri.conf.json.tmp src-tauri/tauri.conf.json
+          base64 -d <<< "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" > $RUNNER_TEMP/keystore.jks
+          cd src-tauri/gen/android
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" > keystore.properties
+          echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" >> keystore.properties
+          echo "storeFile=$RUNNER_TEMP/keystore.jks" >> keystore.properties
 
       - name: Build Android APK (aarch64)
         run: npx tauri android build --target aarch64 --apk
