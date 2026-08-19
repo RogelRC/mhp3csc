@@ -128,10 +128,9 @@ jobs:
       - name: Decode keystore and configure signing
         run: |
           base64 -d <<< "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" > $RUNNER_TEMP/keystore.jks
-          cd src-tauri/gen/android
-          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" > keystore.properties
-          echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" >> keystore.properties
-          echo "storeFile=$RUNNER_TEMP/keystore.jks" >> keystore.properties
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" > src-tauri/gen/android/keystore.properties
+          echo "password=${{ secrets.ANDROID_KEY_PASSWORD }}" >> src-tauri/gen/android/keystore.properties
+          echo "storeFile=$RUNNER_TEMP/keystore.jks" >> src-tauri/gen/android/keystore.properties
           python3 $GITHUB_WORKSPACE/scripts/configure-android-signing.py src-tauri/gen/android
 
       - name: Build Android APK (aarch64)
