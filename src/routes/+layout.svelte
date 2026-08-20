@@ -41,5 +41,27 @@
 				Star it on GitHub
 			</a>
 		</p>
+		<p class="mt-1 text-center text-xs text-zinc-500">
+			<span class="mr-1">Download the latest version:</span>
+			<a
+				href="https://github.com/RogelRC/mhp3csc/releases/latest"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-amber-400 hover:text-amber-300 hover:underline"
+			>
+				Go to Releases
+			</a>
+		</p>
+		<p class="mt-4 text-center text-xs text-zinc-500">You may also like</p>
+		<p class="mt-1 text-center text-xs text-zinc-500">
+			<a
+				href="https://mhfucsc.vercel.app/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-amber-400 hover:text-amber-300 hover:underline"
+			>
+				MHFU Armor Set Search
+			</a>
+		</p>
 	</div>
 </footer>
