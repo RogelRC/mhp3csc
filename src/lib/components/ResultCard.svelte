@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { SetResult } from '$lib/types';
 	import { aggregateSetMaterials, formatSkillPoints, rarityColor } from '$lib/gameData';
+	import CharmTableInfo from './CharmTableInfo.svelte';
 
 	let { result, index }: { result: SetResult; index: number } = $props();
 	let open = $state(false);
@@ -217,6 +218,7 @@
 							<span class="ml-1 rounded bg-sky-500/15 px-1 text-[10px] text-sky-300"
 								>not owned — possible charm</span
 							>
+							<CharmTableInfo charm={result.charm} />
 						{/if}
 					</div>
 				{/if}

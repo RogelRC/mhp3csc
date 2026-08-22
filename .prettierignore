@@ -7,3 +7,6 @@ bun.lockb
 
 # Miscellaneous
 /static/
+
+# Auto-generated data (scripts/generate-charm-table-members.mjs)
+/src/lib/mh3/charmTableMembers.ts
