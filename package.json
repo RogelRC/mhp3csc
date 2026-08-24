@@ -13,7 +13,8 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"tauri": "tauri",
-		"gen:charm-tables": "node scripts/generate-charm-table-members.mjs"
+		"gen:charm-tables": "node scripts/generate-charm-table-members.mjs",
+		"gen:es-names": "node scripts/generate-es-names.mjs"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
