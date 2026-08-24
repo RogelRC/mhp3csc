@@ -144,7 +144,7 @@
 			<table class="w-full text-sm">
 				<thead>
 					<tr class="text-left text-[11px] tracking-wide text-zinc-500 uppercase">
-						<th class="py-1">{t('part')}</th>
+						<th class="hidden py-1 sm:table-cell">{t('part')}</th>
 						<th class="py-1">{t('piece')}</th>
 						<th class="py-1">{t('slots')}</th>
 						<th class="py-1 text-right">{t('def')}</th>
@@ -154,7 +154,7 @@
 				<tbody>
 					{#each result.pieces as p (p.name)}
 						<tr class="border-t border-zinc-800/60">
-							<td class="py-1 text-zinc-400">{tr(p.part)}</td>
+							<td class="hidden py-1 text-zinc-400 sm:table-cell">{tr(p.part)}</td>
 							<td class="py-1 text-zinc-100">
 								{tr(p.name)}
 								{#if p.isTorsoInc}
