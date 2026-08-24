@@ -125,6 +125,11 @@ jobs:
       - name: Initialize Android project
         run: npx tauri android init
 
+      - name: Apply custom Android launcher icons
+        # `tauri android init` scaffolds gen/android with the default Tauri
+        # icons, so overwrite them with our checked-in ones before building.
+        run: cp -r src-tauri/icons/android/* src-tauri/gen/android/app/src/main/res/
+
       - name: Decode keystore and configure signing
         run: |
           base64 -d <<< "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" > $RUNNER_TEMP/keystore.jks
