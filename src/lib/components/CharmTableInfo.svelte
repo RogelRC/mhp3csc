@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { CHARM_TABLE_COUNT, charmProfileTables } from '$lib/mh3/charmTables';
+	import { t } from '$lib/i18n/i18n.svelte';
 
 	let {
 		charm
@@ -80,7 +81,7 @@
 <button
 	bind:this={btnEl}
 	type="button"
-	aria-label="Which charm tables have this talisman?"
+	aria-label={t('tablesAria')}
 	aria-expanded={open}
 	onclick={() => (open = !open)}
 	class="inline-flex align-middle text-sky-400/80 transition-colors hover:text-sky-300"
@@ -107,23 +108,25 @@
 		use:floating={btnEl}
 		class="fixed z-50 w-60 rounded border border-zinc-700 bg-zinc-900 p-2 text-left text-xs shadow-xl"
 	>
-		<p class="text-[10px] font-semibold tracking-wide text-zinc-400 uppercase">Charm tables</p>
+		<p class="text-[10px] font-semibold tracking-wide text-zinc-400 uppercase">
+			{t('charmTables')}
+		</p>
 		{#if tables === null}
 			<p class="mt-1 text-[11px] text-zinc-400">
-				This talisman isn't in MHP3rd's official charm tables.
+				{t('notInTables')}
 			</p>
 		{:else if tables.length === CHARM_TABLE_COUNT}
 			<p class="mt-1 text-[11px] text-zinc-300">
-				Obtainable in any of the game's {CHARM_TABLE_COUNT} charm tables.
+				{t('anyTable', { n: CHARM_TABLE_COUNT })}
 			</p>
 		{:else}
 			<p class="mt-1 text-[11px] text-zinc-300">
-				Only obtainable in charm table{tables.length === 1 ? '' : 's'}:
+				{t('onlyTables')}
 				<span class="font-medium text-sky-300">{tables.join(', ')}</span>
 			</p>
 		{/if}
 		<p class="mt-1.5 text-[10px] leading-snug text-zinc-500">
-			The game picks your active charm table at random every time you boot MHP3rd.
+			{t('randomTableNote')}
 		</p>
 	</div>
 {/if}

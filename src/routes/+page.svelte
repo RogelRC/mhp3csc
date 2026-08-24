@@ -1,6 +1,8 @@
 <script lang="ts">
 	import CharmCard from '$lib/components/CharmCard.svelte';
 	import ResultCard from '$lib/components/ResultCard.svelte';
+	import LanguageSelector from '$lib/components/LanguageSelector.svelte';
+	import { t, tr, trPhase, getLocale } from '$lib/i18n/i18n.svelte';
 	import {
 		armors,
 		decorations,
@@ -51,8 +53,8 @@
 	}
 
 	const POSSIBLE_LABELS: Record<PossibleCharmMode, string> = {
-		oneSkill: '1 skill',
-		twoSkills: '2 skills',
+		oneSkill: 'oneSkill',
+		twoSkills: 'twoSkills',
 		slotted: 'slotted'
 	};
 
@@ -100,9 +102,7 @@
 		if (swordClickCount >= 10) {
 			negativeMode = !negativeMode;
 			swordClickCount = 0;
-			showToast(
-				negativeMode ? 'Negative skill mode activated ⚔' : 'Negative skill mode deactivated'
-			);
+			showToast(negativeMode ? t('negativeOn') : t('negativeOff'));
 		}
 	}
 	let results = $state<SetResult[]>([]);
@@ -146,16 +146,16 @@
 	let sortDir = $state<'asc' | 'desc'>('desc');
 
 	const SORT_OPTIONS: { key: typeof sortBy; label: string }[] = [
-		{ key: 'defenseMax', label: 'Def max' },
-		{ key: 'defenseBase', label: 'Def base' },
-		{ key: 'fire', label: 'Fire' },
-		{ key: 'water', label: 'Water' },
-		{ key: 'ice', label: 'Ice' },
-		{ key: 'thunder', label: 'Thunder' },
-		{ key: 'dragon', label: 'Dragon' },
-		{ key: 'difficulty', label: 'Difficulty' },
-		{ key: 'rarity', label: 'Rarity' },
-		{ key: 'slotsLeft', label: 'Empty slots' }
+		{ key: 'defenseMax', label: 'sortDefMax' },
+		{ key: 'defenseBase', label: 'sortDefBase' },
+		{ key: 'fire', label: 'sortFire' },
+		{ key: 'water', label: 'sortWater' },
+		{ key: 'ice', label: 'sortIce' },
+		{ key: 'thunder', label: 'sortThunder' },
+		{ key: 'dragon', label: 'sortDragon' },
+		{ key: 'difficulty', label: 'sortDifficulty' },
+		{ key: 'rarity', label: 'sortRarity' },
+		{ key: 'slotsLeft', label: 'sortSlotsLeft' }
 	];
 
 	const SORT_ICONS: Record<typeof sortBy, string> = {
@@ -208,9 +208,11 @@
 
 	function charmLabel(c: NonNullable<SetResult['charm']>): string {
 		const skills =
-			`${c.skill1.tree}${formatSkillPoints(c.skill1.points)}` +
-			(c.skill2 && c.skill2.tree ? `, ${c.skill2.tree}${formatSkillPoints(c.skill2.points)}` : '');
-		return `${c.name || '(unnamed)'} [${c.slots}◯] ${skills}`;
+			`${tr(c.skill1.tree)}${formatSkillPoints(c.skill1.points)}` +
+			(c.skill2 && c.skill2.tree
+				? `, ${tr(c.skill2.tree)}${formatSkillPoints(c.skill2.points)}`
+				: '');
+		return `${c.name || t('unnamed')} [${c.slots}◯] ${skills}`;
 	}
 
 	const displayResults = $derived.by(() => {
@@ -333,29 +335,34 @@
 		writeLS(LS.history, history);
 	});
 
-	const filteredTrees = $derived(
-		(negativeMode
-			? positiveSkillsByTree.map((pg) => {
-					const ng = negativeSkillsByTree.find((n) => n.tree === pg.tree);
-					return {
-						tree: pg.tree,
-						skills: [...pg.skills, ...(ng?.skills ?? [])]
-					};
-				})
-			: positiveSkillsByTree
+	const filteredTrees = $derived.by(() => {
+		const q = skillQuery.toLowerCase();
+		return (
+			negativeMode
+				? positiveSkillsByTree.map((pg) => {
+						const ng = negativeSkillsByTree.find((n) => n.tree === pg.tree);
+						return {
+							tree: pg.tree,
+							skills: [...pg.skills, ...(ng?.skills ?? [])]
+						};
+					})
+				: positiveSkillsByTree
 		)
 			.map((g) => ({
 				tree: g.tree,
 				skills: g.skills.filter(
 					(s) =>
 						(!skillCategory || skillCategory === 'All' || treeCategory(g.tree) === skillCategory) &&
-						(!skillQuery ||
-							g.tree.toLowerCase().includes(skillQuery.toLowerCase()) ||
-							s.name.toLowerCase().includes(skillQuery.toLowerCase()))
+						(!q ||
+							g.tree.toLowerCase().includes(q) ||
+							s.name.toLowerCase().includes(q) ||
+							tr(g.tree).toLowerCase().includes(q) ||
+							tr(s.name).toLowerCase().includes(q))
 				)
 			}))
 			.filter((g) => g.skills.length > 0)
-	);
+			.sort((a, b) => tr(a.tree).localeCompare(tr(b.tree), getLocale()));
+	});
 
 	function addSkill(s: { name: string; tree: string; points: number }) {
 		const idx = targetSkills.findIndex((t) => t.tree === s.tree);
@@ -406,7 +413,7 @@
 			const plain = decryptSaveFile(new Uint8Array(await file.arrayBuffer()));
 			const parsed = parseCharmEntries(plain);
 			if (parsed.length === 0) {
-				importNote = 'No charms found in that save.';
+				importNote = t('importNone');
 				importFailed = true;
 				return;
 			}
@@ -429,25 +436,25 @@
 			});
 			charms = [...charms, ...imported];
 			showCharms = charms.length <= 60;
-			importNote = `Imported ${imported.length} charm${imported.length === 1 ? '' : 's'} from ${file.name}.`;
+			importNote = t('imported', { n: imported.length, file: file.name });
 			importFailed = false;
 		} catch (err) {
 			console.error(err);
-			importNote = 'Could not read that file. It may not be a valid MHP3rd Save.BIN.';
+			importNote = t('importFail');
 			importFailed = true;
 		}
 	}
 
 	async function doSearch() {
 		if (targetSkills.length === 0) {
-			showToast('Select at least one target skill.');
+			showToast(t('selectAtLeastOne'));
 			document
 				.getElementById('search-form')
 				?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			return;
 		}
 		if (!includeNoCharm && !possibleMode && !charms.some((c) => c.included)) {
-			showToast('Add at least one charm, or enable "no charm" or "possible charm" sets.');
+			showToast(t('needCharm'));
 			document
 				.getElementById('search-form')
 				?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -463,7 +470,7 @@
 		showAdvanced = false;
 		resetAdvancedFilters();
 		searchTime = 0;
-		progress = { phase: 'Starting…', nodes: 0, found: 0, done: false };
+		progress = { phase: t('phasePreparing'), nodes: 0, found: 0, done: false };
 		const t0 = performance.now();
 		try {
 			const found = await runSearch(
@@ -498,14 +505,12 @@
 			void recordSearch();
 		} catch (e) {
 			console.error(e);
-			showToast('Search failed.');
+			showToast(t('searchFailed'));
 		} finally {
 			searching = false;
 			searchTime = performance.now() - t0;
 			if (progress.phase.includes('combination limit')) {
-				showToast(
-					'Too many combinations to check exhaustively. Showing best found so far — try loosening your skills or adding a stronger charm.'
-				);
+				showToast(t('tooManyCombos'));
 			}
 		}
 	}
@@ -541,13 +546,12 @@
 	const excludedCount = $derived(excludedPieces.size + excludedDecos.size);
 
 	function historyLabel(): string {
-		const targetPart = targetSkills.map((t) => t.name).join(', ') || 'No skills';
+		const targetPart = targetSkills.map((ts) => tr(ts.name)).join(', ') || t('noSkills');
 		let charmPart: string;
-		if (possibleMode) charmPart = `possible (${POSSIBLE_LABELS[possibleMode]})`;
-		else if (charms.length > 0)
-			charmPart = `${charms.length} charm${charms.length === 1 ? '' : 's'}`;
-		else charmPart = 'no charms';
-		const extras = includeNoCharm ? ' · +no charm' : '';
+		if (possibleMode) charmPart = t('possibleSuffix', { mode: t(POSSIBLE_LABELS[possibleMode]) });
+		else if (charms.length > 0) charmPart = t('nCharms', { n: charms.length });
+		else charmPart = t('noCharms');
+		const extras = includeNoCharm ? t('extraNoCharm') : '';
 		return `${targetPart} · ${charmPart}${extras}`;
 	}
 
@@ -556,12 +560,10 @@
 	// Matches the "most searched" format: skills · weapon slots · hunter type
 	// (charms are personal to each user, so they're not shown).
 	function historyLabelFor(h: SearchHistoryEntry): string {
-		const targetPart = h.targets.map((t) => t.name).join(', ') || 'No skills';
+		const targetPart = h.targets.map((ts) => tr(ts.name)).join(', ') || t('noSkills');
 		const weaponSlots = h.settings.weaponSlots;
-		const weaponPart = !weaponSlots
-			? 'no slots'
-			: `${weaponSlots} slot${weaponSlots === 1 ? '' : 's'}`;
-		return `${targetPart} · ${weaponPart} · ${h.settings.hunterType || ''}`.trimEnd();
+		const weaponPart = !weaponSlots ? t('noWeaponSlots') : t('nWeaponSlots', { n: weaponSlots });
+		return `${targetPart} · ${weaponPart} · ${tr(h.settings.hunterType || '')}`.trimEnd();
 	}
 
 	// Label for the "most searched" list: charms are personal to each user, so
@@ -577,13 +579,11 @@
 
 	// Display label for a stored top set, derived from its data so old entries
 	// with charm-count labels never show charm information.
-	function topSetLabelFor(t: TopSetEntry): string {
-		const targetPart = t.targets.map((x) => x.name).join(', ') || 'No skills';
-		const weaponSlots = t.settings.weaponSlots;
-		const weaponPart = !weaponSlots
-			? 'no slots'
-			: `${weaponSlots} slot${weaponSlots === 1 ? '' : 's'}`;
-		return `${targetPart} · ${weaponPart} · ${t.settings.hunterType || ''}`.trimEnd();
+	function topSetLabelFor(ts: TopSetEntry): string {
+		const targetPart = ts.targets.map((x) => tr(x.name)).join(', ') || t('noSkills');
+		const weaponSlots = ts.settings.weaponSlots;
+		const weaponPart = !weaponSlots ? t('noWeaponSlots') : t('nWeaponSlots', { n: weaponSlots });
+		return `${targetPart} · ${weaponPart} · ${tr(ts.settings.hunterType || '')}`.trimEnd();
 	}
 
 	function pushHistory() {
@@ -730,14 +730,16 @@
 </script>
 
 <svelte:head>
-	<title>MHP3 Armor Set Search</title>
-	<meta
-		name="description"
-		content="Armor set search for Monster Hunter Portable 3rd — find sets that activate your chosen skills."
-	/>
+	<title>{t('appName')}</title>
+	<meta name="description" content={t('metaDescription')} />
 </svelte:head>
 
 <div class="min-h-screen overflow-x-clip bg-zinc-950 text-zinc-100">
+	<div class="bg-zinc-900/60 md:hidden">
+		<div class="mx-auto flex max-w-7xl justify-center px-4 pt-2">
+			<LanguageSelector />
+		</div>
+	</div>
 	<header class="border-b border-zinc-800 bg-zinc-900/60">
 		<div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-4">
 			<div
@@ -754,11 +756,13 @@
 				⚔
 			</div>
 			<div>
-				<h1 class="text-lg font-bold tracking-tight text-zinc-50">MHP3 Armor Set Search</h1>
+				<h1 class="text-lg font-bold tracking-tight text-zinc-50">{t('appName')}</h1>
 				<p class="text-xs text-zinc-400">
-					A set searcher for Monster Hunter Portable 3rd (Athena's-style), driven by data from
-					Athena's ASS.
+					{t('tagline')}
 				</p>
+			</div>
+			<div class="ml-auto hidden md:block">
+				<LanguageSelector />
 			</div>
 		</div>
 	</header>
@@ -768,27 +772,27 @@
 			<aside id="search-form" class="min-w-0 space-y-5">
 				<section class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
 					<h2 class="mb-3 text-sm font-semibold tracking-wide text-zinc-300 uppercase">
-						Target skills
+						{t('targetSkills')}
 					</h2>
 
 					{#if targetSkills.length === 0}
 						<p class="mb-3 text-xs text-zinc-500">
-							No skills selected. Pick the skills you want your set to activate.
+							{t('noSkillsSelected')}
 						</p>
 					{:else}
 						<div class="mb-3 flex flex-wrap gap-1.5">
-							{#each targetSkills as t (t.tree)}
+							{#each targetSkills as ts (ts.tree)}
 								<button
 									type="button"
-									onclick={() => removeTarget(t.tree)}
-									title="Remove"
-									class="group flex items-center gap-1 rounded border px-2 py-1 text-xs hover:border-red-500 hover:text-red-300 {t.points <
+									onclick={() => removeTarget(ts.tree)}
+									title={t('remove')}
+									class="group flex items-center gap-1 rounded border px-2 py-1 text-xs hover:border-red-500 hover:text-red-300 {ts.points <
 									0
 										? 'border-red-500/40 bg-red-500/10 text-red-300'
 										: 'border-amber-500/40 bg-amber-500/10 text-amber-200'}"
 								>
-									{t.name}
-									<span class={t.points < 0 ? 'text-red-400/70' : 'text-amber-400/70'}>✕</span>
+									{tr(ts.name)}
+									<span class={ts.points < 0 ? 'text-red-400/70' : 'text-amber-400/70'}>✕</span>
 								</button>
 							{/each}
 						</div>
@@ -799,35 +803,37 @@
 						onclick={() => (showSkillPicker = !showSkillPicker)}
 						class="mb-2 w-full rounded border border-zinc-700 px-3 py-1.5 text-sm text-zinc-200 hover:border-amber-500 hover:text-amber-300"
 					>
-						{showSkillPicker ? 'Close skill list' : 'Add skills…'}
+						{showSkillPicker ? t('closeSkillList') : t('addSkills')}
 					</button>
 
 					{#if showSkillPicker}
 						<div class="mb-2 flex flex-wrap gap-2">
 							<input
 								type="text"
-								placeholder="Search skills…"
+								placeholder={t('searchSkills')}
 								bind:value={skillQuery}
 								class="min-w-0 flex-1 basis-40 rounded border border-zinc-700 bg-zinc-800 px-2 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
 							/>
 							<select
 								bind:value={skillCategory}
 								class="max-w-full rounded border border-zinc-700 bg-zinc-800 px-1.5 py-1.5 text-xs text-zinc-100 focus:border-amber-500 focus:outline-none"
-								title="Skill category"
+								title={t('skillCategory')}
 							>
-								<option value="All">All</option>
+								<option value="All">{t('all')}</option>
 								{#each SKILL_CATEGORIES as cat (cat)}
-									<option value={cat}>{cat}</option>
+									<option value={cat}>{tr(cat)}</option>
 								{/each}
 							</select>
 						</div>
 						<div class="max-h-72 overflow-y-auto pr-1">
 							{#each filteredTrees as g (g.tree)}
 								<div class="mb-2">
-									<div class="mb-1 text-[11px] font-semibold text-zinc-500 uppercase">{g.tree}</div>
+									<div class="mb-1 text-[11px] font-semibold text-zinc-500 uppercase">
+										{tr(g.tree)}
+									</div>
 									<div class="space-y-0.5">
 										{#each g.skills as s (g.tree + s.points)}
-											{@const selected = targetSkills.find((t) => t.tree === g.tree)}
+											{@const selected = targetSkills.find((x) => x.tree === g.tree)}
 											<button
 												type="button"
 												onclick={() => addSkill({ name: s.name, tree: g.tree, points: s.points })}
@@ -840,7 +846,7 @@
 														? 'text-red-400/80'
 														: ''}"
 											>
-												<span>{s.name}</span>
+												<span>{tr(s.name)}</span>
 												<span class={s.points < 0 ? 'text-red-500/70' : 'text-zinc-500'}
 													>{s.points < 0 ? s.points : `+${s.points}`}</span
 												>
@@ -854,39 +860,39 @@
 				</section>
 
 				<section class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
-					<div class="mb-3 flex items-center justify-between">
-						<h2 class="text-sm font-semibold tracking-wide text-zinc-300 uppercase">Charms</h2>
-						<div class="flex items-center gap-2">
-							{#if charms.length > 0}
-								<button
-									type="button"
-									onclick={() => (showCharms = !showCharms)}
-									class="rounded border border-zinc-700 px-2 py-1 text-xs text-zinc-200 hover:border-amber-500 hover:text-amber-300"
-								>
-									{showCharms ? 'Hide list' : 'Show list'} ({charms.length})
-								</button>
-							{/if}
+					<h2 class="mb-3 text-sm font-semibold tracking-wide text-zinc-300 uppercase">
+						{t('charms')}
+					</h2>
+					<div class="mb-3 flex flex-wrap items-center gap-2">
+						{#if charms.length > 0}
 							<button
 								type="button"
-								onclick={addCharm}
+								onclick={() => (showCharms = !showCharms)}
 								class="rounded border border-zinc-700 px-2 py-1 text-xs text-zinc-200 hover:border-amber-500 hover:text-amber-300"
 							>
-								+ Add charm
+								{showCharms ? t('hideList') : t('showList')} ({charms.length})
 							</button>
-							{#if charms.length > 0}
-								<button
-									type="button"
-									onclick={removeAllCharms}
-									class="rounded border border-red-900 px-2 py-1 text-xs text-red-400 hover:bg-red-500/10 hover:text-red-300"
-								>
-									Remove all
-								</button>
-							{/if}
-						</div>
+						{/if}
+						<button
+							type="button"
+							onclick={addCharm}
+							class="rounded border border-zinc-700 px-2 py-1 text-xs text-zinc-200 hover:border-amber-500 hover:text-amber-300"
+						>
+							{t('addCharm')}
+						</button>
+						{#if charms.length > 0}
+							<button
+								type="button"
+								onclick={removeAllCharms}
+								class="rounded border border-red-900 px-2 py-1 text-xs text-red-400 hover:bg-red-500/10 hover:text-red-300"
+							>
+								{t('removeAll')}
+							</button>
+						{/if}
 					</div>
 
 					<p class="mb-3 text-xs text-zinc-500">
-						Enter the charms you own. The search will build sets using one of them.
+						{t('charmsHint')}
 					</p>
 
 					<label
@@ -898,7 +904,7 @@
 							class="hidden"
 							onchange={importSave}
 						/>
-						Import charms from a MHP3rd Save.BIN
+						{t('importCharms')}
 					</label>
 
 					{#if importNote}
@@ -909,8 +915,7 @@
 
 					{#if charms.length > 0 && !showCharms}
 						<p class="mb-3 text-xs text-zinc-500">
-							{charms.length} charm{charms.length === 1 ? '' : 's'} hidden. Use “Show list” above to review
-							them.
+							{t('charmsHidden', { n: charms.length })}
 						</p>
 					{/if}
 
@@ -924,36 +929,37 @@
 
 					<label class="mt-3 flex cursor-pointer items-center gap-2 text-sm text-zinc-300">
 						<input type="checkbox" bind:checked={includeNoCharm} class="accent-amber-500" />
-						<span>Also search sets without a charm</span>
+						<span>{t('includeNoCharm')}</span>
 					</label>
 
 					<div class="mt-4">
-						<span class="mb-1 block text-xs text-zinc-400">Possible charms</span>
+						<span class="mb-1 block text-xs text-zinc-400">{t('possibleCharms')}</span>
 						<div class="flex overflow-hidden rounded border border-zinc-700">
-							{#each [{ v: '', l: 'Off' }, { v: 'oneSkill', l: '1 skill' }, { v: 'twoSkills', l: '2 skills' }, { v: 'slotted', l: 'Slotted' }] as o (o.v)}
+							{#each [{ v: '', k: 'off' }, { v: 'oneSkill', k: 'oneSkill' }, { v: 'twoSkills', k: 'twoSkills' }, { v: 'slotted', k: 'slotted' }] as o (o.v)}
 								<button
 									type="button"
 									onclick={() => (possibleMode = o.v as PossibleCharmMode | '')}
 									class="flex-1 px-2 py-1.5 text-xs transition-colors
 										{possibleMode === o.v ? 'bg-amber-500/20 text-amber-300' : 'text-zinc-400 hover:bg-zinc-800'}"
 								>
-									{o.l}
+									{t(o.k)}
 								</button>
 							{/each}
 						</div>
 						<p class="mt-1 text-[11px] text-zinc-500">
-							Adds real charms from MHP3rd's official charm tables, so results tell you which charm
-							each set needs — even ones you don't own yet.
+							{t('possibleHint')}
 						</p>
 					</div>
 				</section>
 
 				<section class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
-					<h2 class="mb-3 text-sm font-semibold tracking-wide text-zinc-300 uppercase">Options</h2>
+					<h2 class="mb-3 text-sm font-semibold tracking-wide text-zinc-300 uppercase">
+						{t('options')}
+					</h2>
 
 					<div class="space-y-4 text-sm">
 						<div>
-							<span class="mb-1 block text-xs text-zinc-400">Weapon slots</span>
+							<span class="mb-1 block text-xs text-zinc-400">{t('weaponSlots')}</span>
 							<div class="flex overflow-hidden rounded border border-zinc-700">
 								{#each [0, 1, 2, 3] as n (n)}
 									<button
@@ -969,25 +975,25 @@
 						</div>
 
 						<div>
-							<span class="mb-1 block text-xs text-zinc-400">Gender</span>
+							<span class="mb-1 block text-xs text-zinc-400">{t('gender')}</span>
 							<div class="flex overflow-hidden rounded border border-zinc-700">
-								{#each [{ v: 'Any', l: 'Any' }, { v: 'Male', l: 'Male' }, { v: 'Female', l: 'Female' }] as o (o.v)}
+								{#each [{ v: 'Any' }, { v: 'Male' }, { v: 'Female' }] as o (o.v)}
 									<button
 										type="button"
 										onclick={() => (settings.gender = o.v as SearchSettings['gender'])}
 										class="flex-1 px-3 py-1.5 text-xs transition-colors
 											{settings.gender === o.v ? 'bg-amber-500/20 text-amber-300' : 'text-zinc-400 hover:bg-zinc-800'}"
 									>
-										{o.l}
+										{tr(o.v)}
 									</button>
 								{/each}
 							</div>
 						</div>
 
 						<div>
-							<span class="mb-1 block text-xs text-zinc-400">Hunter type</span>
+							<span class="mb-1 block text-xs text-zinc-400">{t('hunterType')}</span>
 							<div class="flex overflow-hidden rounded border border-zinc-700">
-								{#each [{ v: 'Blademaster', l: 'Blademaster' }, { v: 'Gunner', l: 'Gunner' }] as o (o.v)}
+								{#each [{ v: 'Blademaster' }, { v: 'Gunner' }] as o (o.v)}
 									<button
 										type="button"
 										onclick={() => (settings.hunterType = o.v as SearchSettings['hunterType'])}
@@ -996,7 +1002,7 @@
 											? 'bg-amber-500/20 text-amber-300'
 											: 'text-zinc-400 hover:bg-zinc-800'}"
 									>
-										{o.l}
+										{tr(o.v)}
 									</button>
 								{/each}
 							</div>
@@ -1004,24 +1010,24 @@
 
 						<div class="flex gap-4">
 							<div class="flex-1">
-								<span class="mb-1 block text-xs text-zinc-400">Max rarity</span>
+								<span class="mb-1 block text-xs text-zinc-400">{t('maxRarity')}</span>
 								<select
 									bind:value={settings.maxRarity}
 									class="w-full rounded border border-zinc-700 bg-zinc-800 px-2 py-1.5 text-xs text-zinc-100 focus:border-amber-500 focus:outline-none"
 								>
-									<option value={null}>Any</option>
+									<option value={null}>{t('all')}</option>
 									{#each [1, 2, 3, 4, 5, 6, 7] as r (r)}
 										<option value={r}>{r}</option>
 									{/each}
 								</select>
 							</div>
 							<div class="flex-1">
-								<span class="mb-1 block text-xs text-zinc-400">Max HR req</span>
+								<span class="mb-1 block text-xs text-zinc-400">{t('maxHr')}</span>
 								<select
 									bind:value={settings.maxHr}
 									class="w-full rounded border border-zinc-700 bg-zinc-800 px-2 py-1.5 text-xs text-zinc-100 focus:border-amber-500 focus:outline-none"
 								>
-									<option value={null}>Any</option>
+									<option value={null}>{t('all')}</option>
 									{#each [1, 2, 3, 4, 5, 6] as r (r)}
 										<option value={r}>{r}</option>
 									{/each}
@@ -1029,19 +1035,18 @@
 							</div>
 						</div>
 						<div>
-							<span class="mb-1 block text-xs text-zinc-400">Village quest progress</span>
+							<span class="mb-1 block text-xs text-zinc-400">{t('villageProgress')}</span>
 							<select
 								bind:value={settings.maxVillageStars}
 								class="w-full rounded border border-zinc-700 bg-zinc-800 px-2 py-1.5 text-xs text-zinc-100 focus:border-amber-500 focus:outline-none"
 							>
-								<option value={null}>Any</option>
+								<option value={null}>{t('all')}</option>
 								{#each [1, 2, 3, 4, 5, 6] as r (r)}
 									<option value={r}>{r}★</option>
 								{/each}
 							</select>
 							<p class="mt-1 text-[11px] text-zinc-500">
-								Armors obtainable via this village quest rank are always included; guild-exclusive
-								sets still require their HR.
+								{t('villageHint')}
 							</p>
 						</div>
 						<label class="flex cursor-pointer items-center gap-2 text-zinc-300">
@@ -1050,7 +1055,7 @@
 								bind:checked={settings.allowPiercings}
 								class="accent-amber-500"
 							/>
-							<span>Use piercings (Sword Saint, Barrage)</span>
+							<span>{t('usePiercings')}</span>
 						</label>
 					</div>
 				</section>
@@ -1069,7 +1074,9 @@
 						class="flex w-full cursor-pointer items-center justify-between select-none"
 					>
 						<span class="flex items-center gap-2">
-							<h2 class="text-sm font-semibold tracking-wide text-zinc-300 uppercase">History</h2>
+							<h2 class="text-sm font-semibold tracking-wide text-zinc-300 uppercase">
+								{t('history')}
+							</h2>
 							<span
 								class="text-xs text-zinc-400 transition-transform {showHistory ? 'rotate-180' : ''}"
 								>▾</span
@@ -1084,7 +1091,7 @@
 								}}
 								class="rounded border border-zinc-700 px-2 py-1 text-xs text-zinc-200 hover:border-red-700 hover:text-red-400"
 							>
-								Clear
+								{t('clear')}
 							</button>
 						{/if}
 					</div>
@@ -1092,7 +1099,7 @@
 					{#if showHistory}
 						<div class="mt-3">
 							{#if history.length === 0}
-								<p class="text-xs text-zinc-500">Your last searches will show up here.</p>
+								<p class="text-xs text-zinc-500">{t('historyEmpty')}</p>
 							{:else}
 								<div class="max-h-72 space-y-1 overflow-y-auto pr-1">
 									{#each history as h (h.id)}
@@ -1129,7 +1136,7 @@
 					>
 						<span class="flex items-center gap-2">
 							<h2 class="text-sm font-semibold tracking-wide text-zinc-300 uppercase">
-								Most searched
+								{t('mostSearched')}
 							</h2>
 							<span
 								class="text-xs text-zinc-400 transition-transform {showTopSets ? 'rotate-180' : ''}"
@@ -1142,16 +1149,16 @@
 						<div class="mt-3">
 							{#if topSets.length === 0}
 								<p class="text-xs text-zinc-500">
-									The most-searched skill sets from all visitors will show up here.
+									{t('topSetsEmpty')}
 								</p>
 							{:else}
 								<div class="max-h-72 space-y-1 overflow-y-auto pr-1">
-									{#each topSets as t, i (t.key)}
+									{#each topSets as ts, i (ts.key)}
 										{@const rank = i + 1}
 										<button
 											type="button"
-											onclick={() => loadTopSet(t)}
-											title={topSetLabelFor(t)}
+											onclick={() => loadTopSet(ts)}
+											title={topSetLabelFor(ts)}
 											class="flex w-full items-center justify-between gap-2 rounded border border-zinc-800 bg-zinc-800/50 px-2 py-1.5 text-left text-xs hover:border-amber-500 hover:bg-zinc-800"
 										>
 											<span
@@ -1165,8 +1172,10 @@
 															: 'bg-zinc-800 text-zinc-400'}">{rank}</span
 											>
 											<span class="min-w-0 flex-1">
-												<span class="block text-zinc-200">{topSetLabelFor(t)}</span>
-												<span class="block text-[10px] text-zinc-500">searched {t.count}×</span>
+												<span class="block text-zinc-200">{topSetLabelFor(ts)}</span>
+												<span class="block text-[10px] text-zinc-500">
+													{t('searchedNTimes', { n: ts.count })}</span
+												>
 											</span>
 										</button>
 									{/each}
@@ -1188,14 +1197,14 @@
 						disabled={searching}
 						class="hidden w-full rounded bg-amber-500 px-4 py-2.5 text-sm font-bold text-zinc-950 transition-colors hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-50 lg:block"
 					>
-						{searching ? 'Searching…' : 'Search sets'}
+						{searching ? t('searching') : t('searchSets')}
 					</button>
 
 					{#if searching}
 						<div class="mt-3">
 							<div class="mb-1 flex items-center justify-between text-xs text-zinc-400">
-								<span>{progress.phase}</span>
-								<span>{results.length} found</span>
+								<span>{trPhase(progress.phase)}</span>
+								<span>{t('found', { n: results.length })}</span>
 							</div>
 							<div class="h-1.5 overflow-hidden rounded bg-zinc-800">
 								<div
@@ -1208,7 +1217,7 @@
 								onclick={stopSearch}
 								class="mt-2 w-full rounded border border-red-800 px-3 py-1 text-xs text-red-400 hover:bg-red-500/10"
 							>
-								Stop
+								{t('stop')}
 							</button>
 						</div>
 					{/if}
@@ -1217,18 +1226,20 @@
 
 			<section class="min-w-0">
 				<div class="mb-3 flex flex-wrap items-center justify-between gap-2">
-					<h2 class="text-sm font-semibold tracking-wide text-zinc-300 uppercase">Results</h2>
+					<h2 class="text-sm font-semibold tracking-wide text-zinc-300 uppercase">
+						{t('results')}
+					</h2>
 					{#if searched}
 						<span class="text-xs text-zinc-500">
-							{displayResults.length} set{displayResults.length === 1 ? '' : 's'}
+							{t('setsCount', { n: displayResults.length })}
 							{#if displayResults.length !== results.length}
-								(of {results.length})
+								{t('ofTotal', { total: results.length })}
 							{/if}
 							{#if !searching && searchTime > 0}
 								· {Math.round(searchTime)}ms
 							{/if}
 							{#if searching}
-								· searching…
+								{t('searchingShort')}
 							{/if}
 						</span>
 					{/if}
@@ -1240,7 +1251,7 @@
 					>
 						<label class="flex cursor-pointer items-center gap-1.5 text-xs text-zinc-300">
 							<input type="checkbox" bind:checked={hideNegative} class="accent-amber-500" />
-							No negative skills
+							{t('noNegative')}
 						</label>
 						<span class="mx-1 h-4 w-px bg-zinc-700"></span>
 						<div class="flex flex-wrap items-center gap-1">
@@ -1248,36 +1259,36 @@
 								<button
 									type="button"
 									onclick={() => (sortBy = o.key)}
-									title={o.label}
+									title={t(o.label)}
 									class="flex items-center gap-1 rounded px-1.5 py-1 text-[11px] transition-colors
 										{sortBy === o.key
 										? 'bg-amber-500/20 text-amber-300'
 										: 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'}"
 								>
 									<span>{SORT_ICONS[o.key]}</span>
-									<span>{o.label}</span>
+									<span>{t(o.label)}</span>
 								</button>
 							{/each}
 						</div>
 						<span class="mx-1 h-4 w-px bg-zinc-700"></span>
 						<button
 							type="button"
-							title={sortDir === 'desc' ? 'Descending (high to low)' : 'Ascending (low to high)'}
+							title={sortDir === 'desc' ? t('descTitle') : t('ascTitle')}
 							onclick={() => (sortDir = sortDir === 'desc' ? 'asc' : 'desc')}
 							class="flex items-center gap-1 rounded px-1.5 py-1 text-[11px] transition-colors
 								{sortDir === 'desc' ? 'bg-amber-500/20 text-amber-300' : 'bg-zinc-800 text-amber-300'}"
 						>
 							<span>{sortDir === 'desc' ? '⬇' : '⬆'}</span>
-							<span>{sortDir === 'desc' ? 'Desc' : 'Asc'}</span>
+							<span>{sortDir === 'desc' ? t('desc') : t('asc')}</span>
 						</button>
 						<span class="mx-1 h-4 w-px bg-zinc-700"></span>
 						<select
 							bind:value={charmFilterId}
-							title="Filter by charm"
+							title={t('filterByCharm')}
 							class="max-w-56 rounded border border-zinc-700 bg-zinc-800 px-1.5 py-1 text-xs text-zinc-100 focus:border-amber-500 focus:outline-none"
 						>
-							<option value="__all">All charms</option>
-							<option value="__none">No charm</option>
+							<option value="__all">{t('allCharms')}</option>
+							<option value="__none">{t('noCharmOption')}</option>
 							{#each charmFilterOptions as [id, label] (id)}
 								<option value={id}>{label}</option>
 							{/each}
@@ -1292,7 +1303,7 @@
 								: 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'}"
 						>
 							<span>{showAdvanced ? '▾' : '▸'}</span>
-							<span>Advanced search</span>
+							<span>{t('advancedSearch')}</span>
 							{#if excludedCount > 0}
 								<span class="rounded-full bg-red-500/20 px-1.5 text-[10px] text-red-300">
 									{excludedCount}
@@ -1306,7 +1317,7 @@
 					<div class="mb-3 rounded-lg border border-zinc-800 bg-zinc-900 p-3">
 						<div class="mb-3 flex flex-wrap items-center justify-between gap-2">
 							<h3 class="text-xs font-semibold tracking-wide text-zinc-300 uppercase">
-								Uncheck a piece to see only sets that don't need it
+								{t('advancedHint')}
 							</h3>
 							<div class="flex items-center gap-2">
 								<button
@@ -1314,14 +1325,14 @@
 									onclick={resetAdvancedFilters}
 									class="rounded border border-zinc-700 px-2 py-1 text-[11px] text-zinc-200 hover:border-amber-500 hover:text-amber-300"
 								>
-									Select all
+									{t('selectAll')}
 								</button>
 								<button
 									type="button"
 									onclick={excludeAllAdvanced}
 									class="rounded border border-zinc-700 px-2 py-1 text-[11px] text-zinc-200 hover:border-red-700 hover:text-red-400"
 								>
-									Unselect all
+									{t('unselectAll')}
 								</button>
 							</div>
 						</div>
@@ -1329,9 +1340,11 @@
 						<div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
 							{#each advancedFilters.parts as g (g.part)}
 								<div>
-									<div class="mb-1 text-[11px] font-semibold text-zinc-500 uppercase">{g.part}</div>
+									<div class="mb-1 text-[11px] font-semibold text-zinc-500 uppercase">
+										{tr(g.part)}
+									</div>
 									{#if g.items.length === 0}
-										<p class="text-xs text-zinc-600">None used.</p>
+										<p class="text-xs text-zinc-600">{t('noneUsed')}</p>
 									{:else}
 										<div class="max-h-44 space-y-0.5 overflow-y-auto pr-1">
 											{#each g.items as it (it.key)}
@@ -1344,7 +1357,7 @@
 														onchange={(e) => togglePiece(it.key, e.currentTarget.checked)}
 														class="accent-amber-500"
 													/>
-													<span class="min-w-0 flex-1 truncate">{it.name}</span>
+													<span class="min-w-0 flex-1 truncate">{tr(it.name)}</span>
 													<span class="text-[10px] text-zinc-500">×{it.count}</span>
 												</label>
 											{/each}
@@ -1356,10 +1369,10 @@
 
 						<div class="mt-3">
 							<div class="mb-1 text-[11px] font-semibold text-zinc-500 uppercase">
-								Decorations (gems)
+								{t('decorationsGems')}
 							</div>
 							{#if advancedFilters.decos.length === 0}
-								<p class="text-xs text-zinc-600">None used.</p>
+								<p class="text-xs text-zinc-600">{t('noneUsed')}</p>
 							{:else}
 								<div class="max-h-44 space-y-0.5 overflow-y-auto pr-1">
 									{#each advancedFilters.decos as it (it.key)}
@@ -1372,7 +1385,7 @@
 												onchange={(e) => toggleDeco(it.name, e.currentTarget.checked)}
 												class="accent-amber-500"
 											/>
-											<span class="min-w-0 flex-1 truncate">{it.name}</span>
+											<span class="min-w-0 flex-1 truncate">{tr(it.name)}</span>
 											<span class="text-[10px] text-zinc-500">×{it.count}</span>
 										</label>
 									{/each}
@@ -1386,7 +1399,7 @@
 					<div
 						class="flex h-64 items-center justify-center rounded-lg border border-dashed border-zinc-800 text-sm text-zinc-600"
 					>
-						Configure your skills and charms, then run a search.
+						{t('emptyState')}
 					</div>
 				{:else if displayResults.length > 0}
 					<div class="space-y-2">
@@ -1399,17 +1412,16 @@
 						class="flex h-64 items-center justify-center rounded-lg border border-dashed border-zinc-800 text-sm text-zinc-500"
 					>
 						{#if results.length > 0}
-							No sets match the current filters.
+							{t('noSetsFilters')}
 						{:else}
-							No sets found. Try loosening your requirements (fewer skills, more charm points, or
-							allow higher rarity armor).
+							{t('noSetsFound')}
 						{/if}
 					</div>
 				{:else}
 					<div
 						class="flex h-64 items-center justify-center rounded-lg border border-dashed border-zinc-800 text-sm text-zinc-600"
 					>
-						Searching…
+						{t('searching')}
 					</div>
 				{/if}
 			</section>
@@ -1417,14 +1429,14 @@
 	</main>
 
 	<footer class="border-t border-zinc-800 px-4 py-4 text-center text-xs text-zinc-600">
-		Data extracted from Athena's ASS for Monster Hunter Portable 3rd. Not affiliated with Capcom.
+		{t('footer')}
 	</footer>
 
 	<button
 		type="button"
 		onclick={scrollToTop}
-		aria-label="Back to top"
-		title="Back to top"
+		aria-label={t('backToTop')}
+		title={t('backToTop')}
 		class="fixed bottom-4 left-1/2 z-40 flex h-11 w-11 -translate-x-1/2 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 text-lg text-zinc-300 shadow-lg transition-opacity hover:border-amber-500 hover:text-amber-300
 			{showScrollTop ? 'opacity-100' : 'pointer-events-none opacity-0'}"
 	>
@@ -1435,8 +1447,8 @@
 		type="button"
 		onclick={doSearch}
 		disabled={!formDirty || searching}
-		aria-label="Search sets"
-		title="Search sets"
+		aria-label={t('searchSets')}
+		title={t('searchSets')}
 		class="fixed right-4 bottom-4 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-all lg:hidden
 			{showFab ? 'opacity-100' : 'pointer-events-none opacity-0'}
 			{formDirty || searching

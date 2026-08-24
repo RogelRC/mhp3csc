@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { SetResult } from '$lib/types';
 	import { aggregateSetMaterials, formatSkillPoints, rarityColor } from '$lib/gameData';
+	import { t, tr } from '$lib/i18n/i18n.svelte';
 	import CharmTableInfo from './CharmTableInfo.svelte';
 
 	let { result, index }: { result: SetResult; index: number } = $props();
@@ -41,28 +42,36 @@
 
 	function copyText(): string {
 		const lines: string[] = [];
-		lines.push(`MHP3 Armor Set #${index + 1} — Defense ${result.defenseSumMax}`);
+		lines.push(t('copyTextHeader', { n: index + 1, def: result.defenseSumMax }));
 		for (const p of result.pieces) {
 			lines.push(
-				`  ${p.part}: ${p.name} [${slotsMarkup(p.slots)}] (R${p.rarity}) ${p.defenseBase}–${p.defenseMax}`
+				`  ${tr(p.part)}: ${tr(p.name)} [${slotsMarkup(p.slots)}] (R${p.rarity}) ${p.defenseBase}–${p.defenseMax}`
 			);
 		}
 		const c = result.charm;
 		lines.push(
-			`  Charm: ${c ? `${c.name || '(unnamed)'} [${slotsMarkup(c.slots)}] ${c.skill1.tree}${formatSkillPoints(c.skill1.points)}${c.skill2 && c.skill2.tree ? `, ${c.skill2.tree}${formatSkillPoints(c.skill2.points)}` : ''}` : 'None'}`
+			t('copyTextCharm', {
+				v: c
+					? `${c.name || t('unnamed')} [${slotsMarkup(c.slots)}] ${tr(c.skill1.tree)}${formatSkillPoints(c.skill1.points)}${c.skill2 && c.skill2.tree ? `, ${tr(c.skill2.tree)}${formatSkillPoints(c.skill2.points)}` : ''}`
+					: t('copyTextNone')
+			})
 		);
-		lines.push(`  Weapon slots: ${result.weaponSlots}`);
+		lines.push(t('copyTextWeaponSlots', { n: result.weaponSlots }));
 		if (result.decorations.length) {
 			lines.push(
-				`  Decorations: ${result.decorations.map((d) => `${d.name} x${d.count}`).join(', ')}`
+				t('copyTextDecorations', {
+					v: result.decorations.map((d) => `${tr(d.name)} x${d.count}`).join(', ')
+				})
 			);
 		}
-		lines.push(`  Skills: ${result.activated.map((a) => a.name).join(', ')}`);
+		lines.push(t('copyTextSkills', { v: result.activated.map((a) => tr(a.name)).join(', ') }));
 		if (result.negativeActivated.length) {
-			lines.push(`  Negative skills: ${result.negativeActivated.map((a) => a.name).join(', ')}`);
+			lines.push(
+				t('copyTextNegative', { v: result.negativeActivated.map((a) => tr(a.name)).join(', ') })
+			);
 		}
 		const matLine = materialsMarkup();
-		if (matLine) lines.push(`  Materials: ${matLine}`);
+		if (matLine) lines.push(t('copyTextMaterials', { v: matLine }));
 		return lines.join('\n');
 	}
 
@@ -79,7 +88,7 @@
 			result.pieces.flatMap((p) => p.materials),
 			result.decorations
 		)
-			.map((m) => `${m.name} x${m.quantity}`)
+			.map((m) => `${tr(m.name)} x${m.quantity}`)
 			.join(', ');
 	}
 </script>
@@ -104,23 +113,25 @@
 					<span
 						class="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[11px] font-medium text-emerald-300"
 					>
-						{a.name}
+						{tr(a.name)}
 					</span>
 				{/each}
 				{#each result.negativeActivated as a (a.tree + ':' + a.name)}
 					<span class="rounded bg-red-500/15 px-1.5 py-0.5 text-[11px] font-medium text-red-300">
-						{a.name}
+						{tr(a.name)}
 					</span>
 				{/each}
 			</div>
 		</div>
 		<div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
-			<span class="text-sm text-zinc-300">Def {result.defenseSumMax}</span>
+			<span class="text-sm text-zinc-300">{t('def')} {result.defenseSumMax}</span>
 			{#if result.charm}
 				<span class="min-w-0 flex-1 truncate text-xs text-zinc-500" title={result.charm.name}>
-					{result.charm.name || 'Charm'} · {result.charm.slots}◯
+					{result.charm.name || t('charmFallback')} · {result.charm.slots}◯
 					{#if result.charm.hypothetical}
-						<span class="ml-1 rounded bg-sky-500/15 px-1 text-[10px] text-sky-300">possible</span>
+						<span class="ml-1 rounded bg-sky-500/15 px-1 text-[10px] text-sky-300"
+							>{t('possibleBadge')}</span
+						>
 					{/if}
 				</span>
 			{/if}
@@ -133,22 +144,22 @@
 			<table class="w-full text-sm">
 				<thead>
 					<tr class="text-left text-[11px] tracking-wide text-zinc-500 uppercase">
-						<th class="py-1">Part</th>
-						<th class="py-1">Piece</th>
-						<th class="py-1">Slots</th>
-						<th class="py-1 text-right">Def</th>
-						<th class="py-1 text-right">Rarity</th>
+						<th class="py-1">{t('part')}</th>
+						<th class="py-1">{t('piece')}</th>
+						<th class="py-1">{t('slots')}</th>
+						<th class="py-1 text-right">{t('def')}</th>
+						<th class="py-1 text-right">{t('rarity')}</th>
 					</tr>
 				</thead>
 				<tbody>
 					{#each result.pieces as p (p.name)}
 						<tr class="border-t border-zinc-800/60">
-							<td class="py-1 text-zinc-400">{p.part}</td>
+							<td class="py-1 text-zinc-400">{tr(p.part)}</td>
 							<td class="py-1 text-zinc-100">
-								{p.name}
+								{tr(p.name)}
 								{#if p.isTorsoInc}
 									<span class="ml-1 rounded bg-violet-500/15 px-1 text-[10px] text-violet-300"
-										>Torso Up</span
+										>{t('torsoUp')}</span
 									>
 								{/if}
 							</td>
@@ -165,30 +176,30 @@
 			</table>
 
 			<div class="mt-3 rounded border border-zinc-800 bg-zinc-950/50 p-2 text-xs">
-				<span class="text-zinc-500">Stats:</span>
+				<span class="text-zinc-500">{t('stats')}</span>
 				<div class="mt-1 flex flex-wrap gap-x-5 gap-y-1.5">
 					<span class="text-zinc-300">
-						🛡 Def base
+						🛡 {t('defBase')}
 						<span class="text-zinc-100"> {result.defenseSumBase}</span>
 					</span>
 					<span class="text-zinc-300">
-						🛡 Def max
+						🛡 {t('defMax')}
 						<span class="text-zinc-100"> {result.defenseSumMax}</span>
 					</span>
 					<span class="text-zinc-300">
-						💎 Rarity
+						💎 {t('rarity')}
 						<span style="color: {rarityColor(result.raritySum)}"> R{result.raritySum}</span>
 					</span>
 					<span class="text-zinc-300">
-						⭐ Difficulty
+						⭐ {t('difficulty')}
 						<span class="text-zinc-100"> HR {result.hrSum}</span>
 					</span>
 				</div>
 				<div class="mt-1.5 flex flex-wrap gap-x-4 gap-y-1.5">
-					{#each [{ label: 'Fire', icon: '🔥', value: result.resistanceSum.fire }, { label: 'Water', icon: '💧', value: result.resistanceSum.water }, { label: 'Ice', icon: '❄', value: result.resistanceSum.ice }, { label: 'Thunder', icon: '⚡', value: result.resistanceSum.thunder }, { label: 'Dragon', icon: '🐉', value: result.resistanceSum.dragon }] as r (r.label)}
+					{#each [{ label: 'sortFire', icon: '🔥', value: result.resistanceSum.fire }, { label: 'sortWater', icon: '💧', value: result.resistanceSum.water }, { label: 'sortIce', icon: '❄', value: result.resistanceSum.ice }, { label: 'sortThunder', icon: '⚡', value: result.resistanceSum.thunder }, { label: 'sortDragon', icon: '🐉', value: result.resistanceSum.dragon }] as r (r.label)}
 						<span class="text-zinc-300">
 							{r.icon}
-							{r.label}
+							{t(r.label)}
 							<span
 								class={r.value > 0
 									? 'text-emerald-400'
@@ -206,37 +217,37 @@
 			<div class="mt-3 grid gap-2 text-xs sm:grid-cols-2">
 				{#if result.charm}
 					<div class="rounded border border-zinc-800 bg-zinc-950/50 p-2">
-						<span class="text-zinc-500">Charm:</span>
+						<span class="text-zinc-500">{t('charmLabel')}</span>
 						<span class="text-zinc-200">
-							{result.charm.name || '(unnamed)'} [{slotsMarkup(result.charm.slots)}]
-							{result.charm.skill1.tree}{formatSkillPoints(result.charm.skill1.points)}
+							{result.charm.name || t('unnamed')} [{slotsMarkup(result.charm.slots)}]
+							{tr(result.charm.skill1.tree)}{formatSkillPoints(result.charm.skill1.points)}
 							{#if result.charm.skill2 && result.charm.skill2.tree}
-								, {result.charm.skill2.tree}{formatSkillPoints(result.charm.skill2.points)}
+								, {tr(result.charm.skill2.tree)}{formatSkillPoints(result.charm.skill2.points)}
 							{/if}
 						</span>
 						{#if result.charm.hypothetical}
 							<span class="ml-1 rounded bg-sky-500/15 px-1 text-[10px] text-sky-300"
-								>not owned — possible charm</span
+								>{t('notOwnedPossible')}</span
 							>
 							<CharmTableInfo charm={result.charm} />
 						{/if}
 					</div>
 				{/if}
 				<div class="rounded border border-zinc-800 bg-zinc-950/50 p-2">
-					<span class="text-zinc-500">Weapon slots:</span>
+					<span class="text-zinc-500">{t('weaponSlotsLabel')}</span>
 					<span class="text-zinc-200">{result.weaponSlots}◯</span>
-					<span class="ml-3 text-zinc-500">Used:</span>
+					<span class="ml-3 text-zinc-500">{t('used')}</span>
 					<span class="text-zinc-200">{result.usedSlots}/{result.totalSlots}◯</span>
 				</div>
 			</div>
 
 			{#if result.decorations.length}
 				<div class="mt-2 rounded border border-zinc-800 bg-zinc-950/50 p-2 text-xs">
-					<span class="text-zinc-500">Decorations:</span>
+					<span class="text-zinc-500">{t('decorationsLabel')}</span>
 					<span class="ml-1 text-zinc-200">
 						{#each result.decorations as d (d.name)}
 							<span class="mr-2 inline-block">
-								{d.name} <span class="text-amber-400">x{d.count}</span>
+								{tr(d.name)} <span class="text-amber-400">x{d.count}</span>
 							</span>
 						{/each}
 					</span>
@@ -244,11 +255,11 @@
 			{/if}
 
 			<div class="mt-2 rounded border border-zinc-800 bg-zinc-950/50 p-2 text-xs">
-				<span class="text-zinc-500">Skill points:</span>
+				<span class="text-zinc-500">{t('skillPoints')}</span>
 				<div class="mt-1 flex flex-wrap gap-x-4 gap-y-1">
 					{#each result.treePoints as tp (tp.tree)}
 						<span class="text-zinc-300">
-							{tp.tree}
+							{tr(tp.tree)}
 							<span class={tp.points >= 0 ? 'text-emerald-400' : 'text-red-400'}
 								>{tp.points >= 0 ? '+' : ''}{tp.points}</span
 							>
@@ -259,11 +270,11 @@
 
 			{#if materialsMarkup()}
 				<div class="mt-2 rounded border border-zinc-800 bg-zinc-950/50 p-2 text-xs">
-					<span class="text-zinc-500">Materials:</span>
+					<span class="text-zinc-500">{t('materials')}</span>
 					<div class="mt-1 flex flex-wrap gap-x-4 gap-y-1">
 						{#each aggregateSetMaterials( result.pieces.flatMap((p) => p.materials), result.decorations ) as m (m.name)}
 							<span class="text-zinc-300">
-								{m.name}
+								{tr(m.name)}
 								<span class="text-amber-400">x{m.quantity}</span>
 							</span>
 						{/each}
@@ -277,17 +288,17 @@
 					onclick={copy}
 					class="rounded border border-zinc-700 px-2.5 py-1 text-xs text-zinc-300 hover:border-amber-500 hover:text-amber-300"
 				>
-					Copy set
+					{t('copySet')}
 				</button>
 				<button
 					type="button"
 					onclick={exportImage}
 					disabled={exporting}
-					title="Export as image"
-					aria-label="Export as image"
+					title={t('exportImageTitle')}
+					aria-label={t('exportImageTitle')}
 					class="rounded border border-zinc-700 px-2.5 py-1 text-xs text-zinc-300 hover:border-amber-500 hover:text-amber-300"
 				>
-					{exporting ? '…' : 'Export image'}
+					{exporting ? '…' : t('exportImage')}
 				</button>
 			</div>
 		</div>

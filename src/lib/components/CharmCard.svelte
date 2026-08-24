@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Charm } from '$lib/types';
 	import { SKILL_TREE_NAMES } from '$lib/gameData';
+	import { t, tr } from '$lib/i18n/i18n.svelte';
 
 	let { charm, onremove }: { charm: Charm; onremove: () => void } = $props();
 
@@ -18,11 +19,11 @@
 	<div class="flex items-center gap-2">
 		<label class="flex cursor-pointer items-center gap-1.5 text-sm">
 			<input type="checkbox" bind:checked={charm.included} class="accent-amber-500" />
-			<span>Use in search</span>
+			<span>{t('useInSearch')}</span>
 		</label>
 		<input
 			type="text"
-			placeholder="Charm name (optional)"
+			placeholder={t('charmNamePlaceholder')}
 			bind:value={charm.name}
 			class="min-w-0 flex-1 rounded border border-zinc-700 bg-zinc-800 px-2 py-1 text-sm text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
 		/>
@@ -30,15 +31,15 @@
 			type="button"
 			onclick={onremove}
 			class="rounded border border-zinc-700 px-2 py-1 text-xs text-zinc-400 hover:border-red-700 hover:text-red-400"
-			aria-label="Remove charm"
+			aria-label={t('removeCharmAria')}
 		>
-			Remove
+			{t('removeCharm')}
 		</button>
 	</div>
 
 	<div class="mt-2 flex flex-wrap items-center gap-3 text-sm">
 		<div class="flex items-center gap-1">
-			<span class="text-xs text-zinc-400">Slots</span>
+			<span class="text-xs text-zinc-400">{t('slotsLabel')}</span>
 			{#each [0, 1, 2, 3] as n (n)}
 				<button
 					type="button"
@@ -58,9 +59,9 @@
 				bind:value={charm.skill1.tree}
 				class="max-w-full rounded border border-zinc-700 bg-zinc-800 px-1 py-1 text-xs text-zinc-200 focus:border-amber-500 focus:outline-none"
 			>
-				<option value="">Skill 1…</option>
+				<option value="">{t('skill1')}</option>
 				{#each SKILL_TREE_NAMES as tree (tree)}
-					<option value={tree}>{tree}</option>
+					<option value={tree}>{tr(tree)}</option>
 				{/each}
 			</select>
 			<input
@@ -78,9 +79,9 @@
 					bind:value={second.tree}
 					class="max-w-full rounded border border-zinc-700 bg-zinc-800 px-1 py-1 text-xs text-zinc-200 focus:border-amber-500 focus:outline-none"
 				>
-					<option value="">Skill 2…</option>
+					<option value="">{t('skill2')}</option>
 					{#each SKILL_TREE_NAMES as tree (tree)}
-						<option value={tree}>{tree}</option>
+						<option value={tree}>{tr(tree)}</option>
 					{/each}
 				</select>
 				<input
@@ -93,7 +94,7 @@
 					type="button"
 					onclick={() => (charm.skill2 = null)}
 					class="rounded border border-zinc-700 px-1.5 py-1 text-xs text-zinc-400 hover:border-red-700 hover:text-red-400"
-					aria-label="Remove second skill"
+					aria-label={t('removeSecondSkillAria')}
 				>
 					✕
 				</button>
@@ -104,7 +105,7 @@
 				onclick={() => (charm.skill2 = { tree: '', points: 0 })}
 				class="rounded border border-zinc-700 px-2 py-1 text-xs text-zinc-400 hover:border-zinc-500 hover:text-zinc-200"
 			>
-				+ second skill
+				{t('secondSkill')}
 			</button>
 		{/if}
 	</div>
